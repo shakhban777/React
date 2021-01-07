@@ -3,7 +3,7 @@ import React from 'react';
 import TodoListItem from '../todo-list-item/';
 import './todo-list.css';
 
-const TodoList = ({ todos, onDeleted }) => {
+const TodoList = ({ todos, onDeleted, onToggleDone, onToggleImportant }) => {
 	const elements = todos.map((item) => {
 		const { id, ...itemProps } = item;
 
@@ -11,7 +11,9 @@ const TodoList = ({ todos, onDeleted }) => {
 			<li className='list-group-item' key={id}>
 				<TodoListItem
 					{...itemProps}
-					onDeleted = {() => onDeleted(id)}/>
+					onDeleted = {() => onDeleted(id)}
+					onToggleDone = {() => onToggleDone(id)}
+					onToggleImportant = {() => onToggleImportant(id)}/>
 			</li>
 		);
 	});
@@ -19,7 +21,7 @@ const TodoList = ({ todos, onDeleted }) => {
 
 	return (
 		<ul className='list-group todo-list'>
-			{elements}
+			{ elements }
 		</ul>
 	);
 };
