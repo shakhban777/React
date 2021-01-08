@@ -6,7 +6,7 @@ export default class ItemAddForm extends Component {
 
 	state = {
 		label: ''
-	}
+	};
 
 	labelOnChange = (e) => {
 		this.setState({
@@ -31,12 +31,11 @@ export default class ItemAddForm extends Component {
 						 className='form-control'
 						 placeholder='What needs to be done'
 						 onChange={ this.labelOnChange }
-						 value={this.state.label} />
+						 value={ this.state.label } />
 				<button className='btn btn-outline-secondary'>
 					Add Item
 				</button>
 			</form>
-
 		);
 	};
 };
