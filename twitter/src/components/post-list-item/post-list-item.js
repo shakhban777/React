@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import './post-list-item.sass';
 
 export default class PostListItem extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			important: false,
-			like: false
-		};
-		// this.OnImportant = this.OnImportant.bind(this);
-		// this.OnLike = this.OnLike.bind(this);
-	}
+	state = {
+		important: false,
+		like: false
+	};
 
 	OnImportant = () => {
 		this.setState(({important}) => ({
@@ -58,7 +53,7 @@ export default class PostListItem extends Component {
 					<button
 						type='button'
 						className='btn-trash btn-sm'
-						onClick={onDelete}>
+						onClick={ onDelete }>
 							<i className='fa fa-trash-o'></i>
 					</button>
 

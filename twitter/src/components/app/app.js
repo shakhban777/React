@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import AppHeader from "../app-header/";
 import SearchPanel from '../search-panel';
@@ -13,29 +13,45 @@ const AppBlock = styled.div`
 	margin: 0 auto;
 	max-width: 800px;
 `
-const StyledAppBlock = styled(AppBlock)`
-	background-color: grey;
-`
+// const StyledAppBlock = styled(AppBlock)`
+// 	background-color: grey;
+// `
 
-const App = () => {
+export default class App extends Component {
 
-	const data = [
-		{label: 'Hi everyone', important: true, id: 'qwe'},
-		{label: "I'm beginner React programmer", important: false, id: 'asd'},
-		{label: "Let's go to study it together!", important: false, id: 'zxc'}
-	]
+	state = {
+		data: [
+			{label: 'Hi everyone', important: true, id: 1},
+			{label: "I'm beginner React programmer", important: false, id: 2},
+			{label: "Let's go to study it together!", important: false, id: 3}
+		],
+		maxId: 100
+	}
 
-	return (
-		<AppBlock>
-			<AppHeader/>
-			<div className='search-panel d-flex'>
-				<SearchPanel/>
-				<PostStatusFilter/>
-			</div>
-			<PostList posts={data}/>
-			<PostAddForm/>
-		</AppBlock>
-	)
+
+	deleteItem = (id) => {
+		const index = this.state.data.findIndex(el => el.id === id);
+
+		const newArray = [...this.state.data.slice(0, index), ...this.state.data.slice(index + 1)];
+
+		this.setState(({ data }) => ({
+			data: newArray
+		}));
+	};
+
+	render() {
+		const { data } = this.state;
+		return (
+			<AppBlock>
+				<AppHeader/>
+				<div className='search-panel d-flex'>
+					<SearchPanel/>
+					<PostStatusFilter/>
+				</div>
+				<PostList posts={ data }
+							 deleteItem={ this.deleteItem }/>
+				<PostAddForm/>
+			</AppBlock>
+		);
+	};
 }
-
-export default App;
