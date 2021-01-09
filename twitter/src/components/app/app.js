@@ -18,39 +18,54 @@ const AppBlock = styled.div`
 // `
 
 export default class App extends Component {
+	maxId = 100
 
 	state = {
 		data: [
-			{label: 'Hi everyone', important: true, id: 1},
-			{label: "I'm beginner React programmer", important: false, id: 2},
-			{label: "Let's go to study it together!", important: false, id: 3}
-		],
-		maxId: 100
+			this.createElement('Hi everyone'),
+			this.createElement("I'm beginner React programmer"),
+			this.createElement("Let's go to study it together!")
+		]
 	}
 
-
-	deleteItem = (id) => {
+	onDeleteItem = (id) => {
 		const index = this.state.data.findIndex(el => el.id === id);
 
 		const newArray = [...this.state.data.slice(0, index), ...this.state.data.slice(index + 1)];
 
-		this.setState(({ data }) => ({
+		this.setState(() => ({
 			data: newArray
+		}));
+	};
+
+	createElement(label) {
+		return ({
+			label,
+			important: false,
+			id: this.maxId++
+		});
+	};
+
+	onAddItem = (text) => {
+		const newArr = [...this.state.data, this.createElement(text)];
+		this.setState(() => ({
+			data: newArr
 		}));
 	};
 
 	render() {
 		const { data } = this.state;
+
 		return (
 			<AppBlock>
-				<AppHeader/>
+				<AppHeader />
 				<div className='search-panel d-flex'>
-					<SearchPanel/>
-					<PostStatusFilter/>
+					<SearchPanel />
+					<PostStatusFilter />
 				</div>
-				<PostList posts={ data }
-							 deleteItem={ this.deleteItem }/>
-				<PostAddForm/>
+				<PostList posts={data}
+							 onDeleteItem={this.onDeleteItem} />
+				<PostAddForm onAddItem={this.onAddItem} />
 			</AppBlock>
 		);
 	};
