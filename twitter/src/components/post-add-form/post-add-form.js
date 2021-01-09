@@ -18,7 +18,6 @@ export default class PostAddForm extends Component {
 
 	onChange = (e) => {
 		const text = e.target.value;
-
 		this.setState(() => ({
 			label: text
 		}));

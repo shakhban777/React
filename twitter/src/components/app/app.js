@@ -47,6 +47,8 @@ export default class App extends Component {
 	};
 
 	onAddItem = (text) => {
+		if (!text) return;
+
 		const newArr = [...this.state.data, this.createElement(text)];
 		this.setState(() => ({
 			data: newArr
