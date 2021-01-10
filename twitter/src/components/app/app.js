@@ -26,7 +26,8 @@ export default class App extends Component {
 			this.createElement("I'm beginner React programmer"),
 			this.createElement("Let's go to study it together!")
 		],
-		find: ''
+		find: '',
+		buttons: 'all'
 	}
 
 	createElement(label) {
@@ -89,27 +90,33 @@ export default class App extends Component {
 		});
 	};
 
-	onSearch = (e) => {
-		this.setState(({ find }) => {
-			return {
-				find: e.target.value
-			};
+	onSearch(items, find) {
+		if (find.length === 0) {
+			return items;
+		}
+
+		return items.filter(el => {
+			return el.label.toLowerCase().includes(find.toLowerCase());
 		});
-	}
+	};
+
+	onUpdateSearch = (find) => {
+		this.setState({find});
+	};
 
 	render() {
 		const { data, find } = this.state;
 		const liked = data.filter(el => el.like).length;
 		const all = data.length;
 
-		const visibleItems = data.filter(el => el.label.toLowerCase().includes(find.toLowerCase()));
+		const visibleItems = this.onSearch(data, find);
 
 		return (
 			<AppBlock>
 				<AppHeader liked={liked}
 							  all={all} />
 				<div className='search-panel d-flex'>
-					<SearchPanel onSearch={this.onSearch} />
+					<SearchPanel onUpdateSearch={this.onUpdateSearch} />
 					<PostStatusFilter />
 				</div>
 				<PostList posts={visibleItems}
