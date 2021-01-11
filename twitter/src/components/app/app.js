@@ -27,7 +27,7 @@ export default class App extends Component {
 			this.createElement("Let's go to study it together!")
 		],
 		find: '',
-		buttons: 'all'
+		filter: 'all'
 	}
 
 	createElement(label) {
@@ -37,7 +37,7 @@ export default class App extends Component {
 			like: false,
 			id: this.maxId++
 		});
-	};
+	}
 
 	onAddItem = (text) => {
 		if (!text) return;
@@ -46,7 +46,7 @@ export default class App extends Component {
 		this.setState(() => ({
 			data: newArr
 		}));
-	};
+	}
 
 	onDeleteItem = (id) => {
 		const index = this.state.data.findIndex(el => el.id === id);
@@ -56,7 +56,7 @@ export default class App extends Component {
 		this.setState(() => ({
 			data: newArray
 		}));
-	};
+	}
 
 	onToggle = (arr, id, prop) => {
 		const index = arr.findIndex(el => el.id === id);
@@ -72,7 +72,7 @@ export default class App extends Component {
 			newItem,
 			...arr.slice(index + 1)
 		];
-	};
+	}
 
 	onToggleLiked = (id) => {
 		this.setState(({ data }) => {
@@ -80,7 +80,7 @@ export default class App extends Component {
 				data: this.onToggle(data, id, 'like')
 			};
 		});
-	};
+	}
 
 	onToggleImportant = (id) => {
 		this.setState(({ data }) => {
@@ -88,7 +88,7 @@ export default class App extends Component {
 				data: this.onToggle(data, id, 'important')
 			};
 		});
-	};
+	}
 
 	onSearch(items, find) {
 		if (find.length === 0) {
@@ -98,18 +98,30 @@ export default class App extends Component {
 		return items.filter(el => {
 			return el.label.toLowerCase().includes(find.toLowerCase());
 		});
-	};
+	}
 
 	onUpdateSearch = (find) => {
 		this.setState({find});
-	};
+	}
+
+	itemFilter(items, filter) {
+		if (filter === 'like') {
+			return items.filter(el => el.like);
+		} else {
+			return items;
+		}
+	}
+
+	onUpdateFilter = (filter) => {
+		this.setState({filter});
+	}
 
 	render() {
-		const { data, find } = this.state;
+		const { data, find, filter } = this.state;
 		const liked = data.filter(el => el.like).length;
 		const all = data.length;
 
-		const visibleItems = this.onSearch(data, find);
+		const visibleItems = this.itemFilter(this.onSearch(data, find), filter);
 
 		return (
 			<AppBlock>
@@ -117,7 +129,8 @@ export default class App extends Component {
 							  all={all} />
 				<div className='search-panel d-flex'>
 					<SearchPanel onUpdateSearch={this.onUpdateSearch} />
-					<PostStatusFilter />
+					<PostStatusFilter filter={filter}
+											onUpdateFilter={this.onUpdateFilter}/>
 				</div>
 				<PostList posts={visibleItems}
 							 onDeleteItem={this.onDeleteItem}
@@ -126,5 +139,5 @@ export default class App extends Component {
 				<PostAddForm onAddItem={this.onAddItem} />
 			</AppBlock>
 		);
-	};
+	}
 }
