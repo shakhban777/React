@@ -4,14 +4,30 @@ import Header from '../header';
 import RandomPlanets from '../random-planets';
 import ItemList from '../item-list';
 import PersonDetails from '../person-details';
+import ErrorButton from '../error-button';
+import ErrorIndicator from '../error-indocator';
 
 import './app.css';
 
 export default class App extends Component {
 	state = {
 		showRandomPlanet: true,
-		selectedPerson: null
+		selectedPerson: null,
+		hasError: false
+	};
+
+	componentDidCatch() {
+		console.log('componentDidCatch()');
+		this.setState({hasError: true});
 	}
+
+	toggleRandomPlanet = () => {
+		this.setState((state) => {
+			return {
+				showRandomPlanet: !state.showRandomPlanet
+			}
+		});
+	};
 
 	onPersonSelected = (id) => {
 		this.setState({
@@ -20,19 +36,35 @@ export default class App extends Component {
 	}
 
 	render() {
-		const { selectedPerson } = this.state;
+		const { selectedPerson, showRandomPlanet, hasError } = this.state;
+
+		if (hasError) {
+			return <ErrorIndicator/>
+		}
+
+		const planet = showRandomPlanet
+			? <RandomPlanets />
+			: null;
 
 		return (
-			<div className='container'>
+			<div className='container stardb-app'>
 				<Header />
-				<RandomPlanets />
+				{planet}
 
+				<div className='row button-row'>
+					<button
+						className="toggle-planet btn btn-warning btn-lg"
+						onClick={this.toggleRandomPlanet}>
+						Toggle Random Planet
+					</button>
+					<ErrorButton/>
+				</div>
 				<div className="row mb2">
 					<div className="col-md-6">
-						<ItemList OnItemSelected={this.onPersonSelected}/>
+						<ItemList OnItemSelected={this.onPersonSelected} />
 					</div>
 					<div className="col-md-6">
-						<PersonDetails personId={selectedPerson}/>
+						<PersonDetails personId={selectedPerson} />
 					</div>
 				</div>
 			</div>
