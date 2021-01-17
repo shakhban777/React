@@ -38,7 +38,8 @@ export default class PeoplePage extends Component {
 				<div className="col-md-6 mb-2">
 					<ItemList
 						OnItemSelected={this.onPersonSelected}
-						getData={this.swapiService.getAllPeople} />
+						getData={this.swapiService.getAllPeople}
+						renderItem={({ name, gender, birthYear }) => `${name} (${gender}, ${birthYear})`}/>
 				</div>
 				<div className="col-md-6">
 					<PersonDetails personId={selectedPerson} />
