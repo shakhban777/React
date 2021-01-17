@@ -14,6 +14,11 @@ export default class PeoplePage extends Component {
 	};
 
 	componentDidCatch(error, info) {
+<<<<<<< HEAD
+=======
+		debugger;
+
+>>>>>>> a61e8c5753ffa4254defdd84e0c304881036d2b9
 		this.setState({hasError: true});
 	}
 
