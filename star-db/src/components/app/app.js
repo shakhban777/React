@@ -2,29 +2,20 @@ import React, { Component } from 'react';
 
 import Header from '../header';
 import RandomPlanets from '../random-planets';
-import PeoplePage from '../people-page';
-import ErrorButton from '../error-button';
-import ErrorIndicator from '../error-indocator';
-import ItemList from '../item-list';
-import ItemDetails from '../item-details';
+import ItemDetails, { Record } from '../item-details';
 import SwapiService from '../../services/swapi-service';
 import Row from '../row';
+import ErrorBoundry from '../error-boundry';
 
 import './app.css';
-import ErrorBoundry from '../error-boundry';
 
 export default class App extends Component {
 
 	swapiService = new SwapiService();
 
 	state = {
-		showRandomPlanet: true,
-		hasError: false
+		showRandomPlanet: true
 	};
-
-	componentDidCatch() {
-		this.setState({hasError: true});
-	}
 
 	toggleRandomPlanet = () => {
 		this.setState((state) => {
@@ -35,23 +26,24 @@ export default class App extends Component {
 	};
 
 	render() {
-		const { showRandomPlanet, hasError } = this.state;
-
-		if (hasError) {
-			return <ErrorIndicator/>
-		}
+		const { showRandomPlanet } = this.state;
 
 		const planet = showRandomPlanet
 			? <RandomPlanets />
 			: null;
 
-		const { getPerson, getStarship, getPersonImage, getStarshipImage }	= this.swapiService;
+		const { getPerson, getStarship, getPersonImage, getStarshipImage } = this.swapiService;
 
 		const personDetails = (
 			<ItemDetails
 				itemId={11}
 				getData={ getPerson }
-				getImageUrl={ getPersonImage } />
+				getImageUrl={ getPersonImage } >
+
+				<Record field="gender" label="Gender" />
+				<Record field="eyeColor" label="Eye Color" />
+
+			</ItemDetails>
 		);
 
 		const starshiDetails = (
