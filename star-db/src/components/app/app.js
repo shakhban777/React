@@ -6,12 +6,15 @@ import PeoplePage from '../people-page';
 import ErrorButton from '../error-button';
 import ErrorIndicator from '../error-indocator';
 import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import ItemDetails from '../item-details';
 import SwapiService from '../../services/swapi-service';
+import Row from '../row';
 
 import './app.css';
+import ErrorBoundry from '../error-boundry';
 
 export default class App extends Component {
+
 	swapiService = new SwapiService();
 
 	state = {
@@ -42,47 +45,32 @@ export default class App extends Component {
 			? <RandomPlanets />
 			: null;
 
+		const { getPerson, getStarship, getPersonImage, getStarshipImage }	= this.swapiService;
+
+		const personDetails = (
+			<ItemDetails
+				itemId={11}
+				getData={ getPerson }
+				getImageUrl={ getPersonImage } />
+		);
+
+		const starshiDetails = (
+			<ItemDetails
+				itemId={5}
+				getData={ getStarship }
+				getImageUrl={ getStarshipImage } />
+		);
+
 		return (
-			<div className='container stardb-app'>
-				<Header />
-				{planet}
+			<ErrorBoundry>
+				<div className='container stardb-app'>
+					<Header />
 
-				<div className='row button-row'>
-					<button
-						className="toggle-planet btn btn-warning btn-lg"
-						onClick={this.toggleRandomPlanet}>
-						Toggle Random Planet
-					</button>
-					<ErrorButton/>
+					<Row
+						left={personDetails}
+						right={starshiDetails} />
 				</div>
-
-				<PeoplePage />
-
-				{/* <div className="row mb2">
-					<div className="col-md-6 mb-2">
-						<ItemList
-							OnItemSelected={this.onPersonSelected}
-							getData={this.swapiService.getAllPlanets}
-							renderItem={({name, diameter}) => `${name} (${diameter})`}/>
-					</div>
-					<div className="col-md-6">
-						<PersonDetails personId={this.state.selectedPerson} />
-					</div>
-				</div>
-
-				<div className="row mb2">
-					<div className="col-md-6 mb-2">
-						<ItemList
-							OnItemSelected={this.onPersonSelected}
-							getData={this.swapiService.getAllStarships}
-							renderItem={({name, model}) => `${name} (${model})`}/>
-					</div>
-					<div className="col-md-6">
-						<PersonDetails personId={this.state.selectedPerson} />
-					</div>
-				</div> */}
-
-			</div>
+			</ErrorBoundry>
 		);
 	};
 };

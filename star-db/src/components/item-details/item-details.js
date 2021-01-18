@@ -3,59 +3,64 @@ import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner';
 import ErrorButton from '../error-button';
 
-import './person-details.css';
+import './item-details.css';
 
-export default class PersonDetails extends Component {
+export default class ItemDetails extends Component {
 
 	swapiSercive = new SwapiService();
 
 	state = {
-		person: null,
-		loading: true
+		item: null,
+		loading: true,
+		image: null
 	};
 
 	componentDidMount() {
-		this.updatePerson();
+		this.updateItem();
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps.personId !== this.props.personId) {
-			this.updatePerson();
+		if (prevProps.itemId !== this.props.itemId) {
+			this.updateItem();
 			this.setState({loading: true});
 		}
 	}
 
-	updatePerson() {
+	updateItem() {
+		const { itemId, getData, getImageUrl } = this.props;
 
-		const { personId } = this.props;
-		if (!personId) {
+		if (!itemId) {
 			return;
 		}
 
-		this.swapiSercive
-			.getPerson(personId)
-			.then((person) => {
+		getData(itemId)
+			.then((item) => {
 				this.setState({
-					person,
-					loading: false
+					item,
+					loading: false,
+					image: getImageUrl(item)
 				});
 			});
 	}
 
 	render() {
 
-		const { person, loading } = this.state;
+		const { item, loading, image } = this.state;
 
-		if (!person) {
-			return <span>Select a person from a list</span>;
+		if (!item) {
+			return <span>Select a item from a list</span>;
 		}
 
 		const spinner = loading ? <Spinner/> : null;
 
-		const content =  !loading ? <PersonView person={person}/> : null;
+		const content =  !loading
+			? <ItemView
+				item={item}
+				image={image} />
+			: null;
 
 		return (
-			<div className="person-details card">
+			<div className="item-details card">
 				{spinner}
 				{content}
 			</div>
@@ -64,15 +69,15 @@ export default class PersonDetails extends Component {
 }
 
 
-const PersonView = ({ person }) => {
+const ItemView = ({ item, image }) => {
 
-	const { id, name, gender, birthYear, eyeColor } = person;
+	const { id, name, gender, birthYear, eyeColor } = item;
 
 	return(
 		<Fragment>
-			<img className="person-image"
-					  src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-					  alt="person"/>
+			<img className="item-image"
+					  src={image}
+					  alt="item"/>
 
 			<div className="card-body">
 				<h4>{name}</h4>
