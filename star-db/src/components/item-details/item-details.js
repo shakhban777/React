@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import SwapiService from '../../services/swapi-service';
-import Spinner from '../spinner';
+import React, { Component } from 'react';
+
 import ErrorButton from '../error-button';
 
 import './item-details.css';
@@ -8,8 +7,8 @@ import './item-details.css';
 const Record = ({ item, field, label }) => {
 	return (
 		<li className="list-group-item">
-			<span className="term">{ label }</span>
-			<span>{ item[field] }</span>
+			<span className="term">{label}</span>
+			<span>{item[field]}</span>
 		</li>
 	);
 };
@@ -20,11 +19,8 @@ export {
 
 export default class ItemDetails extends Component {
 
-	swapiSercive = new SwapiService();
-
 	state = {
 		item: null,
-		loading: true,
 		image: null
 	};
 
@@ -34,10 +30,9 @@ export default class ItemDetails extends Component {
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.itemId !== this.props.itemId
-				|| prevProps.getData !== this.props.getData
-				|| prevProps.getImageUrl !== this.props.getImageUrl ) {
+			|| prevProps.getData !== this.props.getData
+			|| prevProps.getImageUrl !== this.props.getImageUrl) {
 			this.updateItem();
-			this.setState({loading: true});
 		}
 	}
 
@@ -52,7 +47,6 @@ export default class ItemDetails extends Component {
 			.then((item) => {
 				this.setState({
 					item,
-					loading: false,
 					image: getImageUrl(item)
 				});
 			});
@@ -60,52 +54,32 @@ export default class ItemDetails extends Component {
 
 	render() {
 
-		const { item, loading, image } = this.state;
+		const { item, image } = this.state;
 
 		if (!item) {
 			return <span>Select a item from a list</span>;
 		}
 
-		const spinner = loading ? <Spinner/> : null;
-
-		const content =  !loading
-			? <ItemView
-				item={item}
-				image={image}
-				children={this.props.children} />
-			: null;
+		const { name } = item;
 
 		return (
 			<div className="item-details card">
-				{spinner}
-				{content}
+				<img className="item-image"
+					src={image}
+					alt="item" />
+
+				<div className="card-body">
+					<h4>{name}</h4>
+					<ul className="list-group list-group-flush">
+						{
+							React.Children.map(this.props.children, (child) => {
+								return React.cloneElement(child, { item });
+							})
+						}
+					</ul>
+					<ErrorButton />
+				</div>
 			</div>
 		);
 	}
 }
-
-
-const ItemView = ({ item, image, children }) => {
-
-	const { name } = item;
-
-	return(
-		<Fragment>
-			<img className="item-image"
-					  src={image}
-					  alt="item"/>
-
-			<div className="card-body">
-				<h4>{name}</h4>
-				<ul className="list-group list-group-flush">
-					{
-						React.Children.map(children, (child) => {
-							return React.cloneElement(child, { item });
-						})
-					}
-				</ul>
-				<ErrorButton/>
-			</div>
-		</Fragment>
-	);
-};
