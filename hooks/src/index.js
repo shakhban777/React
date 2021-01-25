@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
 				<button
 					onClick={() => setVisible(false)}>hide</button>
 				<HookCounter value={value}/>
-				<ClassCounter value={value}/>
+				<Notification/>
 			</div>
 		);
 	} else {
@@ -26,31 +26,29 @@ const App = () => {
 const HookCounter = ({value}) => {
 
 	useEffect(() => {
-		console.log('use effect');
-		return () => {console.log('clear')};
-	}, [value])
+		console.log('mount')
+		return () => console.log('unmount');
+	}, [])
+
+	useEffect(() => console.log('update'))
 
 	return <p> {value} </p>;
 }
 
-class ClassCounter extends Component {
+const Notification = () => {
+	const [ visible, setVisible ] = useState(true);
 
-	componentDidMount() {
-		console.log('class: mount');
-	}
+	useEffect(() => {
+		const timeout = setTimeout(() => setVisible(false), 1500);
+		return () => clearTimeout(timeout);
+	}, [])
 
-	componentDidUpdate(props) {
-		console.log('class: update');
-	}
-
-	componentWillUnmount() {
-		console.log('class: unmount');
-	}
-
-	render() {
-		return <p> {this.props.value} </p>;
-	}
-}
+	return (
+		<div>
+			{ visible && <p>Hello</p> }
+		</div>
+	);
+};
 
 ReactDOM.render(
   <React.StrictMode>
