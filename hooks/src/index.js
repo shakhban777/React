@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 const App = () => {
 
-	const [ value, setValue ] = useState(0);
+	const [ value, setValue ] = useState(1);
 	const [ visible, setVisible ] = useState(true);
 
 	if (visible) {
@@ -13,8 +13,7 @@ const App = () => {
 					onClick={() => setValue((s) => s + 1)}>+</button>
 				<button
 					onClick={() => setVisible(false)}>hide</button>
-				<HookCounter value={value}/>
-				<Notification/>
+				<PlanetName id={value}/>
 			</div>
 		);
 	} else {
@@ -32,21 +31,24 @@ const HookCounter = ({value}) => {
 
 	useEffect(() => console.log('update'))
 
-	return <p> {value} </p>;
+	return <span> {value} </span>;
 }
 
-const Notification = () => {
-	const [ visible, setVisible ] = useState(true);
+const PlanetName = ({id}) => {
+
+	const [ name, setName ] = useState(null);
 
 	useEffect(() => {
-		const timeout = setTimeout(() => setVisible(false), 1500);
-		return () => clearTimeout(timeout);
-	}, [])
+		let cancelled = false;
+
+		fetch(`https://swapi.dev/api/planets/${id}`)
+			.then(res => res.json())
+			.then(data => !cancelled && setName(data.name));
+		return () => cancelled = true;
+	}, [id]);
 
 	return (
-		<div>
-			{ visible && <p>Hello</p> }
-		</div>
+		<div> { id } - { name }</div>
 	);
 };
 
