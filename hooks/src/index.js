@@ -22,20 +22,7 @@ const App = () => {
 	}
 };
 
-const HookCounter = ({value}) => {
-
-	useEffect(() => {
-		console.log('mount')
-		return () => console.log('unmount');
-	}, [])
-
-	useEffect(() => console.log('update'))
-
-	return <span> {value} </span>;
-}
-
-const PlanetName = ({id}) => {
-
+const usePlanetInfo = (id) => {
 	const [ name, setName ] = useState(null);
 
 	useEffect(() => {
@@ -46,6 +33,13 @@ const PlanetName = ({id}) => {
 			.then(data => !cancelled && setName(data.name));
 		return () => cancelled = true;
 	}, [id]);
+
+	return name;
+};
+
+const PlanetName = ({id}) => {
+
+	const name = usePlanetInfo(id);
 
 	return (
 		<div> { id } - { name }</div>
