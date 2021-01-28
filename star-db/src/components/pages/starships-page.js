@@ -1,5 +1,5 @@
 import React from 'react';
-import { StarshipDetails, StarshipList } from '../sw-components';
+import { StarshipList } from '../sw-components';
 import {withRouter} from 'react-router-dom';
 
 const StarshipsPage = ({ history }) => {
