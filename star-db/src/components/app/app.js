@@ -11,7 +11,7 @@ import { PeoplePage, PlanetsPage, StarshipsPage, SecretPage, LoginPage } from '.
 
 import './app.css';
 
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {HashRouter as Router, Route, Switch} from 'react-router-dom';
 import { StarshipDetails } from '../sw-components';
 
 export default class App extends Component {
