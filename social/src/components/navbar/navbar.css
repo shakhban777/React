@@ -1,0 +1,8 @@
+.nav {
+	grid-area: nav;
+}
+
+.nav a {
+	color: #fff;
+	text-decoration: none;
+}
