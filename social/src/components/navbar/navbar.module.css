@@ -2,6 +2,10 @@
 	grid-area: nav;
 }
 
+.nav li {
+	margin-bottom: 25px;
+}
+
 .nav a {
 	color: #fff;
 	text-decoration: none;

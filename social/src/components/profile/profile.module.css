@@ -1,0 +1,21 @@
+.content {
+	grid-area: content;
+}
+
+.card {
+	width: 400px;
+	display: flex;
+	align-items: flex-start;
+	/* justify-content: space-between; */
+	font-size: 0.8em;
+	white-space: nowrap;
+}
+
+.avatar {
+	width: 50%;
+	margin-right: 1.5em;
+}
+
+.list li{
+	margin-bottom: 10px;
+}

@@ -1,0 +1,14 @@
+.header {
+	grid-area: head;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.header img {
+	width: 90px;
+}
+
+.header span {
+	font-family: Verdana, Geneva, Tahoma, sans-serif
+}

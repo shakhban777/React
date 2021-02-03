@@ -2,7 +2,7 @@ body {
   background-color: #405060;
   color: aliceblue;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 28px;
 }
 
 * {
@@ -16,14 +16,14 @@ ul, li {
 }
 
 .app-wrapper {
-	width: 1200px;
-	margin: 0px auto;
+	padding: 10px 25px 0px 25px;
+	width: 100%;
 	display: grid;
 	grid-template-areas:
 	"head head"
 	"nav content";
 
-	grid-template-rows: 60px 1fr;
+	grid-template-rows: 120px 1fr;
 	grid-template-columns: 2fr 10fr;
-	grid-gap: 10px;
+	grid-gap: 15px;
 }
