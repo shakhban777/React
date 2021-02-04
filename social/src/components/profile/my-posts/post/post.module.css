@@ -1,0 +1,13 @@
+.item {
+	margin-top: 1em;
+}
+
+.item img {
+	width: 1em;
+}
+
+.like {
+	display: block;
+	font-size: .6em;
+	color: tomato;
+}

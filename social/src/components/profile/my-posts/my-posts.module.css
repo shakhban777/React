@@ -1,0 +1,10 @@
+.myPost {
+	display: flex;
+	flex-direction: column;
+	max-width: 150px;
+}
+
+.myPost button {
+	width: 50%;
+	margin: 10px auto 0 auto;
+}
