@@ -25,7 +25,7 @@ ul, li {
 
 	grid-template-rows: 120px 1fr;
 	grid-template-columns: 2fr 10fr;
-	grid-gap: 15px;
+	grid-gap: 1em;
 }
 
 .app-wrapper-content {

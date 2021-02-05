@@ -1,5 +1,6 @@
 .nav {
 	grid-area: nav;
+	font-size: 35px;
 }
 
 .nav li {
