@@ -27,3 +27,11 @@ ul, li {
 	grid-template-columns: 2fr 10fr;
 	grid-gap: 15px;
 }
+
+.app-wrapper-content {
+	padding: 10px;
+	background-color: lightslategray;
+	border-radius: 10px;
+	box-shadow:  46px 46px 73px #191f25,
+	-46px -46px 73px #374553;;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import MyPosts from './my-posts/';
 
-import s from './profile.module.css';
+import s from './profile-avatar.css';
 
 const Profile = () => {
 	return (
