@@ -15,6 +15,11 @@ ul, li {
 	list-style: none;
 }
 
+a {
+	color: #fff;
+	text-decoration: none
+}
+
 .app-wrapper {
 	padding: 10px 25px 0 25px;
 	width: 100%;

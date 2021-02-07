@@ -1,15 +1,23 @@
 .header {
-	grid-area: head;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
+    grid-area: head;
+}
+
+.header .flex {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
 }
 
 .header img {
-	width: 100px;
+    width: 100px;
 }
 
 .header span {
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	font-size: 35px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 35px;
 }

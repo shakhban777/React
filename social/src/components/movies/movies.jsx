@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Dialog = () => {
+const Movies = () => {
    return (
       <div>
-         Dialog
+         Settings
       </div>
    );
 };
 
-export default Dialog;
+export default Movies;

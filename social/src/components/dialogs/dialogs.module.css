@@ -1,0 +1,35 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogs .dialogsItems {
+    padding: 10px;
+}
+
+.dialogs .dialogsItems .dialog {
+    margin-bottom: .8em;
+}
+
+.dialogs .dialogsItems .dialog:last-child {
+    margin: 0;
+}
+
+.dialogs .active{
+    color: rgb(255, 204, 0);
+}
+
+.dialogs .messages {
+    padding: 10px;
+    font-style: italic;
+    font-size: .8em;
+    font-family: "Lato", serif;
+}
+
+.dialogs .messages .message {
+    margin-bottom: .5em;
+}
+
+.dialogs .messages .message:last-child {
+    margin: 0;
+}
