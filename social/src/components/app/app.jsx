@@ -17,6 +17,7 @@ const App = () => {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
+               <Route exact path='/'><h2>Welcome to my Social Network!😉</h2></Route>
                <Route path='/dialogs/' component={Dialogs}/>
                <Route path='/profile/' component={Profile}/>
                <Route path='/news/' component={News}/>
