@@ -34,7 +34,7 @@ a {
 }
 
 .app-wrapper-content {
-	padding: 10px;
+	padding: .5em;
 	background-color: lightslategray;
 	border-radius: 10px;
 	box-shadow:  46px 46px 73px #191f25,

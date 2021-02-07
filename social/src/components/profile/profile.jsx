@@ -1,19 +1,13 @@
 import React from 'react';
 import MyPosts from './my-posts/my-posts';
+import ProfileInfo from "./profile-info/profile-info";
 
 import s from './profile.module.css';
 
 const Profile = () => {
 	return (
 		<main className={s.content}>
-			<div className={s.card}>
-				<img className={s.avatar} src="https://econet.ru/uploads/pictures/456173/content_199820.jpg" alt="avatar" />
-				<ul className={s.list}>
-					<li>Name: Shakhban</li>
-					<li>Age: 27</li>
-					<li>City: Kazan</li>
-				</ul>
-			</div>
+			<ProfileInfo/>
 			<MyPosts/>
 		</main>
 	);

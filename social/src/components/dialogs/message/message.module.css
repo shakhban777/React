@@ -1,0 +1,7 @@
+.message {
+    margin-bottom: .5em;
+}
+
+.message:last-child {
+    margin: 0;
+}

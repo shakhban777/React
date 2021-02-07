@@ -1,10 +1,37 @@
 .myPost {
 	display: flex;
 	flex-direction: column;
-	max-width: 150px;
+	max-width: 220px;
 }
 
 .myPost button {
-	width: 50%;
 	margin: 10px auto 0 auto;
+	font-size: .6em;
+	white-space: nowrap;
+	padding: .6em .8em;
+	border-radius: 5px;
+   background-color: rgba(255,224,3,1);
+	box-shadow: -.2em .2em .3em #ffffff;
+   position: relative;
+   top: 0;
+   left: 0;
+   transition: all .15s linear 0s;
+}
+
+.myPost button:focus {
+   outline: none;
+}
+
+.myPost button:hover {
+   background-color: rgba(0,255,66,0.64);
+}
+
+.myPost button:active {
+   bottom: -2px;
+   left: -2px;
+   box-shadow: none;
+}
+
+.myPost h3 {
+	margin-bottom: .3em;
 }

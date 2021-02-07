@@ -1,0 +1,11 @@
+.dialog {
+    margin-bottom: .8em;
+}
+
+.dialog:last-child {
+    margin: 0;
+}
+
+.active{
+    color: rgb(255, 204, 0);
+}
