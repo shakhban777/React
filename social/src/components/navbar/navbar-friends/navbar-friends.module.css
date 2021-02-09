@@ -1,0 +1,38 @@
+.friends {
+	margin-top: 1.8em;
+}
+
+.friends__title {
+	font-size: 2em;
+	margin-bottom: 0.5em;
+}
+
+.friends__name {
+	font-size: .8em;
+}
+
+.friends__foto {
+	background-color: rgba(1,186,255,0.64);
+	width: 2.5em;
+	height: 2.5em;
+	border-radius: 50%;
+	margin-bottom: .3em;
+}
+
+.friends__row {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 0.9em;
+}
+
+.friends__row li {
+	margin-right: 0.6em;
+}
+
+.friend__row {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

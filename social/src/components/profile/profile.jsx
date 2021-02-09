@@ -4,11 +4,11 @@ import ProfileInfo from "./profile-info/profile-info";
 
 import s from './profile.module.css';
 
-const Profile = () => {
+const Profile = ({posts}) => {
 	return (
 		<main className={s.content}>
 			<ProfileInfo/>
-			<MyPosts/>
+			<MyPosts posts={posts}/>
 		</main>
 	);
 };
