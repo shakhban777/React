@@ -14,17 +14,17 @@ const App = ({state}) => {
 
    const {posts} = state.profilePage;
    const {dialogs, messages} = state.dialogsPage;
-   const {friends} = state.sidebar;
+   const {users} = state.sidebar;
 
    return (
       <BrowserRouter>
          <div className='app-wrapper'>
             <Header/>
-            <Navbar friends={friends}/>
+            <Navbar friends={users}/>
             <div className='app-wrapper-content'>
                <Route exact path='/'><h2>Welcome to my Social Network!😉</h2></Route>
                <Route path='/dialogs/'
-                      render={() => <Dialogs dialogs={dialogs} messages={messages} />}/>
+                      render={() => <Dialogs dialogs={users} messages={messages} />}/>
                <Route path='/profile/'
                       render={() => <Profile posts={posts} />}/>
                <Route path='/news/'

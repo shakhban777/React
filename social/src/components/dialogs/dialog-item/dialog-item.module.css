@@ -1,5 +1,7 @@
 .dialog {
     margin-bottom: .8em;
+    display: flex;
+    align-items: center;
 }
 
 .dialog:last-child {
@@ -8,4 +10,12 @@
 
 .active{
     color: rgb(255, 204, 0);
+}
+
+.friends__foto {
+    background-color: rgba(1,186,255,0.64);
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    margin-right: .5em;
 }

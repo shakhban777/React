@@ -3,6 +3,7 @@ import DialogItem from "./dialog-item/dialog-item";
 import Message from "./message/message";
 
 import s from './dialogs.module.css';
+import AddMessage from "./add-message/add-message";
 
 const Dialogs = ({dialogs, messages}) => {
 
@@ -23,9 +24,14 @@ const Dialogs = ({dialogs, messages}) => {
          <ul className={s.dialogsItems}>
             {dialogsElements}
          </ul>
-         <ul className={s.messages}>
-            {messagesElements}
-         </ul>
+
+         <div className={s.messages}>
+            <ul className={s.messagesList}>
+               {messagesElements}
+            </ul>
+            <AddMessage/>
+         </div>
+
       </div>
    );
 };

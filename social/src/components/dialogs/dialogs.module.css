@@ -1,6 +1,7 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
+    height: 100%;
 }
 
 .dialogs .dialogsItems {
@@ -8,6 +9,12 @@
 }
 
 .dialogs .messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dialogs .messagesList {
     padding: 10px;
     font-style: italic;
     font-size: .8em;
