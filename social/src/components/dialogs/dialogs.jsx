@@ -5,7 +5,7 @@ import Message from "./message/message";
 import s from './dialogs.module.css';
 import AddMessage from "./add-message/add-message";
 
-const Dialogs = ({dialogs, messages}) => {
+const Dialogs = ({dialogs, messages, addMessage, newMessageText, updateNewMessageText}) => {
 
    const dialogsElements = dialogs
       .map(dialog => {
@@ -29,7 +29,10 @@ const Dialogs = ({dialogs, messages}) => {
             <ul className={s.messagesList}>
                {messagesElements}
             </ul>
-            <AddMessage/>
+            <AddMessage
+               addMessage={addMessage}
+               newMessageText={newMessageText}
+               updateNewMessageText={updateNewMessageText}/>
          </div>
 
       </div>

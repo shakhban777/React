@@ -24,7 +24,7 @@ const MyPosts = ({posts, newPostText, addPost, updateNewPostText}) => {
 				ref={newPostElement}
 				onChange={onPostChange}
 				value={newPostText}/>
-			<button	onClick={addPosts}><span>Add post</span></button>
+			<button onClick={addPosts}><span>Add post</span></button>
 			<div className={s.posts}>
 				{
 					posts.map(({id, message, likeCounts}) => {

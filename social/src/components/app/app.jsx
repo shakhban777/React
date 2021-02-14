@@ -10,12 +10,12 @@ import {BrowserRouter, Route} from "react-router-dom";
 
 import './app.css';
 
-const App = ({state, addPost, updateNewPostText}) => {
+const App = ({state, addPost, updateNewPostText, addMessage, updateNewMessageText}) => {
 
    const {...propfilePage} = state.profilePage;
 
    // cut dialogs from here
-   const {messages} = state.dialogsPage;
+   const {messages, newMessageText} = state.dialogsPage;
    const {users} = state.sidebar;
 
    return (
@@ -26,15 +26,26 @@ const App = ({state, addPost, updateNewPostText}) => {
             <div className='app-wrapper-content'>
                <Route exact path='/'><h2>Welcome to my Social Network!😉</h2></Route>
                <Route path='/dialogs/'
-                      render={() => <Dialogs dialogs={users} messages={messages} />}/>
+                      render={() => (
+                         <Dialogs
+                            dialogs={users}
+                            messages={messages}
+                            addMessage={addMessage}
+                            newMessageText={newMessageText}
+                            updateNewMessageText={updateNewMessageText}/>
+                         )}/>
                <Route path='/profile/'
-                      render={() => <Profile {...propfilePage} updateNewPostText={updateNewPostText} addPost={addPost}/>}/>
+                      render={() => (
+                         <Profile {...propfilePage}
+                                  updateNewPostText={updateNewPostText}
+                                  addPost={addPost}/>
+                         )}/>
                <Route path='/news/'
-                      component={News}/>
+                      render={() => <News/> }/>
                <Route path='/movies/'
-                      component={Movies}/>
+                      render={() => <Movies/> }/>
                <Route path='/settings/'
-                      component={Settings}/>
+                      render={() => <Settings/> }/>
             </div>
          </div>
       </BrowserRouter>

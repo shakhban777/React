@@ -10,11 +10,13 @@ const state = {
       newPostText: ''
    },
    dialogsPage: {
+      mid: 3,
       messages: [
          {id: 1, message: "Hello, how are you?"},
          {id: 2, message: "I'm fine, thanks!", incoming: true},
          {id: 3, message: "What are you doing tonight?"}
       ],
+      newMessageText: '',
       dialogs: [
          {id: 1, name: 'Shakhban'},
          {id: 2, name: 'Shakhru'},
@@ -35,6 +37,25 @@ const state = {
       ]
    }
 }
+
+export const addMessage = () => {
+   if (!state.dialogsPage.newMessageText) return;
+
+   state.dialogsPage.messages.push(
+      {
+         id: ++state.dialogsPage.mid,
+         message: state.dialogsPage.newMessageText
+      }
+   );
+
+   state.dialogsPage.newMessageText = '';
+   rerenderEntireTree(state);
+};
+
+export const updateNewMessageText = (newText) => {
+   state.dialogsPage.newMessageText = newText;
+   rerenderEntireTree(state);
+};
 
 export const addPost = () => {
 
