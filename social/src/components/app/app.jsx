@@ -3,17 +3,19 @@ import Header from '../header/header';
 import Navbar from '../navbar/navbar';
 import Dialogs from '../dialogs/dialogs';
 import Profile from "../profile/profile";
-import {BrowserRouter, Route} from "react-router-dom";
-
-import './app.css';
 import News from "../news/news";
 import Movies from "../movies/movies";
 import Settings from "../settings/settings";
+import {BrowserRouter, Route} from "react-router-dom";
 
-const App = ({state}) => {
+import './app.css';
 
-   const {posts} = state.profilePage;
-   const {dialogs, messages} = state.dialogsPage;
+const App = ({state, addPost, updateNewPostText}) => {
+
+   const {...propfilePage} = state.profilePage;
+
+   // cut dialogs from here
+   const {messages} = state.dialogsPage;
    const {users} = state.sidebar;
 
    return (
@@ -26,7 +28,7 @@ const App = ({state}) => {
                <Route path='/dialogs/'
                       render={() => <Dialogs dialogs={users} messages={messages} />}/>
                <Route path='/profile/'
-                      render={() => <Profile posts={posts} />}/>
+                      render={() => <Profile {...propfilePage} updateNewPostText={updateNewPostText} addPost={addPost}/>}/>
                <Route path='/news/'
                       component={News}/>
                <Route path='/movies/'

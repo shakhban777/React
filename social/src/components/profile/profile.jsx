@@ -4,11 +4,14 @@ import ProfileInfo from "./profile-info/profile-info";
 
 import s from './profile.module.css';
 
-const Profile = ({posts}) => {
+const Profile = ({updateNewPostText, addPost, ...propfilePage}) => {
 	return (
 		<main className={s.content}>
 			<ProfileInfo/>
-			<MyPosts posts={posts}/>
+			<MyPosts
+				addPost={addPost}
+				updateNewPostText={updateNewPostText}
+				{...propfilePage}/>
 		</main>
 	);
 };

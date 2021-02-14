@@ -4,7 +4,7 @@
 	max-width: 220px;
 }
 
-.myPost button {
+button {
 	margin: 10px auto 0 auto;
 	font-size: .6em;
 	white-space: nowrap;
@@ -18,23 +18,47 @@
    transition: all .15s linear 0s;
 }
 
-.myPost button:active, .myPost button:focus {
+button:active, .myPost button:focus {
    outline: none;
 }
 
-.myPost button:hover {
+button:hover {
    background-color: rgba(0,255,66,0.64);
    color: cornsilk;
 }
 
-.myPost button:active {
+button:active {
    bottom: -2px;
    left: -2px;
    box-shadow: none;
 }
 
-.myPost h3 {
+h3 {
+   text-align: center;
 	margin-bottom: .3em;
 }
+
+.postArea {
+   width: 100%;
+   font-size: 1em;
+   color: darkblue;
+   font-family: Arial, sans-serif;
+   padding: .1em;
+   height: 3em;
+   border-width: 0;
+   background-color: #FFFFFF;
+   border-style: solid;
+   border-radius: 5px;
+}
+
+.postArea:focus {
+   border-color: #CCCCCC;
+   box-shadow: 0 0 5px rgba(0,148,231,.82);
+}
+
+.postArea:active, .postArea:focus {
+   outline: none;
+}
+
 
 .posts {}

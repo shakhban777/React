@@ -1,10 +1,13 @@
+import {rerenderEntireTree} from "../render";
+
 const state = {
    profilePage: {
+      id: 2,
       posts: [
          {id: 1, message: 'Hello my friend!', likeCounts: 5},
          {id: 2, message: 'How are you?', likeCounts: 13}
-      ]
-
+      ],
+      newPostText: ''
    },
    dialogsPage: {
       messages: [
@@ -32,5 +35,28 @@ const state = {
       ]
    }
 }
+
+export const addPost = () => {
+
+   if (!state.profilePage.newPostText) return;
+
+   let likeValue = Math.floor(Math.random() * 100 + 1);
+
+   state.profilePage.posts.push(
+      {
+         id: ++state.profilePage.id,
+         message: state.profilePage.newPostText,
+         likeCounts: likeValue
+      }
+   );
+
+   state.profilePage.newPostText = '';
+   rerenderEntireTree(state);
+};
+
+export const updateNewPostText = (newText) => {
+   state.profilePage.newPostText = newText;
+   rerenderEntireTree(state);
+};
 
 export default state;
