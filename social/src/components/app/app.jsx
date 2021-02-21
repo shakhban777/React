@@ -10,7 +10,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 
 import './app.css';
 
-const App = ({state, addPost, updateNewPostText, addMessage, updateNewMessageText}) => {
+const App = ({state, dispatch}) => {
 
    const {...propfilePage} = state.profilePage;
 
@@ -30,15 +30,13 @@ const App = ({state, addPost, updateNewPostText, addMessage, updateNewMessageTex
                          <Dialogs
                             dialogs={users}
                             messages={messages}
-                            addMessage={addMessage}
                             newMessageText={newMessageText}
-                            updateNewMessageText={updateNewMessageText}/>
+                            dispatch={dispatch}/>
                          )}/>
                <Route path='/profile/'
                       render={() => (
                          <Profile {...propfilePage}
-                                  updateNewPostText={updateNewPostText}
-                                  addPost={addPost}/>
+                                  dispatch={dispatch}/>
                          )}/>
                <Route path='/news/'
                       render={() => <News/> }/>

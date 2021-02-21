@@ -4,13 +4,12 @@ import ProfileInfo from "./profile-info/profile-info";
 
 import s from './profile.module.css';
 
-const Profile = ({updateNewPostText, addPost, ...propfilePage}) => {
+const Profile = ({dispatch, ...propfilePage}) => {
 	return (
 		<main className={s.content}>
 			<ProfileInfo/>
 			<MyPosts
-				addPost={addPost}
-				updateNewPostText={updateNewPostText}
+				dispatch={dispatch}
 				{...propfilePage}/>
 		</main>
 	);
