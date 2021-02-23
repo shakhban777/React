@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_CHANGE = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 const store = {
    _callSubscriber() {
@@ -53,58 +52,14 @@ const store = {
    },
 
    dispatch(action) {
-      switch (action.type) {
-         case 'ADD-POST':
-            if (!this._state.profilePage.newPostText) return;
 
-            let likeValue = Math.floor(Math.random() * 100 + 1);
+      profileReducer(this._state.profilePage, action);
+      dialogsReducer(this._state.dialogsPage, action);
+      sidebarReducer(this._state.sidebar, action);
 
-            this._state.profilePage.posts.push(
-               {
-                  id: ++this._state.profilePage.id,
-                  message: this._state.profilePage.newPostText,
-                  likeCounts: likeValue
-               }
-            );
-            this._callSubscriber(this._state);
-            break;
-         case 'UPDATE-NEW-POST-TEXT':
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-            break;
-         case 'ADD-MESSAGE':
-            if (!this._state.dialogsPage.newMessageText) return;
-
-            this._state.dialogsPage.messages.push(
-               {
-                  id: ++this._state.dialogsPage.mid,
-                  message: this._state.dialogsPage.newMessageText
-               }
-            );
-
-            this._state.dialogsPage.newMessageText = '';
-            this._callSubscriber(this._state);
-            break;
-         case 'UPDATE-NEW-MESSAGE-TEXT':
-            this._state.dialogsPage.newMessageText = action.newText;
-            this._callSubscriber(this._state);
-            break;
-         default:
-            console.log('You entered unreal action type!');
-            break;
-      }
+      this._callSubscriber(this._state);
    }
 }
-
-export const addPostActionCreator = () => ({type: ADD_POST});
-
-export const onPostChangeActionCreator = (text) =>
-   ({type: UPDATE_NEW_POST_CHANGE, newText: text});
-
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
-
-export const updateNewMessageTextCreator = (text) =>
-   ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text});
 
 export default store;
 Window.store = store;

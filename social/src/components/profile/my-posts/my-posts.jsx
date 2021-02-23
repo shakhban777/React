@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from './post/post';
-import {addPostActionCreator, onPostChangeActionCreator} from "../../../redux/state";
+import {addPostActionCreator, onPostChangeActionCreator} from "../../../redux/profile-reducer";
 
 import s from './my-posts.module.css';
 
@@ -22,6 +22,7 @@ const MyPosts = ({posts, newPostText, dispatch}) => {
 		<div className={s.myPost}>
 			<h3>My posts</h3>
 			<textarea
+				placeholder='Enter new post'
 				className={s.postArea}
 				ref={newPostElement}
 				onChange={onPostChange}
