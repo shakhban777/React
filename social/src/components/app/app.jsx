@@ -11,7 +11,6 @@ import {BrowserRouter, Route} from "react-router-dom";
 import './app.css';
 
 const App = ({state, dispatch}) => {
-
    const {...propfilePage} = state.profilePage;
 
    // cut dialogs from here
