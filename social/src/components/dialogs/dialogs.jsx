@@ -1,9 +1,9 @@
 import React from 'react';
 import DialogItem from "./dialog-item/dialog-item";
 import Message from "./message/message";
+import AddMessageContainer from "./add-message/add-message-container";
 
 import s from './dialogs.module.css';
-import AddMessage from "./add-message/add-message";
 
 const Dialogs = ({dialogs, messages, newMessageText, dispatch}) => {
 
@@ -29,7 +29,7 @@ const Dialogs = ({dialogs, messages, newMessageText, dispatch}) => {
             <ul className={s.messagesList}>
                {messagesElements}
             </ul>
-            <AddMessage
+            <AddMessageContainer
                newMessageText={newMessageText}
                dispatch={dispatch}/>
          </div>
