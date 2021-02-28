@@ -10,24 +10,21 @@ import {BrowserRouter, Route} from "react-router-dom";
 
 import './app.css';
 
-const App = (props) => {
-   const state = props.store.getState();
-   const {users} = state.sidebar;
-
+const App = () => {
    return (
       <BrowserRouter>
          <div className='app-wrapper'>
             <Header/>
-            <Navbar friends={users}/>
+            <Navbar/>
             <div className='app-wrapper-content'>
                <Route exact path='/'><h2>Welcome to my Social Network!😉</h2></Route>
                <Route path='/dialogs/'
                       render={() => (
-                         <DialogsContainer store={props.store}/>
+                         <DialogsContainer />
                       )}/>
                <Route path='/profile/'
                       render={() => (
-                         <Profile store={props.store}/>
+                         <Profile />
                       )}/>
                <Route path='/news/'
                       render={() => <News/> }/>
