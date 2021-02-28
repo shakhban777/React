@@ -5,15 +5,16 @@ import AddMessageContainer from "./add-message/add-message-container";
 
 import s from './dialogs.module.css';
 
-const Dialogs = ({dialogs, messages, newMessageText, dispatch}) => {
+const Dialogs = (props) => {
+   const state = props.store.getState();
 
-   const dialogsElements = dialogs
+   const dialogsElements = state.sidebar.users
       .map(dialog => {
          const {id, ...props} = dialog;
          return <DialogItem key={id} id={id} {...props} />;
       });
 
-   const messagesElements = messages
+   const messagesElements = state.dialogsPage.messages
       .map(message => {
          const {id, ...props} = message;
          return <Message key={id} {...props} />;
@@ -29,9 +30,7 @@ const Dialogs = ({dialogs, messages, newMessageText, dispatch}) => {
             <ul className={s.messagesList}>
                {messagesElements}
             </ul>
-            <AddMessageContainer
-               newMessageText={newMessageText}
-               dispatch={dispatch}/>
+            <AddMessageContainer store={props.store}/>
          </div>
 
       </div>

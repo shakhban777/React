@@ -10,11 +10,8 @@ import {BrowserRouter, Route} from "react-router-dom";
 
 import './app.css';
 
-const App = ({state, dispatch}) => {
-   const {...propfilePage} = state.profilePage;
-
-   // cut dialogs from here
-   const {messages, newMessageText} = state.dialogsPage;
+const App = (props) => {
+   const state = props.store.getState();
    const {users} = state.sidebar;
 
    return (
@@ -26,17 +23,12 @@ const App = ({state, dispatch}) => {
                <Route exact path='/'><h2>Welcome to my Social Network!😉</h2></Route>
                <Route path='/dialogs/'
                       render={() => (
-                         <Dialogs
-                            dialogs={users}
-                            messages={messages}
-                            newMessageText={newMessageText}
-                            dispatch={dispatch}/>
-                         )}/>
+                         <Dialogs store={props.store}/>
+                      )}/>
                <Route path='/profile/'
                       render={() => (
-                         <Profile {...propfilePage}
-                                  dispatch={dispatch}/>
-                         )}/>
+                         <Profile store={props.store}/>
+                      )}/>
                <Route path='/news/'
                       render={() => <News/> }/>
                <Route path='/movies/'

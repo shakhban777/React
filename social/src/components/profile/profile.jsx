@@ -4,13 +4,11 @@ import ProfileInfo from "./profile-info/profile-info";
 import s from './profile.module.css';
 import MyPostsContainer from "./my-posts/my-posts-container";
 
-const Profile = ({dispatch, ...propfilePage}) => {
+const Profile = (props) => {
 	return (
 		<main className={s.content}>
 			<ProfileInfo/>
-			<MyPostsContainer
-				dispatch={dispatch}
-				{...propfilePage}/>
+			<MyPostsContainer store={props.store}/>
 		</main>
 	);
 };
