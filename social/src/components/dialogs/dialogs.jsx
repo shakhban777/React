@@ -6,7 +6,7 @@ import AddMessageContainer from "./add-message/add-message-container";
 import s from './dialogs.module.css';
 
 const Dialogs = (props) => {
-   const state = props.store.getState();
+   const state = props.state;
 
    const dialogsElements = state.sidebar.users
       .map(dialog => {

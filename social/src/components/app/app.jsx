@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../header/header';
 import Navbar from '../navbar/navbar';
-import Dialogs from '../dialogs/dialogs';
+import DialogsContainer from "../dialogs/dialogs-container";
 import Profile from "../profile/profile";
 import News from "../news/news";
 import Movies from "../movies/movies";
@@ -23,7 +23,7 @@ const App = (props) => {
                <Route exact path='/'><h2>Welcome to my Social Network!😉</h2></Route>
                <Route path='/dialogs/'
                       render={() => (
-                         <Dialogs store={props.store}/>
+                         <DialogsContainer store={props.store}/>
                       )}/>
                <Route path='/profile/'
                       render={() => (
