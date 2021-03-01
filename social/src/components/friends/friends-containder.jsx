@@ -1,19 +1,12 @@
-import React from 'react';
-import StoreContext from "../../store-context";
 import Friends from "./friends";
+import {connect} from "react-redux";
 
-const FriendsContainer = () => {
-
-   return (
-      <StoreContext.Consumer>
-         {
-            (store) => {
-               const friends = store.getState().sidebar.users;
-               return <Friends friends={friends}/>
-            }
-         }
-      </StoreContext.Consumer>
-   );
+const mapToStateToProps = (state) => {
+   return {
+      friends: state.sidebar.users
+   };
 };
+
+const FriendsContainer = connect(mapToStateToProps)(Friends);
 
 export default FriendsContainer;
