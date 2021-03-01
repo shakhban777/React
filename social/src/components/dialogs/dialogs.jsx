@@ -1,9 +1,10 @@
 import React from 'react';
 import DialogItem from "./dialog-item/dialog-item";
 import Message from "./message/message";
-import AddMessageContainer from "./add-message/add-message-container";
 
 import s from './dialogs.module.css';
+
+const newMessageElement = React.createRef();
 
 const Dialogs = (props) => {
    const state = props.state;
@@ -20,6 +21,15 @@ const Dialogs = (props) => {
          return <Message key={id} {...props} />;
       });
 
+   const onSendMessage = () => {
+      props.sendMessage();
+   }
+
+   const onMessageChange = (e) => {
+      const text = e.target.value;
+      props.updateMessage(text);
+   }
+
    return (
       <div className={s.dialogs}>
          <ul className={s.dialogsItems}>
@@ -30,7 +40,19 @@ const Dialogs = (props) => {
             <ul className={s.messagesList}>
                {messagesElements}
             </ul>
-            <AddMessageContainer store={props.store}/>
+            <div className={s.addMessage}>
+            <textarea
+               placeholder='Enter your message'
+               className={s.textArea}
+               ref={newMessageElement}
+               value={props.newMessageText}
+               onChange={onMessageChange}/>
+                  <button
+                     className={s.sendButton}
+                     onClick={onSendMessage}>
+                     Send message
+                  </button>
+               </div>
          </div>
 
       </div>
