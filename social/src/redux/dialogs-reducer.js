@@ -21,29 +21,33 @@ const initialState = {
 const dialogsReducer = (state = initialState, action) => {
 
    switch (action.type) {
-      case ADD_MESSAGE:
-         if (!state.newMessageText) return;
+      case ADD_MESSAGE: {
+         const stateCopy = {...state};
 
-         state.messages.push(
+         if (!stateCopy.newMessageText) return;
+
+         stateCopy.messages = [...state.messages];
+
+         stateCopy.messages.push(
             {
-               id: ++state.mid,
-               message: state.newMessageText
+               id: ++stateCopy.mid,
+               message: stateCopy.newMessageText
             }
          );
 
-         state.newMessageText = '';
-         break;
+         stateCopy.newMessageText = '';
+         return stateCopy;
+      }
 
       case UPDATE_NEW_MESSAGE_TEXT:
-         state.newMessageText = action.newText;
-         break;
+         const stateCopy = {...state};
+         stateCopy.newMessageText = action.newText;
+         return stateCopy;
 
       default:
          console.log('You entered unreal action type!');
-         break;
+         return state;
    }
-
-   return state;
 };
 
 export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
