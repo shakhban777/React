@@ -7,7 +7,6 @@ import s from './dialogs.module.css';
 const newMessageElement = React.createRef();
 
 const Dialogs = (props) => {
-   debugger
    const dialogsElements = props.users
       .map(dialog => {
          const {id, ...props} = dialog;

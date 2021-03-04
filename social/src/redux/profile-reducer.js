@@ -2,7 +2,6 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_CHANGE = 'UPDATE-NEW-POST-TEXT';
 
 const initialState = {
-   id: 2,
    posts: [
       {id: 1, message: 'Hello my friend!', likeCounts: 5},
       {id: 2, message: 'How are you?', likeCounts: 13}
@@ -11,34 +10,38 @@ const initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
+
    switch (action.type) {
+      case UPDATE_NEW_POST_CHANGE:
+         return {
+            ...state,
+            newPostText: action.newText
+         };
+
       case ADD_POST: {
-         const stateCopy = {...state};
          const likeValue = Math.floor(Math.random() * 100 + 1);
+         let text;
 
-         if (!stateCopy.newPostText) return;
-
-         stateCopy.posts = [...state.posts];
-
-         stateCopy.posts.push(
-            {
-               id: ++stateCopy.id,
-               message: stateCopy.newPostText,
-               likeCounts: likeValue
+         if (state.newPostText) {
+            text = state.newPostText;
+         } else {
+            return {
+               ...state
             }
-         );
-         stateCopy.newPostText = '';
-         return stateCopy;
+         }
+
+         return {
+            ...state,
+            posts: [...state.posts, {
+               id: ++state.posts.length,
+               message: text,
+               likeCounts: likeValue
+            }],
+            newPostText: ''
+         };
       }
 
-      case UPDATE_NEW_POST_CHANGE:
-         const stateCopy = {...state};
-
-         stateCopy.newPostText = action.newText;
-         return stateCopy;
-
       default:
-         console.log('You entered unreal action type!');
          return state;
    }
 };

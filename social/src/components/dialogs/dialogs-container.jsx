@@ -2,14 +2,10 @@ import Dialogs from "./dialogs";
 import {addMessageActionCreator, updateNewMessageTextCreator} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
 
-/* const newMessageText = state.dialogsPage.newMessageText;
-               return <Dialogs
-                  state={state}
-                  newMessageText={newMessageText}/>;*/
-
 const mapStateToProps = (state) => {
    return {
       state: state.dialogsPage,
+      // users from sidebar
       users: state.sidebar.users
    };
 };
