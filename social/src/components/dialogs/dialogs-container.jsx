@@ -4,9 +4,7 @@ import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
    return {
-      state: state.dialogsPage,
-      // users from sidebar
-      // users: state.sidebar.users
+      state: state.dialogsPage
    };
 };
 
