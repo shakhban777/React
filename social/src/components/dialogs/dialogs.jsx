@@ -7,7 +7,8 @@ import s from './dialogs.module.css';
 const newMessageElement = React.createRef();
 
 const Dialogs = (props) => {
-   const dialogsElements = props.users
+   // const dialogsElements = props.users // for users from sidebar
+   const dialogsElements = props.state.dialogs
       .map(dialog => {
          const {id, ...props} = dialog;
          return <DialogItem key={id} id={id} {...props} />;

@@ -4,7 +4,7 @@
 	max-width: 220px;
 }
 
-button {
+.myPost button {
 	margin: 10px auto 0 auto;
 	font-size: .6em;
 	white-space: nowrap;
@@ -18,22 +18,22 @@ button {
    transition: all .15s linear 0s;
 }
 
-button:active, .myPost button:focus {
+.myPost button:active, .myPost button:focus {
    outline: none;
 }
 
-button:hover {
+.myPost button:hover {
    background-color: rgba(0,255,66,0.64);
    color: cornsilk;
 }
 
-button:active {
+.myPost button:active {
    bottom: -2px;
    left: -2px;
    box-shadow: none;
 }
 
-h3 {
+.myPost h3 {
    text-align: center;
 	margin-bottom: .3em;
 }

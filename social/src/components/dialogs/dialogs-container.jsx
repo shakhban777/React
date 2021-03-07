@@ -6,7 +6,7 @@ const mapStateToProps = (state) => {
    return {
       state: state.dialogsPage,
       // users from sidebar
-      users: state.sidebar.users
+      // users: state.sidebar.users
    };
 };
 

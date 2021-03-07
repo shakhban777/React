@@ -1,0 +1,121 @@
+.users {
+   width: 100%;
+}
+
+.userList {
+}
+
+.listItem {
+   display: flex;
+   /*justify-content: space-between;*/
+   align-items: center;
+   margin-bottom: 3em;
+}
+
+.left {
+   display: flex;
+   flex-direction: column;
+   /*justify-content: center;*/
+   align-items: center;
+   margin-right: 1em;
+}
+
+.userPhoto {
+   width: 5em;
+   height: 5em;
+   border-radius: 100%;
+}
+
+.right {
+   width: 100%;
+   border: 2px solid #e4fbff;
+   border-radius: 10px;
+   display: flex;
+   justify-content: space-between;
+   padding: 1em 2em;
+}
+
+.info {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+.info .name {
+   margin-bottom: 2em;
+   font-weight: 600;
+}
+
+.info .status {
+   font-size: 0.8em;
+   font-style: italic;
+}
+
+.location {
+   text-align: right;
+}
+
+.location .city {
+   margin-bottom: 0.5em;
+}
+
+.follow_btn {
+   margin-top: 1em;
+   text-decoration: none;
+   display: inline-block;
+   position: relative;
+   padding: 10px 20px;
+   color: #766AD0;;
+   border: 2px solid lightslategray;
+   font-size: 0.8em;
+   font-weight: 700;
+   white-space: nowrap;
+   transition: .3s linear;
+}
+
+.follow_btn:active, .follow_btn:focus {
+   outline: none;
+}
+
+.follow_btn:before, .follow_btn:after, .follow_btn_content:before, .follow_btn_content:after {
+   content: "";
+   position: absolute;
+   z-index: 1;
+   width: 15px;
+   height: 15px;
+   transition: .3s linear;
+}
+
+.follow_btn:before {
+   left: -2px;
+   top: -2px;
+   border-left: 2px solid #614DFF;
+   border-top: 2px solid #614DFF;
+}
+
+.follow_btn:after {
+   bottom: -2px;
+   right: -2px;
+   border-bottom: 2px solid #614DFF;
+   border-right: 2px solid #614DFF;
+}
+
+.follow_btn_content:after {
+   right: -2px;
+   top: -2px;
+   border-right: 2px solid #614DFF;
+   border-top: 2px solid #614DFF;
+}
+
+.follow_btn_content:before {
+   left: -2px;
+   bottom: -2px;
+   border-bottom: 2px solid #614DFF;
+   border-left: 2px solid #614DFF;
+}
+
+.follow_btn:hover {
+   color: #614DFF;
+   border-color: #614DFF;
+}
+

@@ -7,6 +7,7 @@ import News from "../news/news";
 import Movies from "../movies/movies";
 import Settings from "../settings/settings";
 import {BrowserRouter, Route} from "react-router-dom";
+import UsersContainer from "../users/users-container";
 
 import './app.css';
 
@@ -19,19 +20,17 @@ const App = () => {
             <div className='app-wrapper-content'>
                <Route exact path='/'><h2>Welcome to my Social Network!😉</h2></Route>
                <Route path='/dialogs/'
-                      render={() => (
-                         <DialogsContainer />
-                      )}/>
+                      render={() => <DialogsContainer/>}/>
                <Route path='/profile/'
-                      render={() => (
-                         <Profile />
-                      )}/>
+                      render={() => <Profile/>}/>
+               <Route path='/users/'
+                      render={() => <UsersContainer/>}/>
                <Route path='/news/'
-                      render={() => <News/> }/>
+                      render={() => <News/>}/>
                <Route path='/movies/'
-                      render={() => <Movies/> }/>
+                      render={() => <Movies/>}/>
                <Route path='/settings/'
-                      render={() => <Settings/> }/>
+                      render={() => <Settings/>}/>
             </div>
          </div>
       </BrowserRouter>

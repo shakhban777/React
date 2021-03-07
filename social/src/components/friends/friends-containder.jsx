@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 const mapToStateToProps = (state) => {
    return {
-      friends: state.sidebar.users
+      state: state.usersPage
    };
 };
 
