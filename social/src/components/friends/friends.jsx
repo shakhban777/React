@@ -3,7 +3,7 @@ import React from 'react';
 import s from './friends.module.css';
 
 const Friends = (props) => {
-   const friendsElements = props.state.users.map(({fullName, userPhotoUrl, id, followed}) => {
+   const friendsElements = props.state.map(({fullName, userPhotoUrl, id, followed}) => {
       // eslint-disable-next-line array-callback-return
       if (!followed) return;
 
