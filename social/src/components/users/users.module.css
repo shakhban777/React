@@ -2,6 +2,21 @@
    width: 100%;
 }
 
+.pages {
+   display: flex;
+   margin-bottom: 2em;
+   flex-wrap: wrap;
+}
+
+.pages li {
+   margin-right: 1em;
+   cursor: pointer;
+}
+
+.pages__active {
+   font-weight: bold;
+}
+
 .userList {
 }
 
