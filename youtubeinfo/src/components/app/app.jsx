@@ -1,40 +1,52 @@
-import React, {Component} from "react";
-import {Button, Jumbotron, Form} from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Jumbotron} from 'react-bootstrap';
+import Results from "../result/results";
+import Search from "../search/search";
+import * as axios from "axios";
 import './app.scss';
-import Result from "../result/result";
 
 export default class App extends Component {
    state = {
-      baseURL: 'https://youtube.googleapis.com/youtube/v3/search?',
-      searching: 'shakhban',
-      apiKey: 'AIzaSyDLjNPbLM1TSxhjJqqKZ0N1jrRQxbzqQ-4',
-      maxResults: 10,
-      orderBy: 'viewCount',
-      requireURL:`${this.baseURL}part=snippet&maxResults=${this.maxResults}&order=${this.orderBy}&q=${this.searching}&key=${this.apiKey}`
+      api: {
+         searching: 'shakhban',
+         maxResults: 10,
+         orderBy: 'viewCount',
+         baseURL: 'https://youtube.googleapis.com/youtube/v3/search?',
+         apiKey: 'AIzaSyDLjNPbLM1TSxhjJqqKZ0N1jrRQxbzqQ-4',
+         requireURL: `${this.baseURL}part=snippet&maxResults=${this.maxResults}&order=${this.orderBy}&q=${this.searching}&key=${this.apiKey}`
+      },
+      items: [
+         {id: '1', image: '', videoName: 'hello', author: 'me', date: '12.02.02'},
+         {id: '2', image: '', videoName: "It's me", author: 'you', date: '14.03.12'},
+         {id: '3', image: '', videoName: 'And you', author: 'they', date: '1.09.21'}
+      ]
    };
+
+   componentDidMount() {
+
+   }
 
    onSearch = (e) => {
       e.preventDefault();
-      console.log(e);
+      const text = e.currentTarget;    //fake
+
+      this.setState(({api}) => {
+         return {
+            api: {...api, searching: text}
+         }
+      });
    }
 
    render() {
+      const {items, api} = this.state;
+
       return (
-         <div className='app'>
+         <div className='container app'>
             <Jumbotron>
-               <Form className='mb-5'
-                     onSubmit={this.onSearch}>
-                  <Form.Group controlId="formBasicEmail">
-                     <Form.Label>Поиск видео</Form.Label>
-                     <Form.Control type="text" placeholder="Введите название"/>
-                  </Form.Group>
-                  <Button variant="primary" type="submit">
-                     Поиск
-                  </Button>
-               </Form>
-               <Result state={this.state}/>
+               <Search onSearch={this.onSearch}/>
+               <Results items={items} searching={api.searching}/>
             </Jumbotron>
          </div>
       );
    }
-}
+};
