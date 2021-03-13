@@ -8,22 +8,39 @@ import './app.scss';
 export default class App extends Component {
    state = {
       api: {
-         searching: 'shakhban',
+         searching: 'Darya',
          maxResults: 10,
-         orderBy: 'viewCount',
+         orderBy: 'date',
          baseURL: 'https://youtube.googleapis.com/youtube/v3/search?',
-         apiKey: 'AIzaSyDLjNPbLM1TSxhjJqqKZ0N1jrRQxbzqQ-4',
-         requireURL: `${this.baseURL}part=snippet&maxResults=${this.maxResults}&order=${this.orderBy}&q=${this.searching}&key=${this.apiKey}`
+         apiKey: 'AIzaSyAu6v0szd3Lohk-b-di7cN6Npt6bUafAMo'
       },
-      items: [
-         {id: '1', image: '', videoName: 'hello', author: 'me', date: '12.02.02'},
-         {id: '2', image: '', videoName: "It's me", author: 'you', date: '14.03.12'},
-         {id: '3', image: '', videoName: 'And you', author: 'they', date: '1.09.21'}
-      ]
+      items: []
    };
 
    componentDidMount() {
+      const {baseURL, maxResults, apiKey, orderBy, searching} = this.state.api;
+      // https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=date&q=kizlyar&key=[YOUR_API_KEY]
+      axios
+         .get(`${baseURL}part=snippet&maxResults=${maxResults}&order=${orderBy}&q=${searching}&key=${apiKey}`)
+         .then(response => {
+            const newItems =
+               response.data.items.map(item => {
+                  return {
+                     id: item.etag,
+                     videoId: item.id.videoId,
+                     date: item.snippet.publishTime,
+                     image: item.snippet.thumbnails.high.url,
+                     videoName: item.snippet.title,
+                     author: item.snippet.channelTitle,
+                  };
+               })
 
+            this.setState(({items}) => {
+               return {
+                  items: [...newItems]
+               }
+            })
+         })
    }
 
    onSearch = (e) => {
