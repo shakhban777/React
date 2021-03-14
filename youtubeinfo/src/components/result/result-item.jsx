@@ -1,21 +1,39 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import {Accordion, Card} from "react-bootstrap";
+import './result.scss';
 
-const ResultItem = ({ image, videoName, author, date, views }) => {
+const ResultItem = ({videoName, author, date, views, videoId}) => {
    const parsedDate = date.toString();
-   const neededDate = new Date(parsedDate).toLocaleString("ru", {day: 'numeric', year: 'numeric', month: 'long', hour: "numeric", minute: "numeric", second: "numeric"});
+   const neededDate = new Date(parsedDate).toLocaleString("ru", {
+      day: 'numeric',
+      year: 'numeric',
+      month: 'long',
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric"
+   });
+   const videoUrl = `https://www.youtube.com/embed/${videoId}`
 
    return (
       <li className='list-group-item'>
-         <Card style={{ width: '15rem' }}>
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-               <Card.Title>{videoName}</Card.Title>
-               <Card.Subtitle className="mb-2 text-muted">{author}</Card.Subtitle>
-               <Card.Subtitle className="mb-2 text-muted">{neededDate}</Card.Subtitle>
-               <Card.Subtitle className="mb-2 text-muted">{views}</Card.Subtitle>
-            </Card.Body>
-         </Card>
+         <Accordion defaultActiveKey="1">
+            <Card>
+               <Accordion.Toggle as={Card.Header} eventKey="0">
+                  <Card.Body className='description'>
+                     <Card.Title>{videoName}</Card.Title>
+                     <Card.Subtitle className="mb-3">Автор: <span className='text-muted'>{author}</span></Card.Subtitle>
+                     <Card.Subtitle className="mb-3">Загружено: <span className='text-muted'>{neededDate}</span></Card.Subtitle>
+                     <Card.Subtitle className="mb-3">Просмотров: <span className='text-muted'>{views}</span></Card.Subtitle>
+                  </Card.Body>
+               </Accordion.Toggle>
+               <Accordion.Collapse eventKey="0" className='accord'>
+                  <iframe title={videoId} width="720" height="480" src={videoUrl} frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen>
+                  </iframe>
+               </Accordion.Collapse>
+            </Card>
+         </Accordion>
       </li>
    );
 }
