@@ -1,7 +1,7 @@
 import React from "react";
 import ResultItem from "./result-item";
 
-const Results = ({ items, searching }) => {
+const Results = ({ items, search }) => {
 
    const elements = items.map(item => {
       const {id, ...items} = item;
@@ -12,7 +12,7 @@ const Results = ({ items, searching }) => {
 
    return (
       <div className='result'>
-         <p>Результат поиска по запросу: "{searching}"</p>
+         <p>Результат поиска по запросу: "{search}"</p>
          <ul className='list-group'>
             {elements}
          </ul>
