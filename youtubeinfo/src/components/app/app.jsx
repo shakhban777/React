@@ -62,7 +62,12 @@ export default class App extends Component {
 
                   const newItems = [...oldItems.slice(0, idx), itemWithView, ...oldItems.slice(idx + 1)];
 
-                  this.setState( {items: newItems})
+                  //sorting items
+                  const sortedItems = newItems.sort(function (a, b) {
+                     return b.views - a.views;
+                  })
+
+                  this.setState( {items: sortedItems})
                })
          })
       })()
