@@ -27,10 +27,12 @@ const ResultItem = ({videoName, author, date, views, videoId}) => {
                   </Card.Body>
                </Accordion.Toggle>
                <Accordion.Collapse eventKey="0" className='accord'>
-                  <iframe title={videoId} width="720" height="480" src={videoUrl} frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen>
-                  </iframe>
+                  <div className='video-container'>
+                     <iframe title={videoId} width="560" height="315" src={videoUrl} frameBorder="0"
+                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                             allowFullScreen>
+                     </iframe>
+                  </div>
                </Accordion.Collapse>
             </Card>
          </Accordion>

@@ -12,6 +12,7 @@ export default class App extends Component {
    state = {
       value: '',
       search: '',
+      loading: true,
       items: []
    };
 
@@ -29,13 +30,17 @@ export default class App extends Component {
       const {getItems, addViews, sortItems} = this.youtubeService;
       const {search} = this.state;
 
+      this.setState({
+         loading: true,
+      });
+
       if (!search) return;
 
       (async () => {
          const data = await getItems(search);
          const items = await addViews(data);
          const sorted = await sortItems(items);
-         await this.setState({items: sorted});
+         await this.setState({items: sorted, loading: false});
       })()
    }
 
@@ -47,14 +52,14 @@ export default class App extends Component {
       e.preventDefault();
       if (!this.state.value) return
       this.setState({search: this.state.value});
-      this.setState({value: ''});
+      this.setState({value: '', items: []});
    }
 
    render() {
-      const {items, value, search} = this.state;
+      const {items, value, search, loading} = this.state;
 
       const results = search
-         ? <Results items={items} search={search}/>
+         ? <Results items={items} search={search} loading={loading}/>
          : null;
 
       return (
