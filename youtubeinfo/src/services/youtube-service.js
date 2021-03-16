@@ -4,7 +4,7 @@ export default class YoutubeService {
    _orderBy = 'date';
    _baseSearchURL = 'https://youtube.googleapis.com/youtube/v3/search?';
    _baseStatisticURL = 'https://www.googleapis.com/youtube/v3/videos?';
-   _apiKey = 'AIzaSyCE0dzixVi2ek9d0gwwUT7pllRxgaWrXS0';
+   _apiKey = 'AIzaSyAZ9HXwcvjwkjV3mUA6z4JHlU-ASd1uy2g';
 
    getResource = async (search) => {
       const urlToFetch = `${this._baseSearchURL}part=snippet&maxResults=${this._maxResults}&order=${this._orderBy}&q=${search}&key=${this._apiKey}`;
