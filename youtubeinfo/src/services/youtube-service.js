@@ -7,23 +7,31 @@ export default class YoutubeService {
    _apiKey = 'AIzaSyCE0dzixVi2ek9d0gwwUT7pllRxgaWrXS0';
 
    getResource = async (search) => {
-      const response =
-         await fetch(`${this._baseSearchURL}part=snippet&maxResults=${this._maxResults}&order=${this._orderBy}&q=${search}&key=${this._apiKey}`);
+      const urlToFetch = `${this._baseSearchURL}part=snippet&maxResults=${this._maxResults}&order=${this._orderBy}&q=${search}&key=${this._apiKey}`;
+      const response = await fetch(urlToFetch);
 
       if (!response.ok) {
-         throw new Error(`Could not fetch 
-            ${this._baseSearchURL}part=snippet&maxResults=${this._maxResults}&order=${this._orderBy}&q=${search}&key=${this._apiKey},
-            received ${response.status}`);
+         throw new Error(`Could not fetch ${urlToFetch}, received ${response.status}`);
       }
 
       return await response.json();
    }
 
    getItems = async (search) => {
-      const data = await this.getResource(search);
-      return data.items.map(item => {
-         return this._transformItem(item);
-      });
+      try {
+         const data = await this.getResource(search);
+         const items = data.items.map(item => {
+            // eslint-disable-next-line array-callback-return
+            if (item.snippet.channelTitle === item.snippet.title) return;      // because youtube API returns user profiles sometime
+            return this._transformItem(item);
+         });
+
+         return items.filter(function (el) {     // remove undefined results
+            return el != null;
+         });
+      } catch (err) {
+         console.error(err);
+      }
    }
 
    _transformItem = (item) => {
@@ -37,17 +45,28 @@ export default class YoutubeService {
    }
 
    addViews = async (array) => {
-      const viewedItems = await array.map(item => {
-         return (async () => {
-            const response = await fetch(`${this._baseStatisticURL}part=statistics&id=${item.videoId}&key=${this._apiKey}`);
-            const data = await response.json();
-            const view = await data.items[0].statistics.viewCount;
-            return {...item, views: view};
-         })()
-      });
+      try {
+         const viewedItems = await array.map(item => {
+            const urlToFetch = `${this._baseStatisticURL}part=statistics&id=${item.videoId}&key=${this._apiKey}`
+            return (async () => {
+               const response = await fetch(urlToFetch);
 
-      return Promise.all(viewedItems)
-         .then(item => item);
+               if (!response.ok) {
+                  throw new Error(`Could not fetch ${urlToFetch}, received ${response.status}`);
+               }
+
+               const data = await response.json();
+               const view = await data.items[0].statistics.viewCount;
+               return {...item, views: view};
+            })()
+         });
+
+         return Promise.all(viewedItems)
+            .then(item => item)
+            .catch(err => console.error(err));
+      } catch (err) {
+         console.error(err);
+      }
    }
 
    sortItems(items) {

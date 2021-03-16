@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Jumbotron} from 'react-bootstrap';
 import Results from "../result/results";
 import Search from "../search/search";
-import './app.scss';
 import YoutubeService from "../../services/youtube-service";
+import './app.scss';
 
 export default class App extends Component {
 
