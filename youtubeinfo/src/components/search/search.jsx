@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Form } from 'react-bootstrap';
+import {Button, Form} from 'react-bootstrap';
 
-const Search = ({ onChange, onSubmit, value }) => {
+const Search = ({onChange, onSubmit, value}) => {
    return (
       <Form className='mb-5' onSubmit={onSubmit}>
          <Form.Group controlId="formBasicEmail">
