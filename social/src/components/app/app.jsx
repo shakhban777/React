@@ -2,11 +2,11 @@ import React from 'react';
 import Header from '../header/header';
 import Navbar from '../navbar/navbar';
 import DialogsContainer from "../dialogs/dialogs-container";
-import Profile from "../profile/profile";
 import News from "../news/news";
 import Movies from "../movies/movies";
 import Settings from "../settings/settings";
 import {BrowserRouter, Route} from "react-router-dom";
+import ProfileContainer from '../profile/profile-container';
 import UsersContainer from "../users/users-container";
 
 import './app.css';
@@ -22,7 +22,7 @@ const App = () => {
                <Route path='/dialogs/'
                       render={() => <DialogsContainer/>}/>
                <Route path='/profile/'
-                      render={() => <Profile/>}/>
+                      render={() => <ProfileContainer/>}/>
                <Route path='/users/'
                       render={() => <UsersContainer/>}/>
                <Route path='/news/'
