@@ -1,26 +1,37 @@
 import React from 'react';
 import s from './profile-info.module.css';
 import Preloader from "../../common/preloader";
+import defaultPhoto from '../../../assets/images/user.png';
 
 const ProfileInfo = (props) => {
    if (!props.profile) {
       return <Preloader/>
    }
+
+   const avatar = props.profile.photos.large
+      ? props.profile.photos.large
+      : defaultPhoto;
+
    return (
       <div className={s.card}>
-         <img className={s.avatar} src={props.profile.photos.large} alt="avatar"/>
+         <img className={s.avatar} src={avatar} alt="avatar"/>
          <ul className={s.list}>
             <li>Имя: {props.profile.fullName}</li>
-            <li>{props.profile.aboutMe
+            <li>
+               {props.profile.aboutMe
                ? `Обо мне: ${props.profile.aboutMe}`
-               : null
-            }</li>
+               : null}
+            </li>
             <li>Положение:
                {props.profile.lookingForAJob
-               ? ' в поиске работы🧐'
-               : ' не ищу работу😎'}
+                  ? ' в поиске работы🧐'
+                  : ' не ищу работу😎'}
             </li>
-            <li>Описание работы: {props.profile.lookingForAJobDescription}</li>
+            <li>
+               {props.profile.lookingForAJobDescription
+                  ? `Описание работы: ${props.profile.lookingForAJobDescription}`
+                  : null}
+            </li>
          </ul>
       </div>
    );

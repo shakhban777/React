@@ -21,7 +21,7 @@ const App = () => {
                <Route exact path='/'><h2>Welcome to my Social Network!😉</h2></Route>
                <Route path='/dialogs/'
                       render={() => <DialogsContainer/>}/>
-               <Route path='/profile/'
+               <Route path='/profile/:userId?'
                       render={() => <ProfileContainer/>}/>
                <Route path='/users/'
                       render={() => <UsersContainer/>}/>
