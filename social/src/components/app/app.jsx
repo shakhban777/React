@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../header/header';
+import HeaderContainer from '../header/header-container';
 import Navbar from '../navbar/navbar';
 import DialogsContainer from "../dialogs/dialogs-container";
 import News from "../news/news";
@@ -15,7 +15,7 @@ const App = () => {
    return (
       <BrowserRouter>
          <div className='app-wrapper'>
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <div className='app-wrapper-content'>
                <Route exact path='/'><h2>Welcome to my Social Network!😉</h2></Route>

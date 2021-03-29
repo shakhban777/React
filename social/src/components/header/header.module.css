@@ -1,5 +1,9 @@
 .header {
     grid-area: head;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
 }
 
 .header .flex {
@@ -20,4 +24,13 @@
 .header span {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 35px;
+}
+
+.loginBlock {
+    display: flex;
+    align-items: center;
+}
+
+.loginBlock img {
+    margin-right: 1em;
 }
