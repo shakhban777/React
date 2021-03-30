@@ -1,6 +1,7 @@
 import React from 'react';
 import userPhoto from '../../assets/images/user.png';
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 import s from './users.module.css';
 
 const Users = (props) => {
@@ -15,16 +16,14 @@ const Users = (props) => {
    return (
       <div className={s.users}>
          <ul className={s.pages}>
-            {
-               pages.map(p => {
-                  return <li
-                     key={p}
-                     className={props.currentPage === p ? s.pages__active : undefined}
-                     onClick={() => props.onPageChanged(p)}>
-                     {p}
-                  </li>
-               })
-            }
+            {pages.map(p => {
+               return <li
+                  key={p}
+                  className={props.currentPage === p ? s.pages__active : undefined}
+                  onClick={() => props.onPageChanged(p)}>
+                  {p}
+               </li>
+            })}
          </ul>
          <ul className={s.userList}>
             {props.users.map(u => {
@@ -33,16 +32,49 @@ const Users = (props) => {
                      <div className={s.left}>
                         <NavLink to={`/profile/${u.id}`}>
                            <img src={u.photos.small ? u.photos.small : userPhoto} alt="avatar"
-                                className={s.userPhoto} />
+                                className={s.userPhoto}/>
                         </NavLink>
                         {u.followed
                            ? <button
-                              onClick={() => props.unfollow(u.id)}
-                              className={s.follow_btn}><span className={s.follow_btn_content}>Unfollow</span>
+                              className={s.follow_btn}>
+                              <span className={s.follow_btn_content}
+                                    onClick={() => {
+                                       axios
+                                          .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                             withCredentials: true,
+                                             headers: {
+                                                'API-KEY': 'b23bae25-5911-4ad8-a55f-6f54125cdd9f'
+                                             }
+                                          })
+                                          .then(response => {
+                                             if (response.data.resultCode === 0) {
+                                                props.unfollow(u.id);
+                                             }
+                                          });
+                                    }}>
+                                 Unfollow
+                              </span>
                            </button>
                            : <button
-                              onClick={() => props.follow(u.id)}
-                              className={s.follow_btn}><span className={s.follow_btn_content}>Follow</span>
+                              className={s.follow_btn}>
+                              <span
+                                 className={s.follow_btn_content}
+                                 onClick={() => {
+                                    axios
+                                       .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                          withCredentials: true,
+                                          headers: {
+                                             'API-KEY': 'b23bae25-5911-4ad8-a55f-6f54125cdd9f'
+                                          }
+                                       })
+                                       .then(response => {
+                                          if (response.data.resultCode === 0) {
+                                             props.follow(u.id);
+                                          }
+                                       });
+                                 }}>
+                                 Follow
+                              </span>
                            </button>
                         }
                      </div>
