@@ -1,7 +1,6 @@
 import React from 'react';
 import userPhoto from '../../assets/images/user.png';
 import {NavLink} from "react-router-dom";
-import {followAPI} from '../../api/api';
 import s from './users.module.css';
 
 const Users = (props) => {
@@ -38,37 +37,14 @@ const Users = (props) => {
                            ? <button
                               disabled={props.followingInProgress.some(id => id === u.id)}
                               className={s.follow_btn}
-                              onClick={() => {
-                                 props.toggleFollowingInProgress(true, u.id);
-                                 followAPI.unfollowUser(u.id)
-                                    .then(data => {
-                                       if (data.resultCode === 0) {
-                                          props.unfollow(u.id);
-                                       }
-                                       props.toggleFollowingInProgress(false, u.id);
-                                    });
-                              }}>
-                              <span className={s.follow_btn_content}>
-                                 Unfollow
-                              </span>
+                              onClick={() => {props.unfollow(u.id)}}>
+                              <span className={s.follow_btn_content}>Unfollow</span>
                            </button>
                            : <button
                               disabled={props.followingInProgress.some(id => id === u.id)}
                               className={s.follow_btn}
-                              onClick={() => {
-                                 props.toggleFollowingInProgress(true, u.id);
-                                 followAPI.followUser(u.id)
-                                    .then(data => {
-                                       if (data.resultCode === 0) {
-                                          props.follow(u.id);
-                                       }
-                                       props.toggleFollowingInProgress(false, u.id);
-                                    });
-                              }}>
-                              <span
-                                 className={s.follow_btn_content}>
-                                 Follow
-                              </span>
+                              onClick={() => {props.follow(u.id)}}>
+                              <span className={s.follow_btn_content}>Follow</span>
                            </button>
                         }
                      </div>

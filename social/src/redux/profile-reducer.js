@@ -1,3 +1,5 @@
+import {authAPI, profileAPI} from "../api/api";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_CHANGE = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -12,14 +14,12 @@ const initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
-
    switch (action.type) {
       case UPDATE_NEW_POST_CHANGE:
          return {
             ...state,
             newPostText: action.newText
          };
-
       case ADD_POST: {
          const likeValue = Math.floor(Math.random() * 100 + 1);
          let text;
@@ -42,7 +42,6 @@ const profileReducer = (state = initialState, action) => {
             newPostText: ''
          };
       }
-
       case SET_USER_PROFILE: {
          return {
             ...state,
@@ -56,10 +55,28 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export const addPostActionCreator = () => ({type: ADD_POST});
-
 export const onPostChangeActionCreator = (text) =>
    ({type: UPDATE_NEW_POST_CHANGE, newText: text});
-
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+
+export const showProfile = (userId) => {
+   return (dispatch) => {
+      profileAPI.getProfile(userId)
+         .then(data => {
+            dispatch(setUserProfile(data));
+         });
+   };
+};
+
+// test thunk
+export const myProfile = () => {
+   return (dispatch) => {
+      authAPI.getAuthData()
+         .then(data => profileAPI.getProfile(data.data.id))
+         .then(data => {
+            dispatch(setUserProfile(data));
+         });
+   };
+}
 
 export default profileReducer;
