@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import Header from './header';
 import {connect} from "react-redux";
-import {showAuthedPerson} from '../../redux/auth-reducer';
+import {getAuthUserPerson} from '../../redux/auth-reducer';
 
 class HeaderContainer extends Component {
 
    componentDidMount() {
-      this.props.showAuthedPerson();
+      this.props.getAuthUserPerson();
    }
 
    render() {
@@ -21,4 +21,4 @@ const MapStateToProps = (state) => ({
    avatar: state.auth.avatar
 });
 
-export default connect(MapStateToProps, {showAuthedPerson})(HeaderContainer);
+export default connect(MapStateToProps, {getAuthUserPerson})(HeaderContainer);

@@ -59,7 +59,7 @@ export const onPostChangeActionCreator = (text) =>
    ({type: UPDATE_NEW_POST_CHANGE, newText: text});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
-export const showProfile = (userId) => {
+export const getUserProfile = (userId) => {
    return (dispatch) => {
       profileAPI.getProfile(userId)
          .then(data => {
