@@ -10,6 +10,7 @@ import ProfileContainer from '../profile/profile-container';
 import UsersContainer from "../users/users-container";
 
 import './app.css';
+import Login from "../login/login";
 
 const App = () => {
    return (
@@ -31,6 +32,8 @@ const App = () => {
                       render={() => <Movies/>}/>
                <Route path='/settings/'
                       render={() => <Settings/>}/>
+               <Route path='/login/'
+                      render={() => <Login/>}/>
             </div>
          </div>
       </BrowserRouter>
