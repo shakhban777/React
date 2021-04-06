@@ -1,0 +1,10 @@
+.operation {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.operationElement {
+   &:hover {
+      background-color: rgba(24, 65, 255, 0.64);
+   }
+}
