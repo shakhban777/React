@@ -8,8 +8,9 @@ const Buttons = (props) => {
       <div className='buttons'>
          <Numeric
             result={props.result}
-            enterNum={props.enterNum}/>
-         <Operation/>
+            getNumber={props.getNumber}/>
+         <Operation
+            getOperation={props.getOperation}/>
       </div>
    );
 }

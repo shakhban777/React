@@ -5,7 +5,7 @@ const NumericElement = (props) => (
    <div
       name={props.num}
       className='numericElement button'
-      onClick={() => props.enterNum(props.num)}>
+      onClick={() => props.getNumber(props.num)}>
          {props.num}
    </div>
 );

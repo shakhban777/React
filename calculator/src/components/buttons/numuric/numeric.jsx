@@ -9,7 +9,7 @@ const Numeric = (props) => (
       {numbers.map(number => <NumericElement
          key={number}
          num={number}
-         enterNum={props.enterNum}
+         getNumber={props.getNumber}
       />)}
    </div>
 );
