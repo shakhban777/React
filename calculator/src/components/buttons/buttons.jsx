@@ -1,7 +1,7 @@
 import React from 'react';
 import './buttons.scss';
 import Operation from "./operation/operation";
-import Numeric from "./numuric/numeric";
+import Numeric from "./numeric/numeric";
 
 const Buttons = (props) => {
    return (
