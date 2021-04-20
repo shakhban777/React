@@ -2,6 +2,7 @@ import React from 'react';
 import s from './profile-info.module.css';
 import Preloader from "../../common/preloader";
 import defaultPhoto from '../../../assets/images/user.png';
+import ProfileStatus from "./profile-status";
 
 const ProfileInfo = (props) => {
    if (!props.profile) {
@@ -16,6 +17,9 @@ const ProfileInfo = (props) => {
       <div className={s.card}>
          <img className={s.avatar} src={avatar} alt="avatar"/>
          <ul className={s.list}>
+            <li>
+               <ProfileStatus status={'Hello my friends!'}/>
+            </li>
             <li>Имя: {props.profile.fullName}</li>
             <li>
                {props.profile.aboutMe

@@ -18,3 +18,7 @@
 .list li{
 	margin-bottom: 10px;
 }
+
+.flex {
+	display: flex;
+}
