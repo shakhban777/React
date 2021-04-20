@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Header from './header';
 import {connect} from "react-redux";
 import {getAuthUserPerson} from '../../redux/auth-reducer';
+import {compose} from "redux";
 
 class HeaderContainer extends Component {
 
@@ -21,4 +22,6 @@ const MapStateToProps = (state) => ({
    avatar: state.auth.avatar
 });
 
-export default connect(MapStateToProps, {getAuthUserPerson})(HeaderContainer);
+export default compose(
+   connect(MapStateToProps, {getAuthUserPerson})
+)(HeaderContainer);
