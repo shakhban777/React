@@ -3,9 +3,9 @@ import './title.css';
 
 const Title: React.FC = () => {
    return (
-      <div>
-         <span>Weather</span>
-         <span>forecast</span>
+      <div className='title'>
+         <div className='title__item-1'>Weather</div>
+         <div className='title__item-2'>forecast</div>
       </div>
    )
 }

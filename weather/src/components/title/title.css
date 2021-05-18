@@ -1,1 +1,11 @@
+.title {
+   font-size: 102px;
+   width: 740px;
+   height: 212px;
+   display: flex;
+   flex-direction: column;
+}
 
+.title__item-2 {
+   text-align: right;
+}
