@@ -7,14 +7,53 @@ body {
   font-weight: 400;
 }
 
+._container {
+  margin: 0 auto;
+  width: 100%;
+}
+
 .app {
   width: 100%;
   min-height: 100%;
   overflow: hidden;
 }
 
-._container {
-  max-width: 1170px;
-  margin: 0 auto;
-  width: 100%;
+.app__blocks {
+  display: flex;
+  justify-content: center;
+}
+
+.app__card {
+  width: 660px;
+  height: 524px;
+  background: #ffffff;
+  box-shadow: 0 4px 4px rgba(4, 5, 73, 0.25),
+  14px 14px 20px rgba(5, 6, 114, 0.2);
+  border-radius: 8px;
+  padding: 50px 58px 70px 50px;
+}
+
+.app__card:first-child {
+  margin-right: 15px;
+}
+
+.app__card:last-child {
+  margin-left: 15px;
+}
+
+.app__card-title {
+  font-size: 32px;
+  color: #2C2D76;
+  margin: 0 0 32px 0;
+}
+
+.app__title {
+  margin: 65px 0 60px 0;
+}
+
+.app__content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 }

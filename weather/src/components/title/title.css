@@ -1,9 +1,11 @@
 .title {
    font-size: 102px;
    width: 740px;
-   height: 212px;
    display: flex;
    flex-direction: column;
+   margin: 0 auto;
+   line-height: 95px;
+   /*margin-bottom: -7px;*/
 }
 
 .title__item-2 {
