@@ -14,7 +14,7 @@ const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler}) 
 
    return (
       <div className='select-city'>
-         <select className='select-city__input' onChange={changeHandler}>
+         <select className='select-city__selector' onChange={changeHandler}>
             <option hidden>Select city</option>
             {cities.map(city => {
                return (

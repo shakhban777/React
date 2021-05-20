@@ -65,5 +65,33 @@ body {
 
 .app__card-blocks {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app__arrow-left {
+  cursor: pointer;
+}
+
+.app__arrow-right {
+  cursor: pointer;
+}
+
+.app__card-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app__card-date {
+  width: 252px;
+  height: 48px;
+  background: rgba(128, 131, 164, 0.06);
+  border: 2px solid rgba(128, 131, 164, 0.2);
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2C2D76;
 }

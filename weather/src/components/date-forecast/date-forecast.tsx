@@ -14,7 +14,10 @@ const DateForecast: React.FC<DateTypeProps> = ({cities}) => {
          <div className='app__content'>
             <div>
                <h2 className='app__card-title'>Forecast for a Date in the Past</h2>
-               <SelectCity cities={cities}/>
+               <div className="app__card-select">
+                  <SelectCity cities={cities}/>
+                  <input className='app__card-date' type="date"/>
+               </div>
             </div>
             <div>
                <Placeholder/>

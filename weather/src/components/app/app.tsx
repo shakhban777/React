@@ -30,6 +30,7 @@ const App: React.FC = () => {
    const [lon, setLon] = useState<number | null>(null);
    const [data, setData] = useState<Array<DataType>>([]);
    const [showForecast, setShowForecast] = useState<boolean>(false);
+   const [toggleWeather, setToggleWeather] = useState<number>(0);
 
    useEffect(() => {
       if (lat && lon) {
@@ -41,19 +42,33 @@ const App: React.FC = () => {
                return res;
             })
             .then(res => {
-               return res.slice(0, 3);
+               return res.slice(toggleWeather, 3 + toggleWeather);
             })
             .then(res => {
                setData(res);
                setShowForecast(true);
             });
       }
-   }, [lat, lon])
+   }, [lat, lon, toggleWeather])
 
    const locationHandler = (location: string) => {
       const [latitude, longitude] = location.split(', ');
       setLat(+latitude);
       setLon(+longitude);
+   }
+
+   const toggleNextHandler = () => {
+      if (0 <= toggleWeather && toggleWeather < 5) {
+         setToggleWeather(prevState => ++prevState);
+         console.log(toggleWeather);
+      }
+   }
+
+   const togglePrevHandler = () => {
+      if (0 < toggleWeather && toggleWeather <= 5) {
+         setToggleWeather(prevState => --prevState);
+         console.log(toggleWeather);
+      }
    }
 
    return (
@@ -66,6 +81,8 @@ const App: React.FC = () => {
                <SevenDayForecast
                   cities={cities}
                   onChangeHandler={locationHandler}
+                  onPrevHandler={togglePrevHandler}
+                  onNextHandler={toggleNextHandler}
                   showForecast={showForecast}
                   data={data}/>
                <DateForecast cities={cities}/>

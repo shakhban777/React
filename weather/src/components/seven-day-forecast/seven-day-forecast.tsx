@@ -3,19 +3,26 @@ import {CityType, DataType} from "../app/app";
 import SelectCity from '../select-city/select-city';
 import Placeholder from "../placeholder/placeholder";
 import WeatherCard from "../weather-card/weather-card";
+import arrowLeft from '../../assets/img/icons/arrow-left.svg';
+import arrowRight from '../../assets/img/icons/arrow-right.svg';
 import './seven-day-forecast.css';
 
 type CitiesTypeProps = {
    cities: CityType[],
    onChangeHandler: (location: string) => void,
    showForecast: boolean,
-   data: DataType[]
+   data: DataType[],
+   onPrevHandler: () => void,
+   onNextHandler: () => void
 }
 
-const SevenDayForecast: React.FC<CitiesTypeProps> = ({data, showForecast, cities, onChangeHandler}) => {
-   console.log(data)
+const SevenDayForecast: React.FC<CitiesTypeProps> = ({data, showForecast, cities, onChangeHandler, onPrevHandler, onNextHandler}) => {
    const results = showForecast
       ? <div className='app__card-blocks'>
+         <div onClick={onPrevHandler}
+              className="app__arrow-left">
+            <img src={arrowLeft} alt="arrow-left"/>
+         </div>
          {
             data.map((obj: DataType) => {
                return <WeatherCard key={obj.id}
@@ -24,6 +31,10 @@ const SevenDayForecast: React.FC<CitiesTypeProps> = ({data, showForecast, cities
                                    temperature={obj.temperature}/>
             })
          }
+         <div onClick={onNextHandler}
+              className="app__arrow-right">
+            <img src={arrowRight} alt="arrow-right"/>
+         </div>
       </div>
       : <Placeholder/>;
 

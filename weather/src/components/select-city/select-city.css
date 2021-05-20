@@ -1,9 +1,4 @@
-.select-city__input {
-   display: inline-block;
-   position: relative;
-}
-
-.select-city__input-text {
+.select-city__selector {
    width: 252px;
    height: 48px;
    box-sizing: border-box;
@@ -11,32 +6,16 @@
    background: rgba(128, 131, 164, 0.06);
    border: 2px solid rgba(128, 131, 164, 0.2);
    padding: 12px 16px;
+   font-size: 16px;
+   line-height: 24px;
+   color: #2C2D76;
+   appearance: none;
 }
 
-.select-city__input-text:focus {
+.select-city__selector:focus {
    border: 2px solid #373AF5;
 }
 
-.select-city__input-text:focus-within {
+.select-city__selector:focus-within {
    outline-style: none;
-}
-
-.select-city__input-text::-webkit-calendar-picker-indicator {
-   display: none;
-}
-
-.select-city__input:after {
-   content: '';
-   position: absolute;
-   pointer-events: none;
-   top: 16px;
-   right: 16px;
-   width: 15px;
-   height: 13px;
-   background: url("../../assets/img/arrow-down.svg") 0 5px no-repeat;
-}
-
-.select-city__input:focus-within:after {
-   top: 20px;
-   transform: rotate(180deg);
 }
