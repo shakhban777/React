@@ -1,19 +1,32 @@
 import React from 'react';
+import {CityType, DataType} from "../app/app";
 import SelectCity from '../select-city/select-city';
-import './seven-day-forecast.css';
-import {CityType} from "../app/app";
 import Placeholder from "../placeholder/placeholder";
 import WeatherCard from "../weather-card/weather-card";
+import './seven-day-forecast.css';
 
-export type CitiesTypeProps = {
+type CitiesTypeProps = {
    cities: CityType[],
-   onChangeHandler?: (location: string) => void,
-   date?: string,
-   icon?: string,
-   temperature?: number | null
+   onChangeHandler: (location: string) => void,
+   showForecast: boolean,
+   data: DataType[]
 }
 
-const SevenDayForecast: React.FC<CitiesTypeProps> = ({cities,onChangeHandler, date,icon,temperature}) => {
+const SevenDayForecast: React.FC<CitiesTypeProps> = ({data, showForecast, cities, onChangeHandler}) => {
+   console.log(data)
+   const results = showForecast
+      ? <div className='app__card-blocks'>
+         {
+            data.map((obj: DataType) => {
+               return <WeatherCard key={obj.id}
+                                   date={obj.date}
+                                   icon={obj.icon}
+                                   temperature={obj.temperature}/>
+            })
+         }
+      </div>
+      : <Placeholder/>;
+
    return (
       <div className='app__card'>
          <div className='app__content'>
@@ -22,10 +35,7 @@ const SevenDayForecast: React.FC<CitiesTypeProps> = ({cities,onChangeHandler, da
                <SelectCity onChangeHandler={onChangeHandler} cities={cities}/>
             </div>
             <div>
-               <WeatherCard date={date}
-                            icon={icon}
-                            temperature={temperature}/>
-               {/*<Placeholder/>*/}
+               {results}
             </div>
          </div>
       </div>

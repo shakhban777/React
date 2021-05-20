@@ -1,0 +1,13 @@
+.placeholder {
+   text-align: center;
+}
+.placeholder__image {
+   margin-bottom: 28px;
+}
+
+.placeholder__text {
+   font-weight: bold;
+   font-size: 16px;
+   line-height: 24px;
+   color: #8083a4;
+}

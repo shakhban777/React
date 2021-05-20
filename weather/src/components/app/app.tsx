@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import WeatherService from "../../api/api";
 import Title from '../title/title';
 import SevenDayForecast from '../seven-day-forecast/seven-day-forecast';
-import './app.css';
-import WeatherService from "../../api/api";
 import DateForecast from "../date-forecast/date-forecast";
+import './app.css';
 
 export type CityType = {
    name: string,
@@ -11,9 +11,14 @@ export type CityType = {
    lon: number
 };
 
-const App: React.FC = () => {
-   const weather = new WeatherService();
+export type DataType = {
+   id: number,
+   date: string,
+   icon: string,
+   temperature: string
+}
 
+const App: React.FC = () => {
    const [cities] = useState<CityType[]>([
       {name: 'Самара', lat: 53.195873, lon: 50.100193},
       {name: 'Тольятти', lat: 53.507836, lon: 49.420393},
@@ -23,25 +28,32 @@ const App: React.FC = () => {
    ]);
    const [lat, setLat] = useState<number | null>(null);
    const [lon, setLon] = useState<number | null>(null);
-   const [date, setDate] = useState<string>('');
-   const [icon, setIcon] = useState<string>('');
-   const [temperature, setTemperature] = useState<number | null>(null);
+   const [data, setData] = useState<Array<DataType>>([]);
+   const [showForecast, setShowForecast] = useState<boolean>(false);
 
    useEffect(() => {
-      // weather.getResource(1, 1).then(res => {
-      //    console.log(res.weather[0].icon);
-      //    console.log(res.main.temp);
-      //    console.log(res.cod);
-      // });
-   })
+      if (lat && lon) {
+         const weather = new WeatherService();
+
+         weather.getResource(lat, lon)
+            .then(res => {
+               setData([]);
+               return res;
+            })
+            .then(res => {
+               return res.slice(0, 3);
+            })
+            .then(res => {
+               setData(res);
+               setShowForecast(true);
+            });
+      }
+   }, [lat, lon])
 
    const locationHandler = (location: string) => {
-      let coords = location.split(', ');
-      let latitude = +coords[0];
-      let longitude = +coords[1];
-
-      setLat(latitude);
-      setLon(longitude);
+      const [latitude, longitude] = location.split(', ');
+      setLat(+latitude);
+      setLon(+longitude);
    }
 
    return (
@@ -54,9 +66,8 @@ const App: React.FC = () => {
                <SevenDayForecast
                   cities={cities}
                   onChangeHandler={locationHandler}
-                  date={date}
-                  icon={icon}
-                  temperature={temperature}/>
+                  showForecast={showForecast}
+                  data={data}/>
                <DateForecast cities={cities}/>
             </div>
          </div>

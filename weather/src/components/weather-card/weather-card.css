@@ -1,0 +1,31 @@
+.weather-card {
+   width: 174px;
+   height: 238px;
+   background: #373AF5;
+   border: 2px solid #373AF5;
+   box-sizing: border-box;
+   box-shadow: 0 4px 4px rgba(4, 5, 73, 0.25), 14px 14px 20px rgba(5, 6, 114, 0.2);
+   border-radius: 8px;
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+}
+
+.weather-card_date {
+   font-weight: bold;
+   font-size: 16px;
+   justify-self: flex-start;
+}
+
+.weather-card__image {
+   width: 120px;
+   height: 120px;
+   justify-self: center;
+}
+
+.weather-card__temp {
+   font-weight: bold;
+   font-size: 32px;
+   justify-self: flex-end;
+   align-self: flex-end;
+}
