@@ -1,7 +1,7 @@
 import React from "react";
 import './weather-card.css'
 
-type WeatherTypeProps = {
+export type WeatherTypeProps = {
    date: string,
    icon: string,
    temperature: string

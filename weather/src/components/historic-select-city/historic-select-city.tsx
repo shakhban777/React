@@ -1,15 +1,10 @@
 import React from 'react';
-import {CityType} from "../app/app";
-import './select-city.css';
+import './historic-select-city.css';
+import {SelectCitiesTypeProps} from "../select-city/select-city";
 
-export type SelectCitiesTypeProps = {
-   cities: CityType[],
-   onChangeHandler: (coords: string, blockNum: number) => void
-}
-
-const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler}) => {
+const HistoricSelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler}) => {
    const changeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      onChangeHandler(event.target.value, 0);
+      onChangeHandler(event.target.value, 1);
    }
 
    return (
@@ -27,4 +22,4 @@ const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler}) 
    )
 };
 
-export default SelectCity;
+export default HistoricSelectCity;

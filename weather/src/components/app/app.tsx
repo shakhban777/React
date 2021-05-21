@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import WeatherService from "../../api/api";
 import Title from '../title/title';
-import SevenDayForecast from '../seven-day-forecast/seven-day-forecast';
-import DateForecast from "../date-forecast/date-forecast";
+import SevenDaysForecast from '../seven-days-forecast/seven-days-forecast';
+import HistoricForecast from "../historic-forecast/historic-forecast";
 import './app.css';
 
 export type CityType = {
@@ -12,10 +12,15 @@ export type CityType = {
 };
 
 export type DataType = {
-   id: number,
+   id?: number,
    date: string,
    icon: string,
    temperature: string
+}
+
+type LocationType = {
+   lat: number | null,
+   lon: number | null,
 }
 
 const App: React.FC = () => {
@@ -26,17 +31,24 @@ const App: React.FC = () => {
       {name: 'Казань', lat: 55.796127, lon: 49.106405},
       {name: 'Краснодар', lat: 45.035470, lon: 38.975313}
    ]);
-   const [lat, setLat] = useState<number | null>(null);
-   const [lon, setLon] = useState<number | null>(null);
-   const [data, setData] = useState<Array<DataType>>([]);
-   const [showForecast, setShowForecast] = useState<boolean>(false);
+   const [location, setLocation] = useState<LocationType[]>([{lat: null, lon: null}, {lat: null, lon: null}]);
+   const [date, setDate] = useState<number | null>(null);
+   const [data, setData] = useState<DataType[]>([]);
+   const [historicData, setHistoricData] = useState<DataType>({date: '', icon: '', temperature: ''});
+   const [showSevenDaysForecast, setShowSevenDaysForecast] = useState<boolean>(false);
+   const [showHistoricForecast, setShowHistoricForecast] = useState<boolean>(false);
    const [toggleWeather, setToggleWeather] = useState<number>(0);
 
+   const [first, second] = location;
+
    useEffect(() => {
+      const lat = first.lat;
+      const lon = first.lon;
+
       if (lat && lon) {
          const weather = new WeatherService();
 
-         weather.getResource(lat, lon)
+         weather.getWeatherForSevenDays(lat, lon)
             .then(res => {
                setData([]);
                return res;
@@ -46,28 +58,55 @@ const App: React.FC = () => {
             })
             .then(res => {
                setData(res);
-               setShowForecast(true);
+               setShowSevenDaysForecast(true);
             });
       }
-   }, [lat, lon, toggleWeather])
+   }, [first, toggleWeather])
 
-   const locationHandler = (location: string) => {
-      const [latitude, longitude] = location.split(', ');
-      setLat(+latitude);
-      setLon(+longitude);
-   }
+
+   useEffect(() => {
+      const lat = second.lat;
+      const lon = second.lon;
+
+      if (lat && lon && date) {
+         const weather = new WeatherService();
+
+         weather.getWeatherForHistoricDate(lat, lon, date)
+            .then(result => {
+               setHistoricData(result);
+               setShowHistoricForecast(true);
+            })
+      }
+   }, [second, date])
+
+   const locationHandler = (coords: string, blockNum: number) => {
+      const [latitude, longitude] = coords.split(', ');
+      const newObject = {
+         lat: +latitude,
+         lon: +longitude
+      }
+
+      setLocation(prevState => prevState.map(el => {
+         if (el === prevState[blockNum]) {
+            return newObject
+         }
+         return el;
+      }));
+   };
+
+   const dateHandler = (date: number) => {
+      setDate(date);
+   };
 
    const toggleNextHandler = () => {
       if (0 <= toggleWeather && toggleWeather < 5) {
          setToggleWeather(prevState => ++prevState);
-         console.log(toggleWeather);
       }
    }
 
    const togglePrevHandler = () => {
       if (0 < toggleWeather && toggleWeather <= 5) {
          setToggleWeather(prevState => --prevState);
-         console.log(toggleWeather);
       }
    }
 
@@ -78,14 +117,17 @@ const App: React.FC = () => {
                <Title/>
             </div>
             <div className='app__blocks'>
-               <SevenDayForecast
-                  cities={cities}
-                  onChangeHandler={locationHandler}
-                  onPrevHandler={togglePrevHandler}
-                  onNextHandler={toggleNextHandler}
-                  showForecast={showForecast}
-                  data={data}/>
-               <DateForecast cities={cities}/>
+               <SevenDaysForecast cities={cities}
+                                  onChangeHandler={locationHandler}
+                                  onPrevHandler={togglePrevHandler}
+                                  onNextHandler={toggleNextHandler}
+                                  showSevenDaysForecast={showSevenDaysForecast}
+                                  data={data}/>
+               <HistoricForecast cities={cities}
+                                 showHistoricForecast={showHistoricForecast}
+                                 onChangeHandler={locationHandler}
+                                 onChangeDateHandler={dateHandler}
+                                 historicData={historicData}/>
             </div>
          </div>
       </div>
