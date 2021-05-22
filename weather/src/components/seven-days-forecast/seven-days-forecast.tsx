@@ -12,7 +12,8 @@ type CitiesTypeProps = {
    showSevenDaysForecast: boolean,
    data: DataType[],
    onPrevHandler: () => void,
-   onNextHandler: () => void
+   onNextHandler: () => void,
+   showAllWeatherCards: boolean
 }
 
 const SevenDaysForecast: React.FC<CitiesTypeProps> = ({
@@ -21,16 +22,34 @@ const SevenDaysForecast: React.FC<CitiesTypeProps> = ({
                                                          cities,
                                                          onChangeHandler,
                                                          onPrevHandler,
-                                                         onNextHandler
+                                                         onNextHandler,
+                                                         showAllWeatherCards
                                                       }) => {
+
+   const LeftArrowBlock =  () => {
+      return (
+         <div onClick={onPrevHandler}
+              className="weather__arrow-left">
+            <img src={arrowLeft} alt="arrow-left"/>
+         </div>
+      );
+   };
+   const RightArrowBlock = () => {
+      return (
+         <div onClick={onNextHandler}
+              className="weather__arrow-right">
+            <img src={arrowRight} alt="arrow-right"/>
+         </div>
+      );
+   };
+
+   const leftArrow = showAllWeatherCards ? null : <LeftArrowBlock/>;
+   const rightArrow = showAllWeatherCards ? null : <RightArrowBlock/>;
 
    const Weather = () => {
       return (
          <div className='weather'>
-            <div onClick={onPrevHandler}
-                 className="weather__arrow-left">
-               <img src={arrowLeft} alt="arrow-left"/>
-            </div>
+            {leftArrow}
             {
                data.map((obj: DataType) => {
                   return <WeatherCard key={obj.id}
@@ -39,15 +58,12 @@ const SevenDaysForecast: React.FC<CitiesTypeProps> = ({
                                       temperature={obj.temperature}/>
                })
             }
-            <div onClick={onNextHandler}
-                 className="weather__arrow-right">
-               <img src={arrowRight} alt="arrow-right"/>
-            </div>
+            {rightArrow}
          </div>
       )
    }
 
-   const results = showSevenDaysForecast
+   const weather = showSevenDaysForecast
       ? <Weather/>
       : <Placeholder/>;
 
@@ -59,7 +75,7 @@ const SevenDaysForecast: React.FC<CitiesTypeProps> = ({
                <SelectCity onChangeHandler={onChangeHandler} cities={cities}/>
             </div>
             <div>
-               {results}
+               {weather}
             </div>
          </div>
       </div>

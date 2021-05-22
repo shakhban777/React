@@ -23,7 +23,22 @@ type LocationType = {
    lon: number | null,
 }
 
+function useWindowDimensions() {
+   const [width, setWidth] = React.useState<number>(window.innerWidth);
+   useEffect(() => {
+      window.addEventListener("resize", updateWidth);
+      return () => window.removeEventListener("resize", updateWidth);
+   });
+
+   const updateWidth = () => {
+      setWidth(window.innerWidth);
+   };
+   return width;
+}
+
 const App: React.FC = () => {
+   const width = useWindowDimensions();
+
    const [cities] = useState<CityType[]>([
       {name: 'Самара', lat: 53.195873, lon: 50.100193},
       {name: 'Тольятти', lat: 53.507836, lon: 49.420393},
@@ -37,6 +52,7 @@ const App: React.FC = () => {
    const [historicData, setHistoricData] = useState<DataType>({date: '', icon: '', temperature: ''});
    const [showSevenDaysForecast, setShowSevenDaysForecast] = useState<boolean>(false);
    const [showHistoricForecast, setShowHistoricForecast] = useState<boolean>(false);
+   const [showAllWeatherCards, setShowAllWeatherCards] = useState<boolean>(false);
    const [toggleWeather, setToggleWeather] = useState<number>(0);
 
    const [first, second] = location;
@@ -54,15 +70,18 @@ const App: React.FC = () => {
                return res;
             })
             .then(res => {
-               return res.slice(toggleWeather, 3 + toggleWeather);
+               if (showAllWeatherCards) {
+                  return res;
+               } else {
+                  return res.slice(toggleWeather, 3 + toggleWeather);
+               }
             })
             .then(res => {
                setData(res);
                setShowSevenDaysForecast(true);
             });
       }
-   }, [first, toggleWeather])
-
+   }, [first, toggleWeather, showAllWeatherCards])
 
    useEffect(() => {
       const lat = second.lat;
@@ -78,6 +97,14 @@ const App: React.FC = () => {
             })
       }
    }, [second, date])
+
+   useEffect(() => {
+      if (width <= 660) {
+         setShowAllWeatherCards(true);
+      } else {
+         setShowAllWeatherCards(false);
+      }
+   }, [width])
 
    const locationHandler = (coords: string, blockNum: number) => {
       const [latitude, longitude] = coords.split(', ');
@@ -122,7 +149,8 @@ const App: React.FC = () => {
                                   onPrevHandler={togglePrevHandler}
                                   onNextHandler={toggleNextHandler}
                                   showSevenDaysForecast={showSevenDaysForecast}
-                                  data={data}/>
+                                  data={data}
+                                  showAllWeatherCards={showAllWeatherCards}/>
                <HistoricForecast cities={cities}
                                  showHistoricForecast={showHistoricForecast}
                                  onChangeHandler={locationHandler}
