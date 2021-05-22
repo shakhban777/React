@@ -1,6 +1,5 @@
 import React from 'react';
 import {CityType} from "../app/app";
-import './select-city.css';
 
 export type SelectCitiesTypeProps = {
    cities: CityType[],
@@ -13,8 +12,8 @@ const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler}) 
    }
 
    return (
-      <div className='select-city'>
-         <select className='select-city__selector' onChange={changeHandler}>
+      <>
+         <select className='select select-city' onChange={changeHandler}>
             <option hidden>Select city</option>
             {cities.map(city => {
                return (
@@ -23,7 +22,7 @@ const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler}) 
                )
             })}
          </select>
-      </div>
+      </>
    )
 };
 

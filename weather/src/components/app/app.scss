@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+// colors
+$accent: #373AF5;
+$secondary: #8083A4;
+$base_strong: #2C2D76;
+$critic: #E5596D;
+
+body {
+   background-image: url("../../assets/img/background/top.png"), url("../../assets/img/background/bottom.png");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: right top, left bottom;
+   background-color: $accent;
+   color: #ffffff;
+   font-family: Ubuntu, sans-serif;
+   font-weight: 400;
+   padding-bottom: 230px;
+}
+
+._container {
+   max-width: 1440px;
+   margin: 0 auto;
+   width: 100%;
+}
+
+.title {
+   font-size: 102px;
+   width: 740px;
+   display: flex;
+   flex-direction: column;
+   margin: 0 auto;
+   line-height: 95px;
+
+   &__item-2 {
+      text-align: right;
+   }
+
+}
+
+.app {
+   width: 100%;
+   min-height: 100%;
+   overflow: hidden;
+
+   &__blocks {
+      display: flex;
+      justify-content: center;
+   }
+
+   &__title {
+      margin: 65px 0 60px 0;
+   }
+}
+
+.card {
+   width: 660px;
+   height: 524px;
+   background: #ffffff;
+   box-shadow: 0 4px 4px rgba(4, 5, 73, 0.25),
+   14px 14px 20px rgba(5, 6, 114, 0.2);
+   border-radius: 8px;
+   padding: 50px 58px 70px 50px;
+
+   &:first-child {
+      margin-right: 15px;
+   }
+
+   &:last-child {
+      margin-left: 15px;
+   }
+
+   &__content {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &-title {
+         font-size: 32px;
+         color: $base_strong;
+         margin: 0 0 32px 0;
+      }
+   }
+
+   &__select {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+}
+
+.weather {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   &__arrow-left {
+      cursor: pointer;
+   }
+
+   &__arrow-right {
+      cursor: pointer;
+   }
+}
+
+.select {
+   display: inline-block;
+   width: 252px;
+   height: 48px;
+   background: rgba(128, 131, 164, 0.06);
+   border: 2px solid rgba(128, 131, 164, 0.2);
+   box-sizing: border-box;
+   border-radius: 8px;
+   padding: 0 16px;
+   font-size: 16px;
+   line-height: 24px;
+   color: $secondary;
+   cursor: pointer;
+   appearance: none;
+   position: relative;
+
+   &:hover {
+      border: 2px solid $secondary;
+   }
+
+   &:focus-within {
+      outline-style: none;
+   }
+}
+
+.select-city {
+}
+
+.select-date {
+   &::-webkit-calendar-picker-indicator {
+      color: transparent;
+      opacity: 1;
+      background: url(../../assets/img/icons/calendar.svg) no-repeat center;
+      background-size: 16px;
+   }
+}
+
+.weather-card {
+   width: 174px;
+   height: 238px;
+   background: $accent;
+   border: 2px solid $accent;
+   box-sizing: border-box;
+   box-shadow: 0 4px 4px rgba(4, 5, 73, 0.25), 14px 14px 20px rgba(5, 6, 114, 0.2);
+   border-radius: 8px;
+   padding: 20px;
+
+   &__flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+   }
+
+   &__date {
+      font-weight: bold;
+      font-size: 16px;
+      align-self: flex-start;
+   }
+
+   &__image {
+      width: 120px;
+      height: 120px;
+      align-self: center;
+   }
+
+   &__temp {
+      font-weight: bold;
+      font-size: 32px;
+      align-self: flex-end;
+   }
+}

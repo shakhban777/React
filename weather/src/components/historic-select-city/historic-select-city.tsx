@@ -1,5 +1,4 @@
 import React from 'react';
-import './historic-select-city.css';
 import {SelectCitiesTypeProps} from "../select-city/select-city";
 
 const HistoricSelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler}) => {
@@ -8,8 +7,8 @@ const HistoricSelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHa
    }
 
    return (
-      <div className='select-city'>
-         <select className='select-city__selector' onChange={changeHandler}>
+      <>
+         <select className='select select-city' onChange={changeHandler}>
             <option hidden>Select city</option>
             {cities.map(city => {
                return (
@@ -18,7 +17,7 @@ const HistoricSelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHa
                )
             })}
          </select>
-      </div>
+      </>
    )
 };
 

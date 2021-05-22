@@ -1,5 +1,4 @@
 import React from 'react';
-import './select-date.css';
 
 type SelectDatePropsType = {
    onChangeDateHandler: (date: number) => void
@@ -17,7 +16,7 @@ const SelectDate: React.FC<SelectDatePropsType> = ({onChangeDateHandler}) => {
 
    return (
       <div>
-         <input onChange={onDateChange} className='app__card-date' type="date" min={minDays} max={maxDays}/>
+         <input onChange={onDateChange} className='select select-date' type="date" min={minDays} max={maxDays}/>
       </div>
    )
 }

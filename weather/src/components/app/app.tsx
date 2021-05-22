@@ -3,7 +3,7 @@ import WeatherService from "../../api/api";
 import Title from '../title/title';
 import SevenDaysForecast from '../seven-days-forecast/seven-days-forecast';
 import HistoricForecast from "../historic-forecast/historic-forecast";
-import './app.css';
+import './app.scss';
 
 export type CityType = {
    name: string,

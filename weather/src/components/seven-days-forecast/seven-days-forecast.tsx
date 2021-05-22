@@ -5,7 +5,6 @@ import Placeholder from "../placeholder/placeholder";
 import WeatherCard from "../weather-card/weather-card";
 import arrowLeft from '../../assets/img/icons/arrow-left.svg';
 import arrowRight from '../../assets/img/icons/arrow-right.svg';
-import './seven-days-forecast.css';
 
 type CitiesTypeProps = {
    cities: CityType[],
@@ -25,11 +24,11 @@ const SevenDaysForecast: React.FC<CitiesTypeProps> = ({
                                                          onNextHandler
                                                       }) => {
 
-   const WeatherBlock = () => {
+   const Weather = () => {
       return (
-         <div className='app__card-blocks'>
+         <div className='weather'>
             <div onClick={onPrevHandler}
-                 className="app__arrow-left">
+                 className="weather__arrow-left">
                <img src={arrowLeft} alt="arrow-left"/>
             </div>
             {
@@ -41,7 +40,7 @@ const SevenDaysForecast: React.FC<CitiesTypeProps> = ({
                })
             }
             <div onClick={onNextHandler}
-                 className="app__arrow-right">
+                 className="weather__arrow-right">
                <img src={arrowRight} alt="arrow-right"/>
             </div>
          </div>
@@ -49,14 +48,14 @@ const SevenDaysForecast: React.FC<CitiesTypeProps> = ({
    }
 
    const results = showSevenDaysForecast
-      ? <WeatherBlock/>
+      ? <Weather/>
       : <Placeholder/>;
 
    return (
-      <div className='app__card'>
-         <div className='app__content'>
+      <div className='card'>
+         <div className='card__content'>
             <div>
-               <h2 className='app__card-title'>7 Days Forecast</h2>
+               <h2 className='card__content-title'>7 Days Forecast</h2>
                <SelectCity onChangeHandler={onChangeHandler} cities={cities}/>
             </div>
             <div>

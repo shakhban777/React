@@ -9,6 +9,8 @@ export default class WeatherService {
    _apiKey: string = '9f794cbee16169a67f1379107a9a4b6e';
    _baseURL: string = 'https://api.openweathermap.org/data/2.5/onecall';
 
+
+
    getWeatherForSevenDays = async (lat: number, lon: number): Promise<WeatherType[]> => {
       const urlToFetch: string = `${this._baseURL}?lat=${lat}&lon=${lon}&&exclude=current,minutely,hourly,alerts&appid=${
          this._apiKey

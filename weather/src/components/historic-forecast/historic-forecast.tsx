@@ -3,7 +3,6 @@ import Placeholder from "../placeholder/placeholder";
 import SelectDate from "../select-date/select-date";
 import HistoricWeatherCard from "../historic-weather-card/historic-weather-card";
 import {CityType, DataType} from "../app/app";
-import './historic-forecast.css';
 import HistoricSelectCity from "../historic-select-city/historic-select-city";
 
 type HistoricWeatherTypeProps = {
@@ -27,11 +26,11 @@ const HistoricForecast: React.FC<HistoricWeatherTypeProps> = ({
                              temperature={historicData.temperature}/>
       : <Placeholder/>
    return (
-      <div className='app__card'>
-         <div className='app__content'>
+      <div className='card'>
+         <div className='card__content'>
             <div>
-               <h2 className='app__card-title'>Forecast for a Date in the Past</h2>
-               <div className="app__card-select">
+               <h2 className='card__content-title'>Forecast for a Date in the Past</h2>
+               <div className="card__select">
                   <HistoricSelectCity cities={cities}
                                       onChangeHandler={onChangeHandler}/>
                   <SelectDate onChangeDateHandler={onChangeDateHandler}/>
