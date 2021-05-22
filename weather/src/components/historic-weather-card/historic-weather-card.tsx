@@ -2,11 +2,16 @@ import React from "react";
 import {WeatherTypeProps} from "../weather-card/weather-card";
 
 const HistoricWeatherCard: React.FC<WeatherTypeProps> = ({ date,icon,temperature}) => {
+   const image = icon ? <img className='historic-weather-card__image' src={icon} alt=""/> : null;
+   const text = date
+      ? <div className="historic-weather-card__date">{date}</div>
+      : <div className="error-text">Please enter last 5 days or choose from calendar</div>
+
    return (
       <div className='historic-weather-card'>
          <div className="historic-weather-card__flex">
-            <div className="historic-weather-card__date">{date}</div>
-            <img className='historic-weather-card__image' src={icon} alt=""/>
+            {text}
+            {image}
             <div className="historic-weather-card__temp">{temperature}</div>
          </div>
       </div>

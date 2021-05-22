@@ -38,14 +38,15 @@ function useWindowDimensions() {
 
 const App: React.FC = () => {
    const width = useWindowDimensions();
-
-   const [cities] = useState<CityType[]>([
+   const citiesArray = [
       {name: 'Самара', lat: 53.195873, lon: 50.100193},
       {name: 'Тольятти', lat: 53.507836, lon: 49.420393},
       {name: 'Саратов', lat: 51.533557, lon: 46.034257},
       {name: 'Казань', lat: 55.796127, lon: 49.106405},
       {name: 'Краснодар', lat: 45.035470, lon: 38.975313}
-   ]);
+   ];
+
+   const [cities] = useState<CityType[]>(citiesArray);
    const [location, setLocation] = useState<LocationType[]>([{lat: null, lon: null}, {lat: null, lon: null}]);
    const [date, setDate] = useState<number | null>(null);
    const [data, setData] = useState<DataType[]>([]);
@@ -88,13 +89,15 @@ const App: React.FC = () => {
       const lon = second.lon;
 
       if (lat && lon && date) {
-         const weather = new WeatherService();
-
-         weather.getWeatherForHistoricDate(lat, lon, date)
-            .then(result => {
-               setHistoricData(result);
-               setShowHistoricForecast(true);
-            })
+         try {
+            const weather = new WeatherService();
+            weather.getWeatherForHistoricDate(lat, lon, date)
+               .then(result => {
+                  setHistoricData(result);
+                  setShowHistoricForecast(true);
+               })
+         } catch (e) {
+         }
       }
    }, [second, date])
 
@@ -163,3 +166,4 @@ const App: React.FC = () => {
 }
 
 export default App;
+//	Please enter last 5 days or choose from calendar

@@ -45,21 +45,25 @@ export default class WeatherService {
 
    getWeatherForHistoricDate = async (lat: number, lon: number, date: number) => {
       const urlToFetch: string = `${this._baseURL}/timemachine?lat=${lat}&lon=${lon}&dt=${date}&appid=${this._apiKey}`;
-      const response = await fetch(urlToFetch);
+      try {
+         const response = await fetch(urlToFetch);
+         const json = await response.json();
+         const historicDay = json.current;
+         const symbolOfWeather: string = (historicDay.temp - 273.15) >= 0 ? '+' : '-';
 
-      if (!response.ok) {
-         throw new Error(`Could not fetch ${urlToFetch}, received ${response.status}`)
+         return {
+            icon: `https://openweathermap.org/img/wn/${historicDay.weather[0].icon}@2x.png`,
+            date: new Date(historicDay.dt * 1000).toLocaleString("en",
+               {year: 'numeric', month: 'short', day: "numeric"}).split(', ').join(' '),
+            temperature: `${symbolOfWeather}${Math.floor(historicDay.temp - 273.15).toString()}°`
+         };
+      } catch (error) {
+         console.error(error);
+         return {
+            icon: '',
+            date: '',
+            temperature: ''
+         }
       }
-
-      const json = await response.json();
-      const historicDay = json.current;
-      const symbolOfWeather: string = (historicDay.temp - 273.15) >= 0 ? '+' : '-';
-
-      return {
-         icon: `https://openweathermap.org/img/wn/${historicDay.weather[0].icon}@2x.png`,
-         date: new Date(historicDay.dt * 1000).toLocaleString("en",
-            {year: 'numeric', month: 'short', day: "numeric"}).split(', ').join(' '),
-         temperature: `${symbolOfWeather}${Math.floor(historicDay.temp - 273.15).toString()}°`
-      };
    }
 }

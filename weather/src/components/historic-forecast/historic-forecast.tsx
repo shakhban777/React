@@ -14,17 +14,18 @@ type HistoricWeatherTypeProps = {
 }
 
 const HistoricForecast: React.FC<HistoricWeatherTypeProps> = ({
-                                                      cities,
-                                                      showHistoricForecast,
-                                                      onChangeHandler,
-                                                      onChangeDateHandler,
-                                                      historicData
-                                                   }) => {
-   const result = showHistoricForecast
+                                                                 cities,
+                                                                 showHistoricForecast,
+                                                                 onChangeHandler,
+                                                                 onChangeDateHandler,
+                                                                 historicData
+                                                              }) => {
+   const weatherOrPlaceholder = showHistoricForecast
       ? <HistoricWeatherCard date={historicData.date}
                              icon={historicData.icon}
                              temperature={historicData.temperature}/>
-      : <Placeholder/>
+      : <Placeholder/>;
+
    return (
       <div className='card'>
          <div className='card__content'>
@@ -37,7 +38,7 @@ const HistoricForecast: React.FC<HistoricWeatherTypeProps> = ({
                </div>
             </div>
             <div>
-               {result}
+               {weatherOrPlaceholder}
             </div>
          </div>
       </div>
