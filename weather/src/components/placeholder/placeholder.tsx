@@ -1,6 +1,5 @@
 import React from 'react';
 import cloud from '../../assets/img/placeholder.svg';
-import './placeholder.css';
 
 const Placeholder: React.FC = () => {
    return (

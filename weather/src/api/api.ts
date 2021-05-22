@@ -31,8 +31,10 @@ export default class WeatherService {
          const properties = {
             id: Math.random(),
             icon: `https://openweathermap.org/img/wn/${day.weather.find(el => el.icon)?.icon}@2x.png`,
-            date: new Date(day.dt * 1000).toLocaleString("en",
-               {year: 'numeric', month: 'short', day: "numeric"}).split(', ').join(' '),
+            date: new Date(day.dt * 1000)
+               .toLocaleString("en", {year: 'numeric', month: 'short', day: "numeric"})
+               .split(', ')
+               .join(' '),
             temperature: symbolOfWeather + Math.floor(day.temp.day - 273.15).toString() + '°'
          }
          array.push(properties);

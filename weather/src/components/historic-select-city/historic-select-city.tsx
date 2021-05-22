@@ -7,7 +7,7 @@ const HistoricSelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHa
    }
 
    return (
-      <>
+      <div className='select-city__wrapper'>
          <select className='select select-city' onChange={changeHandler}>
             <option hidden>Select city</option>
             {cities.map(city => {
@@ -17,7 +17,7 @@ const HistoricSelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHa
                )
             })}
          </select>
-      </>
+      </div>
    )
 };
 

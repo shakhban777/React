@@ -1,5 +1,4 @@
 import React from "react";
-import './historic-weather-card.css'
 import {WeatherTypeProps} from "../weather-card/weather-card";
 
 const HistoricWeatherCard: React.FC<WeatherTypeProps> = ({ date,icon,temperature}) => {

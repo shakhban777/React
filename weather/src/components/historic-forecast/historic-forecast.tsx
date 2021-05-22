@@ -28,7 +28,7 @@ const HistoricForecast: React.FC<HistoricWeatherTypeProps> = ({
    return (
       <div className='card'>
          <div className='card__content'>
-            <div>
+            <div className='card__content-header'>
                <h2 className='card__content-title'>Forecast for a Date in the Past</h2>
                <div className="card__select">
                   <HistoricSelectCity cities={cities}

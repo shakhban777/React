@@ -54,7 +54,7 @@ const SevenDaysForecast: React.FC<CitiesTypeProps> = ({
    return (
       <div className='card'>
          <div className='card__content'>
-            <div>
+            <div className='card__content-header'>
                <h2 className='card__content-title'>7 Days Forecast</h2>
                <SelectCity onChangeHandler={onChangeHandler} cities={cities}/>
             </div>
