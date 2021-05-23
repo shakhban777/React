@@ -13,13 +13,13 @@ const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler, b
    const changeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
       onChangeHandler(event.target.value, blockNum);
       event.target.blur();
-   }
+   };
    const focusHandler = (): void => {
       setIsActive(true);
-   }
+   };
    const unFocusHandler = (): void => {
       setIsActive(false);
-   }
+   };
 
    let styleClass: string = 'select-city__wrapper';
    if (isActive) {
@@ -28,6 +28,7 @@ const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler, b
       styleClass = 'select-city__wrapper';
    }
 
+
    return (
       <div className={styleClass}>
          <select className='select select-city'
@@ -35,15 +36,14 @@ const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler, b
                  onBlur={unFocusHandler}
                  onChange={changeHandler}>
             <option hidden>Select city</option>
-            {cities.map(city => {
-               return (
-                  <option key={city.lat}
-                          value={`${city.lat}, ${city.lon}`}>{city.name}</option>
-               )
-            })}
+            {cities.map(city => <option key={city.lat}
+                                        value={`${city.lat}, ${city.lon}`}>{city.name}</option>
+            )}
          </select>
       </div>
    );
 };
 
 export default SelectCity;
+
+

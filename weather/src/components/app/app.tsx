@@ -9,7 +9,7 @@ export type CityType = {
    name: string,
    lat: number,
    lon: number
-};
+}
 
 export type DataType = {
    id?: number,
@@ -111,7 +111,7 @@ const App: React.FC = () => {
       const newObject = {
          lat: +latitude,
          lon: +longitude
-      }
+      };
 
       setLocation(prevState => prevState.map(el => {
          if (el === prevState[blockNum]) {
@@ -129,13 +129,13 @@ const App: React.FC = () => {
       if (0 <= toggleWeather && toggleWeather < 5) {
          setToggleWeather(prevState => ++prevState);
       }
-   }
+   };
 
    const togglePrevHandler = () => {
       if (0 < toggleWeather && toggleWeather <= 5) {
          setToggleWeather(prevState => --prevState);
       }
-   }
+   };
 
    return (
       <div className='app'>

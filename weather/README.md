@@ -1,12 +1,13 @@
 # Weather App, shakhban777
 
-Всем привет - это мое первое приложение на TS.
+Всем привет — это мое первое приложение на TS.
 
 Ссылка на мой репозиторий [Github](https://github.com/shakhban777).
 Мой проект на GitHub [Weather App](https://github.com/shakhban777/React/tree/main/weather)
+[Сайт](https://shakhban777.github.io/Sites/Weather-React-TS/) с выложенным результатом на GitHub Pages 
+
 
 ## Проблемы при разработке
-
 
 ### `Примечание`
 
@@ -21,4 +22,4 @@
 ### `Стилизация селектора`
 
 Некоторые стили невозможно применить просто через css. Думаю переделать select на input + label. Чтобы получилось также.
-
+К сожалению времени на это не хватило.
