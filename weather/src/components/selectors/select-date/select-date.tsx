@@ -16,7 +16,16 @@ const SelectDate: React.FC<SelectDatePropsType> = ({onChangeDateHandler}) => {
 
    return (
       <div>
-         <input onChange={onDateChange} className='select select-date' type="date" min={minDays} max={maxDays}/>
+         <input onChange={onDateChange}
+                className='select select-date'
+                type="text"
+                min={minDays}
+                max={maxDays}
+                placeholder="Select Date"
+                onFocus={(e) => {
+                   e.currentTarget.type = "date";
+                   e.currentTarget.focus();
+                }}/>
       </div>
    )
 }
