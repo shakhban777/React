@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import WeatherService from "../../api/api";
 import Title from '../title/title';
-import SevenDaysForecast from '../seven-days-forecast/seven-days-forecast';
-import HistoricForecast from "../historic-forecast/historic-forecast";
+import SevenDaysForecast from '../forecast/seven-days-forecast/seven-days-forecast';
+import HistoricForecast from "../forecast/historic-forecast/historic-forecast";
 import './app.scss';
 
 export type CityType = {
@@ -160,6 +160,6 @@ const App: React.FC = () => {
          </div>
       </div>
    );
-}
+};
 
 export default App;

@@ -1,23 +1,22 @@
 import React, {useState} from 'react';
-import {CityType} from "../app/app";
+import {CityType} from "../../app/app";
 
 export type SelectCitiesTypeProps = {
    cities: CityType[],
-   onChangeHandler: (coords: string, blockNum: number) => void
+   onChangeHandler: (coords: string, blockNum: number) => void,
+   blockNum: number
 }
 
-const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler}) => {
+const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler, blockNum}) => {
    const [isActive, setIsActive] = useState<boolean>(false);
 
    const changeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      onChangeHandler(event.target.value, 0);
+      onChangeHandler(event.target.value, blockNum);
       event.target.blur();
    }
-
    const focusHandler = (): void => {
       setIsActive(true);
    }
-
    const unFocusHandler = (): void => {
       setIsActive(false);
    }

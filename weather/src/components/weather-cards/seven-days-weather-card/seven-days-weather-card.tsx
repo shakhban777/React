@@ -6,7 +6,7 @@ export type WeatherTypeProps = {
    temperature: string
 }
 
-const WeatherCard: React.FC<WeatherTypeProps> = ({date, icon, temperature}) => {
+const SevenDaysWeatherCard: React.FC<WeatherTypeProps> = ({date, icon, temperature}) => {
    return (
       <div className='weather-card'>
          <div className="weather-card__flex">
@@ -18,4 +18,4 @@ const WeatherCard: React.FC<WeatherTypeProps> = ({date, icon, temperature}) => {
    )
 };
 
-export default WeatherCard;
+export default SevenDaysWeatherCard;

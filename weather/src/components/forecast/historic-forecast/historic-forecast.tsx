@@ -1,9 +1,9 @@
 import React from 'react';
-import Placeholder from "../placeholder/placeholder";
-import SelectDate from "../select-date/select-date";
-import HistoricWeatherCard from "../historic-weather-card/historic-weather-card";
-import HistoricSelectCity from "../historic-select-city/historic-select-city";
-import {CityType, DataType} from "../app/app";
+import Placeholder from "../../placeholder/placeholder";
+import SelectDate from "../../selectors/select-date/select-date";
+import HistoricWeatherCard from "../../weather-cards/historic-weather-card/historic-weather-card";
+import {CityType, DataType} from "../../app/app";
+import SelectCity from "../../selectors/select-city/select-city";
 
 type HistoricWeatherTypeProps = {
    cities: CityType[],
@@ -20,6 +20,8 @@ const HistoricForecast: React.FC<HistoricWeatherTypeProps> = ({
                                                                  onChangeDateHandler,
                                                                  historicData
                                                               }) => {
+   const blockNum = 1;
+
    const weatherOrPlaceholder = showHistoricForecast
       ? <HistoricWeatherCard date={historicData.date}
                              icon={historicData.icon}
@@ -32,8 +34,11 @@ const HistoricForecast: React.FC<HistoricWeatherTypeProps> = ({
             <div className='card__content-header'>
                <h2 className='card__content-title'>Forecast for a Date in the Past</h2>
                <div className="card__select">
-                  <HistoricSelectCity cities={cities}
-                                      onChangeHandler={onChangeHandler}/>
+                  <SelectCity cities={cities}
+                              onChangeHandler={onChangeHandler}
+                              blockNum={blockNum}/>
+                  {/*<HistoricSelectCity cities={cities}*/}
+                  {/*                    onChangeHandler={onChangeHandler}/>*/}
                   <SelectDate onChangeDateHandler={onChangeDateHandler}/>
                </div>
             </div>
