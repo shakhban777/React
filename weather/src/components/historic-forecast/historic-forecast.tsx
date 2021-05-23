@@ -2,8 +2,8 @@ import React from 'react';
 import Placeholder from "../placeholder/placeholder";
 import SelectDate from "../select-date/select-date";
 import HistoricWeatherCard from "../historic-weather-card/historic-weather-card";
-import {CityType, DataType} from "../app/app";
 import HistoricSelectCity from "../historic-select-city/historic-select-city";
+import {CityType, DataType} from "../app/app";
 
 type HistoricWeatherTypeProps = {
    cities: CityType[],

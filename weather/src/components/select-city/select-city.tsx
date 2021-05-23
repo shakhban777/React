@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {CityType} from "../app/app";
 
 export type SelectCitiesTypeProps = {
@@ -7,13 +7,33 @@ export type SelectCitiesTypeProps = {
 }
 
 const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler}) => {
+   const [isActive, setIsActive] = useState<boolean>(false);
+
    const changeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
       onChangeHandler(event.target.value, 0);
+      event.target.blur();
+   }
+
+   const focusHandler = (): void => {
+      setIsActive(true);
+   }
+
+   const unFocusHandler = (): void => {
+      setIsActive(false);
+   }
+
+   let styleClass: string = 'select-city__wrapper';
+   if (isActive) {
+      styleClass += ' active';
+   } else {
+      styleClass = 'select-city__wrapper';
    }
 
    return (
-      <div className='select-city__wrapper'>
+      <div className={styleClass}>
          <select className='select select-city'
+                 onFocus={focusHandler}
+                 onBlur={unFocusHandler}
                  onChange={changeHandler}>
             <option hidden>Select city</option>
             {cities.map(city => {
@@ -24,7 +44,7 @@ const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler}) 
             })}
          </select>
       </div>
-)
+   );
 };
 
 export default SelectCity;

@@ -9,8 +9,6 @@ export default class WeatherService {
    _apiKey: string = '9f794cbee16169a67f1379107a9a4b6e';
    _baseURL: string = 'https://api.openweathermap.org/data/2.5/onecall';
 
-
-
    getWeatherForSevenDays = async (lat: number, lon: number): Promise<WeatherType[]> => {
       const urlToFetch: string = `${this._baseURL}?lat=${lat}&lon=${lon}&&exclude=current,minutely,hourly,alerts&appid=${
          this._apiKey
@@ -26,7 +24,7 @@ export default class WeatherService {
 
       let array: WeatherType[] = [];
 
-      await dataArrays.forEach((day: { weather:[{icon: string}]; dt: number; temp: { day: number; }; }) => {
+      await dataArrays.forEach((day: { weather: [{ icon: string }]; dt: number; temp: { day: number; }; }) => {
          const symbolOfWeather: string = (day.temp.day - 273.15) >= 0 ? '+' : '-';
          const properties = {
             id: Math.random(),
@@ -35,7 +33,7 @@ export default class WeatherService {
                .toLocaleString("en", {year: 'numeric', month: 'short', day: "numeric"})
                .split(', ')
                .join(' '),
-            temperature: symbolOfWeather + Math.floor(day.temp.day - 273.15).toString() + '°'
+            temperature: symbolOfWeather + Math.round(day.temp.day - 273.15).toString() + '°'
          }
          array.push(properties);
       })
@@ -55,7 +53,7 @@ export default class WeatherService {
             icon: `https://openweathermap.org/img/wn/${historicDay.weather[0].icon}@2x.png`,
             date: new Date(historicDay.dt * 1000).toLocaleString("en",
                {year: 'numeric', month: 'short', day: "numeric"}).split(', ').join(' '),
-            temperature: `${symbolOfWeather}${Math.floor(historicDay.temp - 273.15).toString()}°`
+            temperature: `${symbolOfWeather}${Math.round(historicDay.temp - 273.15).toString()}°`
          };
       } catch (error) {
          console.error(error);

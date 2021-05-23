@@ -4,7 +4,6 @@
 $accent: #373AF5;
 $secondary: #8083A4;
 $base_strong: #2C2D76;
-$critic: #E5596D;
 
 //breakpoints
 $md1: 1580px;
@@ -191,6 +190,7 @@ body {
    font-size: 16px;
    line-height: 24px;
    color: $secondary;
+   //color: $base_strong;
    cursor: pointer;
    appearance: none;
    position: relative;
@@ -225,17 +225,24 @@ body {
          transform: translateY(-75%) rotate(-180deg);
       }
    }
+   &:focus {
+      border: 2px solid $accent;
+   }
 }
 
 .select-date {
    @media (max-width: 571px) {
       margin-top: 33px;
    }
+
    &::-webkit-calendar-picker-indicator {
       color: transparent;
       opacity: 1;
       background: url(../../assets/img/icons/calendar.svg) no-repeat center;
       background-size: 16px;
+   }
+   &:focus {
+      border: 2px solid $accent;
    }
 }
 

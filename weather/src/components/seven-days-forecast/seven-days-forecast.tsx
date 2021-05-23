@@ -6,7 +6,7 @@ import WeatherCard from "../weather-card/weather-card";
 import arrowLeft from '../../assets/img/icons/arrow-left.svg';
 import arrowRight from '../../assets/img/icons/arrow-right.svg';
 
-type CitiesTypeProps = {
+type WeatherTypeProps = {
    cities: CityType[],
    onChangeHandler: (coords: string, blockNum: number) => void,
    showSevenDaysForecast: boolean,
@@ -16,7 +16,7 @@ type CitiesTypeProps = {
    showAllWeatherCards: boolean
 }
 
-const SevenDaysForecast: React.FC<CitiesTypeProps> = ({
+const SevenDaysForecast: React.FC<WeatherTypeProps> = ({
                                                          data,
                                                          showSevenDaysForecast,
                                                          cities,
@@ -26,7 +26,7 @@ const SevenDaysForecast: React.FC<CitiesTypeProps> = ({
                                                          showAllWeatherCards
                                                       }) => {
 
-   const LeftArrowBlock =  () => {
+   const LeftArrowBlock = () => {
       return (
          <div onClick={onPrevHandler}
               className="weather__arrow-left">

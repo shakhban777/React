@@ -89,15 +89,12 @@ const App: React.FC = () => {
       const lon = second.lon;
 
       if (lat && lon && date) {
-         try {
-            const weather = new WeatherService();
-            weather.getWeatherForHistoricDate(lat, lon, date)
-               .then(result => {
-                  setHistoricData(result);
-                  setShowHistoricForecast(true);
-               })
-         } catch (e) {
-         }
+         const weather = new WeatherService();
+         weather.getWeatherForHistoricDate(lat, lon, date)
+            .then(result => {
+               setHistoricData(result);
+               setShowHistoricForecast(true);
+            })
       }
    }, [second, date])
 
@@ -166,4 +163,3 @@ const App: React.FC = () => {
 }
 
 export default App;
-//	Please enter last 5 days or choose from calendar
