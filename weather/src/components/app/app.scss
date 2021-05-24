@@ -27,6 +27,10 @@ body {
    @media (max-width: $md2) {
       padding-bottom: 80px;
    }
+
+   @media (max-width: $md3) {
+      background-attachment: scroll;
+   }
 }
 
 ._container {
@@ -190,7 +194,6 @@ body {
    font-size: 16px;
    line-height: 24px;
    color: $secondary;
-   //color: $base_strong;
    cursor: pointer;
    appearance: none;
    position: relative;
@@ -233,6 +236,7 @@ body {
 .select-date {
    opacity: 0;
    text-align: left;
+   padding: 10px;
    &__wrapper {
       position: relative;
       background: url(../../assets/img/icons/calendar.svg) no-repeat 220px;
