@@ -69,7 +69,7 @@ const SevenDaysForecast: React.FC<WeatherTypeProps> = ({
       : <Placeholder/>;
 
    return (
-      <div className='card'>
+      <section className='card'>
          <div className='card__content'>
             <div className='card__content-header'>
                <h2 className='card__content-title'>7 Days Forecast</h2>
@@ -81,7 +81,7 @@ const SevenDaysForecast: React.FC<WeatherTypeProps> = ({
                {weather}
             </div>
          </div>
-      </div>
+      </section>
    )
 }
 

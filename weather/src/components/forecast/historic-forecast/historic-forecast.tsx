@@ -29,7 +29,7 @@ const HistoricForecast: React.FC<HistoricWeatherTypeProps> = ({
       : <Placeholder/>;
 
    return (
-      <div className='card'>
+      <section className='card'>
          <div className='card__content'>
             <div className='card__content-header'>
                <h2 className='card__content-title'>Forecast for a Date in the Past</h2>
@@ -44,7 +44,7 @@ const HistoricForecast: React.FC<HistoricWeatherTypeProps> = ({
                {weatherOrPlaceholder}
             </div>
          </div>
-      </div>
+      </section>
    );
 };
 

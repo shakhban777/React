@@ -140,10 +140,10 @@ const App: React.FC = () => {
    return (
       <div className='app'>
          <div className='_container'>
-            <div className='app__title'>
+            <header className='app__title'>
                <Title/>
-            </div>
-            <div className='app__blocks'>
+            </header>
+            <main className='app__blocks'>
                <SevenDaysForecast cities={cities}
                                   onChangeHandler={locationHandler}
                                   onPrevHandler={togglePrevHandler}
@@ -156,7 +156,7 @@ const App: React.FC = () => {
                                  onChangeHandler={locationHandler}
                                  onChangeDateHandler={dateHandler}
                                  historicData={historicData}/>
-            </div>
+            </main>
          </div>
       </div>
    );

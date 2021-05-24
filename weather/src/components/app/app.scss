@@ -13,7 +13,7 @@ $md3: 525px;
 body {
    background-image: url("../../assets/img/background/top.png"), url("../../assets/img/background/bottom.png");
    background-repeat: no-repeat;
-   background-size: cover;
+   background-size: contain;
    background-position: right top, left bottom;
    background-attachment: fixed;
    background-color: $accent;
@@ -231,18 +231,36 @@ body {
 }
 
 .select-date {
+   opacity: 0;
+   text-align: left;
+   &__wrapper {
+      position: relative;
+      background: url(../../assets/img/icons/calendar.svg) no-repeat 220px;
+      @media (max-width: 571px) {
+         background: url(../../assets/img/icons/calendar.svg) no-repeat 220px 48px;
+         padding-top: 10px;
+      }
+   }
+   &__placeholder {
+      position: absolute;
+      @media (max-width: 571px) {
+         margin-top: 33px;
+      }
+      &:hover {
+         border: 2px solid $secondary;
+      }
+   }
    @media (max-width: 571px) {
       margin-top: 33px;
    }
 
    &::-webkit-calendar-picker-indicator {
-      color: transparent;
-      opacity: 1;
-      background: url(../../assets/img/icons/calendar.svg) no-repeat center;
-      background-size: 16px;
+      opacity: 0;
+      -webkit-appearance: none;
    }
    &:focus {
       border: 2px solid $accent;
+      opacity: 1;
    }
 }
 
