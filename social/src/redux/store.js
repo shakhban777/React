@@ -62,4 +62,3 @@ const store = {
 }
 
 export default store;
-Window.store = store;
