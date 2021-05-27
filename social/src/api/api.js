@@ -22,7 +22,7 @@ export const followAPI = {
          .post(`follow/${id}`)
          .then(response => response.data);
    },
-   
+
    unfollowUser(id) {
       return instance
          .delete(`follow/${id}`)

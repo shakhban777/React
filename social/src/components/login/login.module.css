@@ -1,4 +1,26 @@
 .loginForm {
    display: inline-flex;
    flex-direction: column;
+   justify-content: space-between;
+   height: 7em;
+   width: 10em;
+}
+
+.loginForm input {
+   height: 2.5em;
+   margin-bottom: 1em;
+}
+
+.checkbox {
+   display: flex;
+}
+
+.checkbox input {
+   margin-right: 1em;
+}
+
+.btn {
+   height: 2em;
+   width: 50%;
+   margin: auto;
 }

@@ -1,9 +1,25 @@
 import React from 'react';
 import DialogItem from "./dialog-item/dialog-item";
 import Message from "./message/message";
+import {Field, reduxForm} from 'redux-form';
 import s from './dialogs.module.css';
 
-const newMessageElement = React.createRef();
+const AddMessageForm = (props) => {
+   return (
+      <>
+         <form onSubmit={props.handleSubmit} className={s.addMessage}>
+            <Field
+               component={'textarea'}
+               name={'newMessageBody'}
+               placeholder='Enter your message'
+               className={s.textArea}/>
+            <button className={s.sendButton}>Send message</button>
+         </form>
+      </>
+   );
+};
+
+const AddMessageReduxForm = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm);
 
 const Dialogs = (props) => {
    const dialogsElements = props.state.dialogs
@@ -18,14 +34,9 @@ const Dialogs = (props) => {
          return <Message key={id} {...props} />;
       });
 
-   const onSendMessage = () => {
-      props.sendMessage();
-   }
-
-   const onMessageChange = (e) => {
-      const text = e.target.value;
-      props.updateMessage(text);
-   }
+   const addNewMessage = (values) => {
+      props.sendMessage(values.newMessageBody);
+   };
 
    return (
       <div className={s.dialogs}>
@@ -37,21 +48,8 @@ const Dialogs = (props) => {
             <ul className={s.messagesList}>
                {messagesElements}
             </ul>
-            <div className={s.addMessage}>
-            <textarea
-               placeholder='Enter your message'
-               className={s.textArea}
-               ref={newMessageElement}
-               value={props.state.newMessageText}
-               onChange={onMessageChange}/>
-                  <button
-                     className={s.sendButton}
-                     onClick={onSendMessage}>
-                     Send message
-                  </button>
-               </div>
+            <AddMessageReduxForm onSubmit={addNewMessage}/>
          </div>
-
       </div>
    );
 };
