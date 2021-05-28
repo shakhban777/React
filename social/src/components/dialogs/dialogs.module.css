@@ -14,6 +14,10 @@
     justify-content: space-between;
 }
 
+.dialogs .messages div {
+    width: 100%;
+}
+
 .dialogs .messagesList {
     padding: 10px;
     font-style: italic;
@@ -30,6 +34,7 @@ button::-moz-focus-inner {
     align-items: center;
     margin: 0 .5em 1.3em .5em;
     height: 3em;
+    justify-content: space-between;
 }
 
 .sendButton {

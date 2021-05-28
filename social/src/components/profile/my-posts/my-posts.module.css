@@ -1,17 +1,17 @@
 .myPost {
-	display: flex;
-	flex-direction: column;
-	max-width: 220px;
+   display: flex;
+   flex-direction: column;
+   max-width: 220px;
 }
 
 .myPost button {
-	margin: 10px auto 0 auto;
-	font-size: .6em;
-	white-space: nowrap;
-	padding: .6em .8em;
-	border-radius: 5px;
+   margin: 10px auto 0 auto;
+   font-size: .6em;
+   white-space: nowrap;
+   padding: .6em .8em;
+   border-radius: 5px;
    background-color: rgba(255,224,3,1);
-	box-shadow: -.2em .2em .3em #ffffff;
+   box-shadow: -.2em .2em .3em #ffffff;
    position: relative;
    top: 0;
    left: 0;
@@ -35,7 +35,7 @@
 
 .myPost h3 {
    text-align: center;
-	margin-bottom: .3em;
+   margin-bottom: .3em;
 }
 
 .postArea {
@@ -59,6 +59,3 @@
 .postArea:active, .postArea:focus {
    outline: none;
 }
-
-
-.posts {}

@@ -18,21 +18,11 @@ const profileReducer = (state = initialState, action) => {
 
       case ADD_POST: {
          const likeValue = Math.floor(Math.random() * 100 + 1);
-         let text;
-
-         if (action.addNewPostBody) {
-            text = action.addNewPostBody;
-         } else {
-            return {
-               ...state
-            }
-         }
-
          return {
             ...state,
             posts: [...state.posts, {
                id: ++state.posts.length,
-               message: text,
+               message: action.addNewPostBody,
                likeCounts: likeValue
             }]
          };

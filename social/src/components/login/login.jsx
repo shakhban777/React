@@ -1,14 +1,29 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
+import {Input} from "../common/form-controls/form-controls";
+import {maxLengthCreator, required} from "../../utilities/validators/validators";
 import s from './login.module.css';
+
+const maxLength15 = maxLengthCreator(15);
 
 const LoginForm = (props) => {
    return (
       <form className={s.loginForm} onSubmit={props.handleSubmit}>
-         <Field component={'input'} name={'login'} type="text" placeholder={'Login'}/>
-         <Field component={'input'} name={'password'} type="password" placeholder={'Password'}/>
+         <Field component={Input}
+                name={'login'}
+                type="text"
+                placeholder={'Login'}
+                validate={[required, maxLength15]}/>
+         <Field component={Input}
+                name={'password'}
+                type="password"
+                placeholder={'Password'}
+                validate={[required, maxLength15]}/>
          <div className={s.checkbox}>
-            <Field component={'input'} name={'rememberMe'} id={'rememberMe'} type="checkbox"/>
+            <Field component={Input}
+                   name={'rememberMe'}
+                   id={'rememberMe'}
+                   type="checkbox"/>
             <label htmlFor='rememberMe'>Remember me</label>
          </div>
          <button className={s.btn}>Login</button>
@@ -25,7 +40,7 @@ const Login = () => {
 
    return (
       <>
-         <h1>Login</h1>
+         <h1 className={s.header}>Login</h1>
          <LoginReduxForm onSubmit={onSubmit}/>
       </>
    );
