@@ -20,6 +20,10 @@ const Header = (props) => {
 							<div>
 								<div>Имя: {props.login}</div>
 								<div>E-mail: {props.email}</div>
+								<button onClick={props.logout}
+										  className={s.logout}>
+									Log out
+								</button>
 							</div>
                   </div>
                )

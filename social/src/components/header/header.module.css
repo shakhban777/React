@@ -34,3 +34,12 @@
 .loginBlock img {
     margin-right: 1em;
 }
+
+.logout {
+    height: 2em;
+    width: 6em;
+    background-color: #00c9fb;
+    color: #fff;
+    font-size: .6em;
+    border-radius: 6px;
+}
