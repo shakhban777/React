@@ -30,20 +30,20 @@ export const setAuthUserData = (email, userId, login, avatar, isAuth) => ({
 });
 
 export const getAuthUserData = () => (dispatch) => {
-   authAPI.me()
-      .then(data => {
-         if (data.resultCode === 0) {
-            const {email, id, login} = data.data;
-            profileAPI.getProfile(`${id}`)
-               .then(secData => {
-                  let avatar = secData.photos.small;
-                  if (!avatar) {
-                     avatar = DefaultPhoto;
-                  }
-                  dispatch(setAuthUserData(email, id, login, avatar, true));
-               })
-         }
-      });
+   return authAPI.me()
+            .then(data => {
+               if (data.resultCode === 0) {
+                  const {email, id, login} = data.data;
+                  profileAPI.getProfile(`${id}`)
+                     .then(secData => {
+                        let avatar = secData.photos.small;
+                        if (!avatar) {
+                           avatar = DefaultPhoto;
+                        }
+                        dispatch(setAuthUserData(email, id, login, avatar, true));
+                     })
+               }
+            });
 };
 
 export const login = (email, password, rememberMe) => (dispatch) => {
