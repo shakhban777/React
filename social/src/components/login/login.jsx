@@ -4,31 +4,45 @@ import {Input} from "../common/form-controls/form-controls";
 import {required} from "../../utilities/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
-import s from './login.module.css';
 import {Redirect} from "react-router-dom";
+import s from './login.module.css';
+import styleError from "../common/form-controls/form-controls.module.css";
+
+const ErrorBlock = (props) => {
+   return (
+      <div>
+         <div className={styleError.formSummaryError}>
+            {props.error}
+         </div>
+      </div>
+   );
+};
 
 const LoginForm = (props) => {
    return (
-      <form className={s.loginForm} onSubmit={props.handleSubmit}>
-         <Field component={Input}
-                name={'email'}
-                type="text"
-                placeholder={'Email'}
-                validate={[required]}/>
-         <Field component={Input}
-                name={'password'}
-                type="password"
-                placeholder={'Password'}
-                validate={[required]}/>
-         <div className={s.checkbox}>
+      <>
+         <form className={s.loginForm} onSubmit={props.handleSubmit}>
             <Field component={Input}
-                   name={'rememberMe'}
-                   id={'rememberMe'}
-                   type="checkbox"/>
-            <label htmlFor='rememberMe'>Remember me</label>
-         </div>
-         <button className={s.btn}>Login</button>
-      </form>
+                   name={'email'}
+                   type="text"
+                   placeholder={'Email'}
+                   validate={[required]}/>
+            <Field component={Input}
+                   name={'password'}
+                   type="password"
+                   placeholder={'Password'}
+                   validate={[required]}/>
+            <div className={s.checkbox}>
+               <Field component={Input}
+                      name={'rememberMe'}
+                      id={'rememberMe'}
+                      type="checkbox"/>
+               <label htmlFor='rememberMe'>Remember me</label>
+            </div>
+            <button className={s.btn}>Login</button>
+         </form>
+         {props.error && ErrorBlock(props)}
+      </>
    );
 };
 
@@ -40,7 +54,7 @@ const Login = (props) => {
    };
 
    if (props.isAuth) {
-      return <Redirect to={'/profile'}/>
+      return <Redirect to={'/profile/'}/>
    }
 
    return (

@@ -1,5 +1,6 @@
 import {authAPI, profileAPI} from "../api/api";
 import DefaultPhoto from "../assets/images/user.png";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -50,6 +51,9 @@ export const login = (email, password, rememberMe) => (dispatch) => {
       .then(data => {
          if (data.resultCode === 0) {
             dispatch(getAuthUserData());
+         } else {
+            let errorMessage = data.messages.length > 0 ? data.messages[0] : 'Some error';
+            dispatch(stopSubmit('login', {_error: errorMessage}));
          }
       });
 };
