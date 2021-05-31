@@ -51,11 +51,9 @@ class App extends Component {
    }
 }
 
-const mapStateToProps = (state) => {
-   return {
-      initialized: state.app.initialized
-   };
-};
+const mapStateToProps = (state) => ({
+   initialized: state.app.initialized
+});
 
 export default compose(
    connect(mapStateToProps, {initializeApp}),

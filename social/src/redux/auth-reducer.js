@@ -31,10 +31,10 @@ export const setAuthUserData = (email, userId, login, avatar, isAuth) => ({
 
 export const getAuthUserData = () => (dispatch) => {
    return authAPI.me()
-            .then(data => {
-               if (data.resultCode === 0) {
-                  const {email, id, login} = data.data;
-                  profileAPI.getProfile(`${id}`)
+         .then(data => {
+            if (data.resultCode === 0) {
+               const {email, id, login} = data.data;
+               return profileAPI.getProfile(`${id}`)
                      .then(secData => {
                         let avatar = secData.photos.small;
                         if (!avatar) {
@@ -42,8 +42,8 @@ export const getAuthUserData = () => (dispatch) => {
                         }
                         dispatch(setAuthUserData(email, id, login, avatar, true));
                      })
-               }
-            });
+            }
+         });
 };
 
 export const login = (email, password, rememberMe) => (dispatch) => {
