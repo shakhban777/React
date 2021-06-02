@@ -5,20 +5,21 @@ import {follow, requestUsers, unfollow} from "../../redux/users-reducer";
 import Preloader from "../common/preloader";
 import {compose} from "redux";
 import {
-   getCurrentPage, getFollowingInProgress,
+   getCurrentPage,
+   getFollowingInProgress,
    getIsFetching,
    getPageSize,
-   getTotalUsersCount, getUsers,
-   getUsersSelector
+   getTotalUsersCount,
+   getUsers
 } from "../../redux/users-selectors";
 
 class UsersContainer extends Component {
    componentDidMount() {
-      this.props.getUsers(this.props.currentPage, this.props.pageSize);
+      this.props.requestUsers(this.props.currentPage, this.props.pageSize);
    }
 
    onPageChanged = (pageNumber) => {
-      this.props.getUsers(pageNumber, this.props.pageSize);
+      this.props.requestUsers(pageNumber, this.props.pageSize);
    }
 
    render() {
@@ -54,5 +55,5 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(
-   connect(mapStateToProps, {follow, unfollow, getUsers: requestUsers})
+   connect(mapStateToProps, {follow, unfollow, requestUsers})
 )(UsersContainer);
