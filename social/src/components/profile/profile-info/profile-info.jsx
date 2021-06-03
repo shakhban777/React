@@ -3,6 +3,7 @@ import s from './profile-info.module.css';
 import Preloader from "../../common/preloader";
 import defaultPhoto from '../../../assets/images/user.png';
 import ProfileStatus from "./profile-status";
+import ProfileStatusWithHooks from "./profile-status-with-hooks";
 
 const ProfileInfo = (props) => {
    if (!props.profile) {
@@ -18,7 +19,7 @@ const ProfileInfo = (props) => {
          <img className={s.avatar} src={avatar} alt="avatar"/>
          <ul className={s.list}>
             <li>
-               <ProfileStatus status={props.status}
+               <ProfileStatusWithHooks status={props.status}
                               updateStatus={props.updateStatus} />
             </li>
             <li>Имя: {props.profile.fullName}</li>
