@@ -1,14 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
-
-// colors
-$accent: #373AF5;
-$secondary: #8083A4;
-$base_strong: #2C2D76;
-
-//breakpoints
-$md1: 1580px;
-$md2: 771px;
-$md3: 525px;
+@import "../../assets/styles/colors";
+@import "../../assets/styles/breakpoints";
 
 body {
    background-image: url("../../assets/img/background/top.png"), url("../../assets/img/background/bottom.png");
