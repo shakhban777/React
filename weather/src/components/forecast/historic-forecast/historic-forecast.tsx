@@ -4,6 +4,7 @@ import SelectDate from "../../selectors/select-date/select-date";
 import HistoricWeatherCard from "../../weather-cards/historic-weather-card/historic-weather-card";
 import SelectCity from "../../selectors/select-city/select-city";
 import {CityType, DataType} from "../../app/app";
+import '../forecast.scss';
 
 type HistoricWeatherTypeProps = {
    cities: CityType[],

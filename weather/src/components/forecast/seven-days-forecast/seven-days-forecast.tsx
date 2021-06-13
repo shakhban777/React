@@ -5,6 +5,7 @@ import Placeholder from "../../placeholder/placeholder";
 import WeatherCard from "../../weather-cards/seven-days-weather-card/seven-days-weather-card";
 import arrowLeft from '../../../assets/img/icons/arrow-left.svg';
 import arrowRight from '../../../assets/img/icons/arrow-right.svg';
+import '../forecast.scss';
 
 type WeatherTypeProps = {
    cities: CityType[],
