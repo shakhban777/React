@@ -50,7 +50,7 @@ const SevenDaysForecast: React.FC<WeatherTypeProps> = ({
 
    const Weather = () => {
       return (
-         <div className='weather'>
+         <div className='weather-blocks'>
             {leftArrow}
             {
                data.map((obj: DataType) => {

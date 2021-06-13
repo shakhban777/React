@@ -1,4 +1,5 @@
 import React from "react";
+import './seven-days-weather-card.scss';
 
 export type WeatherTypeProps = {
    date: string,
