@@ -1,5 +1,6 @@
 import React from "react";
 import {WeatherTypeProps} from "../seven-days-weather-card/seven-days-weather-card";
+import './historic-weather-card.scss';
 
 const HistoricWeatherCard: React.FC<WeatherTypeProps> = ({date, icon, temperature}) => {
    const image = icon ? <img className='historic-weather-card__image' src={icon} alt=""/> : null;
