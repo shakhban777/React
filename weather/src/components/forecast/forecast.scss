@@ -63,3 +63,21 @@
       }
    }
 }
+
+.weather-blocks {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   @media (max-width: 660px) {
+      overflow: auto;
+   }
+
+   &__arrow-left {
+      cursor: pointer;
+   }
+
+   &__arrow-right {
+      cursor: pointer;
+   }
+}
