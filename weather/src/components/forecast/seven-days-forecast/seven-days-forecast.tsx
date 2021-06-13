@@ -2,10 +2,8 @@ import React from 'react';
 import {CityType, DataType} from "../../app/app";
 import SelectCity from '../../selectors/select-city/select-city';
 import Placeholder from "../../placeholder/placeholder";
-import WeatherCard from "../../weather-cards/seven-days-weather-card/seven-days-weather-card";
-import LeftArrowBlock from "../left-arrow/left-arrow";
-import RightArrowBlock from "../right-arrow/right-arrow";
 import '../forecast.scss';
+import Weather from "../weather/weather";
 
 type WeatherTypeProps = {
    cities: CityType[],
@@ -18,38 +16,22 @@ type WeatherTypeProps = {
 }
 
 const SevenDaysForecast: React.FC<WeatherTypeProps> = ({
-                                                         data,
-                                                         showSevenDaysForecast,
-                                                         cities,
-                                                         onChangeHandler,
-                                                         onPrevHandler,
-                                                         onNextHandler,
-                                                         showAllWeatherCards
-                                                      }) => {
+                                                          data,
+                                                          showSevenDaysForecast,
+                                                          cities,
+                                                          onChangeHandler,
+                                                          onPrevHandler,
+                                                          onNextHandler,
+                                                          showAllWeatherCards
+                                                       }) => {
    const blockNum = 0;
 
-   const leftArrow = showAllWeatherCards ? null : <LeftArrowBlock onPrevHandler={onPrevHandler}/>;
-   const rightArrow = showAllWeatherCards ? null : <RightArrowBlock onNextHandler={onNextHandler}/>;
-
-   const Weather = () => {
-      return (
-         <div className='weather-blocks'>
-            {leftArrow}
-            {
-               data.map((obj: DataType) => {
-                  return <WeatherCard key={obj.id}
-                                      date={obj.date}
-                                      icon={obj.icon}
-                                      temperature={obj.temperature}/>
-               })
-            }
-            {rightArrow}
-         </div>
-      )
-   }
 
    const weather = showSevenDaysForecast
-      ? <Weather/>
+      ? <Weather data={data}
+                 onNextHandler={onNextHandler}
+                 onPrevHandler={onPrevHandler}
+                 showAllWeatherCards={showAllWeatherCards}/>
       : <Placeholder/>;
 
    return (
