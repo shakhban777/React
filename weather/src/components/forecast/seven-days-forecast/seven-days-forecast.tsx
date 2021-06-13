@@ -3,8 +3,8 @@ import {CityType, DataType} from "../../app/app";
 import SelectCity from '../../selectors/select-city/select-city';
 import Placeholder from "../../placeholder/placeholder";
 import WeatherCard from "../../weather-cards/seven-days-weather-card/seven-days-weather-card";
-import arrowLeft from '../../../assets/img/icons/arrow-left.svg';
 import arrowRight from '../../../assets/img/icons/arrow-right.svg';
+import LeftArrowBlock from "../left-arrow/left-arrow";
 import '../forecast.scss';
 
 type WeatherTypeProps = {
@@ -28,14 +28,6 @@ const SevenDaysForecast: React.FC<WeatherTypeProps> = ({
                                                       }) => {
    const blockNum = 0;
 
-   const LeftArrowBlock = () => {
-      return (
-         <div onClick={onPrevHandler}
-              className="weather-blocks__arrow-left">
-            <img src={arrowLeft} alt="arrow-left"/>
-         </div>
-      );
-   };
    const RightArrowBlock = () => {
       return (
          <div onClick={onNextHandler}
@@ -45,7 +37,7 @@ const SevenDaysForecast: React.FC<WeatherTypeProps> = ({
       );
    };
 
-   const leftArrow = showAllWeatherCards ? null : <LeftArrowBlock/>;
+   const leftArrow = showAllWeatherCards ? null : <LeftArrowBlock onPrevHandler={onPrevHandler}/>;
    const rightArrow = showAllWeatherCards ? null : <RightArrowBlock/>;
 
    const Weather = () => {
