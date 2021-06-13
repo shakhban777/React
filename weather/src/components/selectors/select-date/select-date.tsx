@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './select-date.scss';
 
 type SelectDatePropsType = {
    onChangeDateHandler: (date: number) => void

@@ -1,0 +1,60 @@
+@import "../../../assets/styles/colors";
+
+.select {
+   display: inline-block;
+   width: 252px;
+   height: 48px;
+   background: rgba(128, 131, 164, 0.06);
+   border: 2px solid rgba(128, 131, 164, 0.2);
+   box-sizing: border-box;
+   border-radius: 8px;
+   padding: 0 16px;
+   font-size: 16px;
+   line-height: 24px;
+   color: $secondary;
+   cursor: pointer;
+   appearance: none;
+   position: relative;
+
+   &:hover {
+      border: 2px solid $secondary;
+   }
+
+   &:focus-within {
+      outline-style: none;
+   }
+}
+
+.select-date {
+   opacity: 0;
+   text-align: left;
+   padding: 10px;
+   &__wrapper {
+      position: relative;
+      background: url(../../../assets/img/icons/calendar.svg) no-repeat 220px;
+      @media (max-width: 571px) {
+         background: url(../../../assets/img/icons/calendar.svg) no-repeat 220px 48px;
+      }
+   }
+   &__placeholder {
+      position: absolute;
+      @media (max-width: 571px) {
+         margin-top: 33px;
+      }
+      &:hover {
+         border: 2px solid $secondary;
+      }
+   }
+   @media (max-width: 571px) {
+      margin-top: 33px;
+   }
+
+   &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      -webkit-appearance: none;
+   }
+   &:focus {
+      border: 2px solid $accent;
+      opacity: 1;
+   }
+}
