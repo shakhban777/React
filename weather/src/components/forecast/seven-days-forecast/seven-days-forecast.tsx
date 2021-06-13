@@ -31,7 +31,7 @@ const SevenDaysForecast: React.FC<WeatherTypeProps> = ({
    const LeftArrowBlock = () => {
       return (
          <div onClick={onPrevHandler}
-              className="weather__arrow-left">
+              className="weather-blocks__arrow-left">
             <img src={arrowLeft} alt="arrow-left"/>
          </div>
       );
@@ -39,7 +39,7 @@ const SevenDaysForecast: React.FC<WeatherTypeProps> = ({
    const RightArrowBlock = () => {
       return (
          <div onClick={onNextHandler}
-              className="weather__arrow-right">
+              className="weather-blocks__arrow-right">
             <img src={arrowRight} alt="arrow-right"/>
          </div>
       );
