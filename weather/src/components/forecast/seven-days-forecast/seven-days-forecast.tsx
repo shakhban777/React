@@ -2,8 +2,8 @@ import React from 'react';
 import {CityType, DataType} from "../../app/app";
 import SelectCity from '../../selectors/select-city/select-city';
 import Placeholder from "../../placeholder/placeholder";
-import '../forecast.scss';
 import Weather from "../weather/weather";
+import '../forecast.scss';
 
 type WeatherTypeProps = {
    cities: CityType[],
@@ -31,7 +31,8 @@ const SevenDaysForecast: React.FC<WeatherTypeProps> = ({
       ? <Weather data={data}
                  onNextHandler={onNextHandler}
                  onPrevHandler={onPrevHandler}
-                 showAllWeatherCards={showAllWeatherCards}/>
+                 showAllWeatherCards={showAllWeatherCards}
+                 blockNum={blockNum}/>
       : <Placeholder/>;
 
    return (

@@ -1,10 +1,10 @@
 import React from 'react';
 import Placeholder from "../../placeholder/placeholder";
 import SelectDate from "../../selectors/select-date/select-date";
-import HistoricWeatherCard from "../../weather-cards/historic-weather-card/historic-weather-card";
 import SelectCity from "../../selectors/select-city/select-city";
 import {CityType, DataType} from "../../app/app";
 import '../forecast.scss';
+import WeatherCard from "../../weather-cards/weather-card";
 
 type HistoricWeatherTypeProps = {
    cities: CityType[],
@@ -24,9 +24,10 @@ const HistoricForecast: React.FC<HistoricWeatherTypeProps> = ({
    const blockNum = 1;
 
    const weatherOrPlaceholder = showHistoricForecast
-      ? <HistoricWeatherCard date={historicData.date}
-                             icon={historicData.icon}
-                             temperature={historicData.temperature}/>
+      ? <WeatherCard date={historicData.date}
+                     icon={historicData.icon}
+                     temperature={historicData.temperature}
+                     blockNum={blockNum}/>
       : <Placeholder/>;
 
    return (
