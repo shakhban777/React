@@ -1,4 +1,5 @@
 import React from 'react';
+import './title.scss';
 
 const Title: React.FC = () => {
    return (
