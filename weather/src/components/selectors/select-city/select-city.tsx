@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {CityType} from "../../app/app";
+import './select-city.scss';
 
 export type SelectCitiesTypeProps = {
    cities: CityType[],

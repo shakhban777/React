@@ -167,32 +167,6 @@ body {
    }
 }
 
-.select-city {
-   &__wrapper {
-      display: inline-block;
-      position: relative;
-
-      &:before {
-         content: '';
-         display: inline-block;
-         position: absolute;
-         width: 16px;
-         height: 16px;
-         top: 24px;
-         right: 20px;
-         transform: translateY(-25%);
-         background: url('../../assets/img/icons/arrow-down.svg') 0 0 no-repeat;
-      }
-
-      &.active:before {
-         transform: translateY(-75%) rotate(-180deg);
-      }
-   }
-   &:focus {
-      border: 2px solid $accent;
-   }
-}
-
 .select-date {
    opacity: 0;
    text-align: left;
