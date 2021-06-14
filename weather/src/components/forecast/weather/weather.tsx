@@ -2,14 +2,14 @@ import React from "react";
 import {DataType} from "../../app/app";
 import LeftArrowBlock from "../left-arrow/left-arrow";
 import RightArrowBlock from "../right-arrow/right-arrow";
-import '../forecast.scss';
 import WeatherCard from "../../weather-cards/weather-card";
+import '../forecast.scss';
 
 type WeatherType = {
-   data: DataType[],
-   showAllWeatherCards: boolean,
-   onPrevHandler: () => void,
-   onNextHandler: () => void,
+   data?: DataType[],
+   showAllWeatherCards?: boolean,
+   onPrevHandler?: () => void,
+   onNextHandler?: () => void,
    blockNum: number
 }
 
@@ -28,7 +28,7 @@ const Weather: React.FC<WeatherType> = ({
       <div className='weather-blocks'>
          {leftArrow}
          {
-            data.map((obj: DataType) => {
+            data!.map((obj: DataType) => {
                return <WeatherCard key={obj.id}
                                    date={obj.date}
                                    icon={obj.icon}

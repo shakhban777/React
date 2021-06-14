@@ -3,7 +3,7 @@ import arrowLeft from "../../../assets/img/icons/arrow-left.svg";
 import '../forecast.scss';
 
 type LeftArrowTypeProps = {
-   onPrevHandler: () => void,
+   onPrevHandler?: () => void,
 }
 
 const LeftArrowBlock: React.FC<LeftArrowTypeProps> = ({

@@ -3,7 +3,7 @@ import arrowRight from "../../../assets/img/icons/arrow-right.svg";
 import '../forecast.scss';
 
 type RightArrowTypeProps = {
-   onNextHandler: () => void,
+   onNextHandler?: () => void,
 }
 
 const RightArrowBlock: React.FC<RightArrowTypeProps> = ({

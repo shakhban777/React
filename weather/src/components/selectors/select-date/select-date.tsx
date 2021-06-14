@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './select-date.scss';
 
 type SelectDatePropsType = {
-   onChangeDateHandler: (date: number) => void
+   onChangeDateHandler?: (date: number) => void
 }
 
 const SelectDate: React.FC<SelectDatePropsType> = ({onChangeDateHandler}) => {
@@ -14,7 +14,9 @@ const SelectDate: React.FC<SelectDatePropsType> = ({onChangeDateHandler}) => {
 
    const onDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const date = Date.parse(event.target.value) / 1000;
-      onChangeDateHandler(date);
+      if (onChangeDateHandler) {
+         onChangeDateHandler(date);
+      }
    };
 
    const onFocusChange = () => {

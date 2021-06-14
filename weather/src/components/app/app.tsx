@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import WeatherService from "../../api/api";
 import Title from '../title/title';
-import SevenDaysForecast from '../forecast/seven-days-forecast/seven-days-forecast';
-import HistoricForecast from "../forecast/historic-forecast/historic-forecast";
+import Forecast from "../forecast/forecast";
 import './app.scss';
 
 export type CityType = {
@@ -144,18 +143,23 @@ const App: React.FC = () => {
                <Title/>
             </header>
             <main className='app__blocks'>
-               <SevenDaysForecast cities={cities}
-                                  onChangeHandler={locationHandler}
-                                  onPrevHandler={togglePrevHandler}
-                                  onNextHandler={toggleNextHandler}
-                                  showSevenDaysForecast={showSevenDaysForecast}
-                                  data={data}
-                                  showAllWeatherCards={showAllWeatherCards}/>
-               <HistoricForecast cities={cities}
-                                 showHistoricForecast={showHistoricForecast}
-                                 onChangeHandler={locationHandler}
-                                 onChangeDateHandler={dateHandler}
-                                 historicData={historicData}/>
+               <Forecast cities={cities}
+                         title={'7 Days Forecast'}
+                         showSevenDaysForecast={showSevenDaysForecast}
+                         onChangeHandler={locationHandler}
+                         onPrevHandler={togglePrevHandler}
+                         onNextHandler={toggleNextHandler}
+                         showAllWeatherCards={showAllWeatherCards}
+                         data={data}
+                         blockNum={0}/>
+
+               <Forecast cities={cities}
+                         title={'Forecast for a Date in the Past'}
+                         showHistoricForecast={showHistoricForecast}
+                         onChangeHandler={locationHandler}
+                         onChangeDateHandler={dateHandler}
+                         historicData={historicData}
+                         blockNum={1}/>
             </main>
          </div>
       </div>
