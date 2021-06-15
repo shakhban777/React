@@ -53,7 +53,7 @@ const App: React.FC = () => {
    const [showSevenDaysForecast, setShowSevenDaysForecast] = useState<boolean>(false);
    const [showHistoricForecast, setShowHistoricForecast] = useState<boolean>(false);
    const [showAllWeatherCardsForSevenDays, setShowAllWeatherCardsForSevenDays] = useState<boolean>(false);
-   const [toggleWeather, setToggleWeather] = useState<number>(0);
+   const [weatherDays, setWeatherDays] = useState<number>(0);
 
    const [locationForSevenDaysWeather, locationForHistoricWeather] = location;
 
@@ -73,7 +73,7 @@ const App: React.FC = () => {
                if (showAllWeatherCardsForSevenDays) {
                   return res;
                } else {
-                  return res.slice(toggleWeather, 3 + toggleWeather);
+                  return res.slice(weatherDays, 3 + weatherDays);
                }
             })
             .then(res => {
@@ -81,7 +81,7 @@ const App: React.FC = () => {
                setShowSevenDaysForecast(true);
             });
       }
-   }, [locationForSevenDaysWeather, toggleWeather, showAllWeatherCardsForSevenDays])
+   }, [locationForSevenDaysWeather, weatherDays, showAllWeatherCardsForSevenDays])
 
    useEffect(() => {
       const lat = locationForHistoricWeather.lat;
@@ -125,14 +125,14 @@ const App: React.FC = () => {
    };
 
    const toggleNextHandler = () => {
-      if (0 <= toggleWeather && toggleWeather < 5) {
-         setToggleWeather(prevState => ++prevState);
+      if (0 <= weatherDays && weatherDays < 5) {
+         setWeatherDays(prevState => ++prevState);
       }
    };
 
    const togglePrevHandler = () => {
-      if (0 < toggleWeather && toggleWeather <= 5) {
-         setToggleWeather(prevState => --prevState);
+      if (0 < weatherDays && weatherDays <= 5) {
+         setWeatherDays(prevState => --prevState);
       }
    };
 
