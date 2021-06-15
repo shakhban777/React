@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import WeatherService from "../../api/api";
+import WeatherApiService from "../../api/api";
 import Title from '../title/title';
 import Forecast from "../forecast/forecast";
 import './app.scss';
@@ -36,7 +36,7 @@ function useWindowDimensions() {
 }
 
 const App: React.FC = () => {
-   const width = useWindowDimensions();
+   const widthOfWindow = useWindowDimensions();
    const citiesArray = [
       {name: 'Самара', lat: 53.195873, lon: 50.100193},
       {name: 'Тольятти', lat: 53.507836, lon: 49.420393},
@@ -48,62 +48,62 @@ const App: React.FC = () => {
    const [cities] = useState<CityType[]>(citiesArray);
    const [location, setLocation] = useState<LocationType[]>([{lat: null, lon: null}, {lat: null, lon: null}]);
    const [date, setDate] = useState<number | null>(null);
-   const [data, setData] = useState<DataType[]>([]);
-   const [historicData, setHistoricData] = useState<DataType>({date: '', icon: '', temperature: ''});
+   const [sevenDaysWeatherData, setSevenDaysWeatherData] = useState<DataType[]>([]);
+   const [historicWeatherData, setHistoricWeatherData] = useState<DataType>({date: '', icon: '', temperature: ''});
    const [showSevenDaysForecast, setShowSevenDaysForecast] = useState<boolean>(false);
    const [showHistoricForecast, setShowHistoricForecast] = useState<boolean>(false);
-   const [showAllWeatherCards, setShowAllWeatherCards] = useState<boolean>(false);
+   const [showAllWeatherCardsForSevenDays, setShowAllWeatherCardsForSevenDays] = useState<boolean>(false);
    const [toggleWeather, setToggleWeather] = useState<number>(0);
 
-   const [first, second] = location;
+   const [firstArgumentOfLocation, secondArgumentOfLocation] = location;
 
    useEffect(() => {
-      const lat = first.lat;
-      const lon = first.lon;
+      const latitude = firstArgumentOfLocation.lat;
+      const longitude = secondArgumentOfLocation.lon;
 
-      if (lat && lon) {
-         const weather = new WeatherService();
+      if (latitude && longitude) {
+         const weatherService = new WeatherApiService();
 
-         weather.getWeatherForSevenDays(lat, lon)
+         weatherService.getWeatherForSevenDays(latitude, longitude)
             .then(res => {
-               setData([]);
+               setSevenDaysWeatherData([]);
                return res;
             })
             .then(res => {
-               if (showAllWeatherCards) {
+               if (showAllWeatherCardsForSevenDays) {
                   return res;
                } else {
                   return res.slice(toggleWeather, 3 + toggleWeather);
                }
             })
             .then(res => {
-               setData(res);
+               setSevenDaysWeatherData(res);
                setShowSevenDaysForecast(true);
             });
       }
-   }, [first, toggleWeather, showAllWeatherCards])
+   }, [firstArgumentOfLocation, secondArgumentOfLocation, toggleWeather, showAllWeatherCardsForSevenDays])
 
    useEffect(() => {
-      const lat = second.lat;
-      const lon = second.lon;
+      const latitude = secondArgumentOfLocation.lat;
+      const longitude = secondArgumentOfLocation.lon;
 
-      if (lat && lon && date) {
-         const weather = new WeatherService();
-         weather.getWeatherForHistoricDate(lat, lon, date)
+      if (latitude && longitude && date) {
+         const weather = new WeatherApiService();
+         weather.getWeatherForHistoricDate(latitude, longitude, date)
             .then(result => {
-               setHistoricData(result);
+               setHistoricWeatherData(result);
                setShowHistoricForecast(true);
             })
       }
-   }, [second, date])
+   }, [secondArgumentOfLocation, date])
 
    useEffect(() => {
-      if (width <= 660) {
-         setShowAllWeatherCards(true);
+      if (widthOfWindow <= 660) {
+         setShowAllWeatherCardsForSevenDays(true);
       } else {
-         setShowAllWeatherCards(false);
+         setShowAllWeatherCardsForSevenDays(false);
       }
-   }, [width])
+   }, [widthOfWindow])
 
    const locationHandler = (coords: string, blockNum: number) => {
       const [latitude, longitude] = coords.split(', ');
@@ -149,8 +149,8 @@ const App: React.FC = () => {
                          onChangeHandler={locationHandler}
                          onPrevHandler={togglePrevHandler}
                          onNextHandler={toggleNextHandler}
-                         showAllWeatherCards={showAllWeatherCards}
-                         data={data}
+                         showAllWeatherCardsForSevenDays={showAllWeatherCardsForSevenDays}
+                         sevenDaysWeatherData={sevenDaysWeatherData}
                          blockNum={0}/>
 
                <Forecast cities={cities}
@@ -158,7 +158,7 @@ const App: React.FC = () => {
                          showHistoricForecast={showHistoricForecast}
                          onChangeHandler={locationHandler}
                          onChangeDateHandler={dateHandler}
-                         historicData={historicData}
+                         historicWeatherData={historicWeatherData}
                          blockNum={1}/>
             </main>
          </div>

@@ -6,29 +6,29 @@ import WeatherCard from "../../weather-cards/weather-card";
 import '../forecast.scss';
 
 type WeatherType = {
-   data?: DataType[],
-   showAllWeatherCards?: boolean,
+   sevenDaysWeatherData?: DataType[],
+   showAllWeatherCardsForSevenDays?: boolean,
    onPrevHandler?: () => void,
    onNextHandler?: () => void,
    blockNum: number
 }
 
 const Weather: React.FC<WeatherType> = ({
-                                           data,
-                                           showAllWeatherCards,
+                                           sevenDaysWeatherData,
+                                           showAllWeatherCardsForSevenDays,
                                            onPrevHandler,
                                            onNextHandler,
                                            blockNum
                                         }) => {
 
-   const leftArrow = showAllWeatherCards ? null : <LeftArrowBlock onPrevHandler={onPrevHandler}/>;
-   const rightArrow = showAllWeatherCards ? null : <RightArrowBlock onNextHandler={onNextHandler}/>;
+   const leftArrow = showAllWeatherCardsForSevenDays ? null : <LeftArrowBlock onPrevHandler={onPrevHandler}/>;
+   const rightArrow = showAllWeatherCardsForSevenDays ? null : <RightArrowBlock onNextHandler={onNextHandler}/>;
 
    return (
       <div className='weather-blocks'>
          {leftArrow}
          {
-            data!.map((obj: DataType) => {
+            sevenDaysWeatherData!.map((obj: DataType) => {
                return <WeatherCard key={obj.id}
                                    date={obj.date}
                                    icon={obj.icon}

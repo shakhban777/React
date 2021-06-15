@@ -12,37 +12,37 @@ type ForecastTypeProps = {
    onChangeHandler: (coords: string, blockNum: number) => void,
    title: string
    blockNum: number
-   data?: DataType[],
+   sevenDaysWeatherData?: DataType[],
    onPrevHandler?: () => void,
    onNextHandler?: () => void,
-   showAllWeatherCards?: boolean,
+   showAllWeatherCardsForSevenDays?: boolean,
    showHistoricForecast?: boolean,
    showSevenDaysForecast?: boolean,
    onChangeDateHandler?: (date: number) => void,
-   historicData?: DataType,
+   historicWeatherData?: DataType,
 }
 
 const Forecast: React.FC<ForecastTypeProps> = ({
-                                                  data,
+                                                  sevenDaysWeatherData,
                                                   showSevenDaysForecast,
                                                   cities,
                                                   onChangeHandler,
                                                   onPrevHandler,
                                                   onNextHandler,
-                                                  showAllWeatherCards,
+                                                  showAllWeatherCardsForSevenDays,
                                                   title,
                                                   blockNum,
                                                   showHistoricForecast,
-                                                  historicData,
+                                                  historicWeatherData,
                                                   onChangeDateHandler
                                                }) => {
 
    if (blockNum === 0) {
       const weather = showSevenDaysForecast
-         ? <Weather data={data}
+         ? <Weather sevenDaysWeatherData={sevenDaysWeatherData}
                     onNextHandler={onNextHandler}
                     onPrevHandler={onPrevHandler}
-                    showAllWeatherCards={showAllWeatherCards}
+                    showAllWeatherCardsForSevenDays={showAllWeatherCardsForSevenDays}
                     blockNum={blockNum}/>
          : <Placeholder/>;
 
@@ -63,9 +63,9 @@ const Forecast: React.FC<ForecastTypeProps> = ({
       );
    } else {
       const weatherOrPlaceholder = showHistoricForecast
-         ? <WeatherCard date={historicData!.date}
-                        icon={historicData!.icon}
-                        temperature={historicData!.temperature}
+         ? <WeatherCard date={historicWeatherData!.date}
+                        icon={historicWeatherData!.icon}
+                        temperature={historicWeatherData!.temperature}
                         blockNum={blockNum}/>
          : <Placeholder/>;
 
