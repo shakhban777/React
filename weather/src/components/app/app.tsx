@@ -55,16 +55,16 @@ const App: React.FC = () => {
    const [showAllWeatherCardsForSevenDays, setShowAllWeatherCardsForSevenDays] = useState<boolean>(false);
    const [toggleWeather, setToggleWeather] = useState<number>(0);
 
-   const [firstArgumentOfLocation, secondArgumentOfLocation] = location;
+   const [locationForSevenDaysWeather, locationForHistoricWeather] = location;
 
    useEffect(() => {
-      const latitude = firstArgumentOfLocation.lat;
-      const longitude = secondArgumentOfLocation.lon;
+      const lat = locationForSevenDaysWeather.lat;
+      const lon = locationForSevenDaysWeather.lon;
 
-      if (latitude && longitude) {
-         const weatherService = new WeatherApiService();
+      if (lat && lon) {
+         const weather = new WeatherApiService();
 
-         weatherService.getWeatherForSevenDays(latitude, longitude)
+         weather.getWeatherForSevenDays(lat, lon)
             .then(res => {
                setSevenDaysWeatherData([]);
                return res;
@@ -81,21 +81,21 @@ const App: React.FC = () => {
                setShowSevenDaysForecast(true);
             });
       }
-   }, [firstArgumentOfLocation, secondArgumentOfLocation, toggleWeather, showAllWeatherCardsForSevenDays])
+   }, [locationForSevenDaysWeather, toggleWeather, showAllWeatherCardsForSevenDays])
 
    useEffect(() => {
-      const latitude = secondArgumentOfLocation.lat;
-      const longitude = secondArgumentOfLocation.lon;
+      const lat = locationForHistoricWeather.lat;
+      const lon = locationForHistoricWeather.lon;
 
-      if (latitude && longitude && date) {
+      if (lat && lon && date) {
          const weather = new WeatherApiService();
-         weather.getWeatherForHistoricDate(latitude, longitude, date)
+         weather.getWeatherForHistoricDate(lat, lon, date)
             .then(result => {
                setHistoricWeatherData(result);
                setShowHistoricForecast(true);
             })
       }
-   }, [secondArgumentOfLocation, date])
+   }, [locationForHistoricWeather, date])
 
    useEffect(() => {
       if (widthOfWindow <= 660) {
