@@ -62,9 +62,9 @@ const App: React.FC = () => {
       const lon = locationForSevenDaysWeather.lon;
 
       if (lat && lon) {
-         const weather = new WeatherApiService();
+         const weatherService = new WeatherApiService();
 
-         weather.getWeatherForSevenDays(lat, lon)
+         weatherService.getWeatherForSevenDays(lat, lon)
             .then(res => {
                setSevenDaysWeatherData([]);
                return res;
@@ -88,8 +88,8 @@ const App: React.FC = () => {
       const lon = locationForHistoricWeather.lon;
 
       if (lat && lon && date) {
-         const weather = new WeatherApiService();
-         weather.getWeatherForHistoricDate(lat, lon, date)
+         const weatherService = new WeatherApiService();
+         weatherService.getWeatherForHistoricDate(lat, lon, date)
             .then(result => {
                setHistoricWeatherData(result);
                setShowHistoricForecast(true);
