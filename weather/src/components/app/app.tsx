@@ -65,19 +65,19 @@ const App: React.FC = () => {
          const weatherService = new WeatherApiService();
 
          weatherService.getWeatherForSevenDays(lat, lon)
-            .then(res => {
+            .then(response => {
                setSevenDaysWeatherData([]);
-               return res;
+               return response;
             })
-            .then(res => {
+            .then(oneWeekForecast => {
                if (showAllWeatherCardsForSevenDays) {
-                  return res;
+                  return oneWeekForecast;
                } else {
-                  return res.slice(weatherDays, 3 + weatherDays);
+                  return oneWeekForecast.slice(weatherDays, 3 + weatherDays);
                }
             })
-            .then(res => {
-               setSevenDaysWeatherData(res);
+            .then(forecast => {
+               setSevenDaysWeatherData(forecast);
                setShowSevenDaysForecast(true);
             });
       }
@@ -90,8 +90,8 @@ const App: React.FC = () => {
       if (lat && lon && date) {
          const weatherService = new WeatherApiService();
          weatherService.getWeatherForHistoricDate(lat, lon, date)
-            .then(result => {
-               setHistoricWeatherData(result);
+            .then(historicForecast => {
+               setHistoricWeatherData(historicForecast);
                setShowHistoricForecast(true);
             })
       }
