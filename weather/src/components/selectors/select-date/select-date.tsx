@@ -12,18 +12,18 @@ const SelectDate: React.FC<SelectDatePropsType> = ({onChangeDate}) => {
    const minDays = new Date(Date.now() - oneDay * 5).toISOString().slice(0, 10);
    const maxDays = new Date().toISOString().slice(0, 10);
 
-   const onDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+   const dateChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
       const date = Date.parse(event.target.value) / 1000;
       if (onChangeDate) {
          onChangeDate(date);
       }
    };
 
-   const onFocusChange = () => {
+   const focusChangeHandler = () => {
       setIsFocused(true);
    };
 
-   const onBlurChange = () => {
+   const BlurChangeHandler = () => {
       setIsFocused(false);
    };
 
@@ -39,10 +39,10 @@ const SelectDate: React.FC<SelectDatePropsType> = ({onChangeDate}) => {
                 type="date"
                 min={minDays}
                 max={maxDays}
-                onChange={onDateChange}
-                onFocus={onFocusChange}
-                onBlur={onBlurChange}
-                onInput={onFocusChange}/>
+                onChange={dateChangeHandler}
+                onFocus={focusChangeHandler}
+                onBlur={BlurChangeHandler}
+                onInput={focusChangeHandler}/>
       </div>
    );
 };

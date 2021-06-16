@@ -11,7 +11,7 @@ export type SelectCitiesTypeProps = {
 const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeLocation, blockSelect}) => {
    const [isActive, setIsActive] = useState<boolean>(false);
 
-   const changeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+   const changeLocationHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
       onChangeLocation(event.target.value, blockSelect);
       event.target.blur();
    };
@@ -35,7 +35,7 @@ const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeLocation, 
          <select className='select select-city'
                  onFocus={focusHandler}
                  onBlur={unFocusHandler}
-                 onChange={changeHandler}>
+                 onChange={changeLocationHandler}>
             <option hidden>Select city</option>
             {cities.map(city => <option key={city.lat}
                                         value={`${city.lat}, ${city.lon}`}>{city.name}</option>
