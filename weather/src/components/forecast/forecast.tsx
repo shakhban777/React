@@ -9,16 +9,16 @@ import './forecast.scss';
 
 type ForecastTypeProps = {
    cities: CityType[],
-   onChangeHandler: (coords: string, blockNum: number) => void,
+   onChangeLocation: (coords: string, blockSelect: number) => void,
    title: string
-   blockNum: number
+   blockSelect: number
    sevenDaysWeatherData?: DataType[],
-   onPrevHandler?: () => void,
-   onNextHandler?: () => void,
+   onPreviousDay?: () => void,
+   onNextDay?: () => void,
    showAllWeatherCardsForSevenDays?: boolean,
    showHistoricForecast?: boolean,
    showSevenDaysForecast?: boolean,
-   onChangeDateHandler?: (date: number) => void,
+   onChangeDate?: (date: number) => void,
    historicWeatherData?: DataType,
 }
 
@@ -26,24 +26,24 @@ const Forecast: React.FC<ForecastTypeProps> = ({
                                                   sevenDaysWeatherData,
                                                   showSevenDaysForecast,
                                                   cities,
-                                                  onChangeHandler,
-                                                  onPrevHandler,
-                                                  onNextHandler,
+                                                  onChangeLocation,
+                                                  onPreviousDay,
+                                                  onNextDay,
                                                   showAllWeatherCardsForSevenDays,
                                                   title,
-                                                  blockNum,
+                                                  blockSelect,
                                                   showHistoricForecast,
                                                   historicWeatherData,
-                                                  onChangeDateHandler
+                                                  onChangeDate
                                                }) => {
 
-   if (blockNum === 0) {
+   if (blockSelect === 0) {
       const weather = showSevenDaysForecast
          ? <Weather sevenDaysWeatherData={sevenDaysWeatherData}
-                    onNextHandler={onNextHandler}
-                    onPrevHandler={onPrevHandler}
+                    onNextDay={onNextDay}
+                    onPreviousDay={onPreviousDay}
                     showAllWeatherCardsForSevenDays={showAllWeatherCardsForSevenDays}
-                    blockNum={blockNum}/>
+                    blockSelect={blockSelect}/>
          : <Placeholder/>;
 
       return (
@@ -51,9 +51,9 @@ const Forecast: React.FC<ForecastTypeProps> = ({
             <div className='card__content'>
                <div className='card__content-header'>
                   <h2 className='card__content-title'>{title}</h2>
-                  <SelectCity onChangeHandler={onChangeHandler}
+                  <SelectCity onChangeLocation={onChangeLocation}
                               cities={cities}
-                              blockNum={blockNum}/>
+                              blockSelect={blockSelect}/>
                </div>
                <div>
                   {weather}
@@ -66,7 +66,7 @@ const Forecast: React.FC<ForecastTypeProps> = ({
          ? <WeatherCard date={historicWeatherData!.date}
                         icon={historicWeatherData!.icon}
                         temperature={historicWeatherData!.temperature}
-                        blockNum={blockNum}/>
+                        blockSelect={blockSelect}/>
          : <Placeholder/>;
 
       return (
@@ -76,9 +76,9 @@ const Forecast: React.FC<ForecastTypeProps> = ({
                   <h2 className='card__content-title'>Forecast for a Date in the Past</h2>
                   <div className="card__select">
                      <SelectCity cities={cities}
-                                 onChangeHandler={onChangeHandler}
-                                 blockNum={blockNum}/>
-                     <SelectDate onChangeDateHandler={onChangeDateHandler}/>
+                                 onChangeLocation={onChangeLocation}
+                                 blockSelect={blockSelect}/>
+                     <SelectDate onChangeDate={onChangeDate}/>
                   </div>
                </div>
                <div>

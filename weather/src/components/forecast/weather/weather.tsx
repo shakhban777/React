@@ -8,21 +8,21 @@ import '../forecast.scss';
 type WeatherType = {
    sevenDaysWeatherData?: DataType[],
    showAllWeatherCardsForSevenDays?: boolean,
-   onPrevHandler?: () => void,
-   onNextHandler?: () => void,
-   blockNum: number
+   onPreviousDay?: () => void,
+   onNextDay?: () => void,
+   blockSelect: number
 }
 
 const Weather: React.FC<WeatherType> = ({
                                            sevenDaysWeatherData,
                                            showAllWeatherCardsForSevenDays,
-                                           onPrevHandler,
-                                           onNextHandler,
-                                           blockNum
+                                           onPreviousDay,
+                                           onNextDay,
+                                           blockSelect
                                         }) => {
 
-   const leftArrow = showAllWeatherCardsForSevenDays ? null : <LeftArrowBlock onPrevHandler={onPrevHandler}/>;
-   const rightArrow = showAllWeatherCardsForSevenDays ? null : <RightArrowBlock onNextHandler={onNextHandler}/>;
+   const leftArrow = showAllWeatherCardsForSevenDays ? null : <LeftArrowBlock onPrevHandler={onPreviousDay}/>;
+   const rightArrow = showAllWeatherCardsForSevenDays ? null : <RightArrowBlock onNextHandler={onNextDay}/>;
 
    return (
       <div className='weather-blocks'>
@@ -33,7 +33,7 @@ const Weather: React.FC<WeatherType> = ({
                                    date={obj.date}
                                    icon={obj.icon}
                                    temperature={obj.temperature}
-                                   blockNum={blockNum}/>
+                                   blockSelect={blockSelect}/>
             })
          }
          {rightArrow}

@@ -6,11 +6,11 @@ export type WeatherTypeProps = {
    date: string,
    icon: string,
    temperature: string,
-   blockNum: number
+   blockSelect: number
 }
 
-const WeatherCard: React.FC<WeatherTypeProps> = ({date, icon, temperature, blockNum}) => {
-   if (blockNum === 0) {
+const WeatherCard: React.FC<WeatherTypeProps> = ({date, icon, temperature, blockSelect}) => {
+   if (blockSelect === 0) {
       return (
          <div className='weather-card'>
             <div className="weather-card__flex">

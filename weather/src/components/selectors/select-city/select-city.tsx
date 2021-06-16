@@ -4,15 +4,15 @@ import './select-city.scss';
 
 export type SelectCitiesTypeProps = {
    cities: CityType[],
-   onChangeHandler: (coords: string, blockNum: number) => void,
-   blockNum: number
+   onChangeLocation: (coords: string, blockSelect: number) => void,
+   blockSelect: number
 }
 
-const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeHandler, blockNum}) => {
+const SelectCity: React.FC<SelectCitiesTypeProps> = ({cities, onChangeLocation, blockSelect}) => {
    const [isActive, setIsActive] = useState<boolean>(false);
 
    const changeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      onChangeHandler(event.target.value, blockNum);
+      onChangeLocation(event.target.value, blockSelect);
       event.target.blur();
    };
    const focusHandler = (): void => {

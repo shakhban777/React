@@ -105,32 +105,32 @@ const App: React.FC = () => {
       }
    }, [widthOfWindow])
 
-   const locationHandler = (coords: string, blockNum: number) => {
+   const changeLocationHandler = (coords: string, blockSelect: number) => {
       const [latitude, longitude] = coords.split(', ');
-      const newObject = {
+      const newLocation = {
          lat: +latitude,
          lon: +longitude
       };
 
       setLocation(prevState => prevState.map(el => {
-         if (el === prevState[blockNum]) {
-            return newObject
+         if (el === prevState[blockSelect]) {
+            return newLocation
          }
          return el;
       }));
    };
 
-   const dateHandler = (date: number) => {
+   const changeDateHandler = (date: number) => {
       setDate(date);
    };
 
-   const toggleNextHandler = () => {
+   const nextDayHandler = () => {
       if (0 <= weatherDays && weatherDays < 5) {
          setWeatherDays(prevState => ++prevState);
       }
    };
 
-   const togglePrevHandler = () => {
+   const previousDayHandler = () => {
       if (0 < weatherDays && weatherDays <= 5) {
          setWeatherDays(prevState => --prevState);
       }
@@ -146,20 +146,20 @@ const App: React.FC = () => {
                <Forecast cities={cities}
                          title={'7 Days Forecast'}
                          showSevenDaysForecast={showSevenDaysForecast}
-                         onChangeHandler={locationHandler}
-                         onPrevHandler={togglePrevHandler}
-                         onNextHandler={toggleNextHandler}
+                         onChangeLocation={changeLocationHandler}
+                         onPreviousDay={previousDayHandler}
+                         onNextDay={nextDayHandler}
                          showAllWeatherCardsForSevenDays={showAllWeatherCardsForSevenDays}
                          sevenDaysWeatherData={sevenDaysWeatherData}
-                         blockNum={0}/>
+                         blockSelect={0}/>
 
                <Forecast cities={cities}
                          title={'Forecast for a Date in the Past'}
                          showHistoricForecast={showHistoricForecast}
-                         onChangeHandler={locationHandler}
-                         onChangeDateHandler={dateHandler}
+                         onChangeLocation={changeLocationHandler}
+                         onChangeDate={changeDateHandler}
                          historicWeatherData={historicWeatherData}
-                         blockNum={1}/>
+                         blockSelect={1}/>
             </main>
          </div>
       </div>
