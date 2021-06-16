@@ -19,17 +19,22 @@ export default class WeatherApiService {
       }
    }
 
+   fetchToServer = async (urlToFetch: string) => {
+      const dataFromServer = await fetch(urlToFetch);
+
+      if (!dataFromServer.ok) {
+         throw new Error(`Could not fetch ${dataFromServer}, received ${dataFromServer.status}`);
+      }
+
+      return await dataFromServer.json();
+   }
+
    getWeatherForSevenDays = async (lat: number, lon: number): Promise<WeatherApiType[]> => {
       const weatherForSevenDaysUrlToFetch: string = `${this._baseURL}?lat=${lat}&lon=${lon}&&exclude=current,minutely,hourly,alerts&appid=${
          this._apiKey
       }`;
-      const weatherDataForSevenDays = await fetch(weatherForSevenDaysUrlToFetch);
 
-      if (!weatherDataForSevenDays.ok) {
-         throw new Error(`Could not fetch ${weatherForSevenDaysUrlToFetch}, received ${weatherDataForSevenDays.status}`)
-      }
-
-      const weatherDataForSevenDaysJson = await weatherDataForSevenDays.json();
+      const weatherDataForSevenDaysJson = await this.fetchToServer(weatherForSevenDaysUrlToFetch);
       const weatherForSevenDaysArrays = weatherDataForSevenDaysJson.daily;
 
       return weatherForSevenDaysArrays.map((day: { weather: [{ icon: string }]; dt: number; temp: { day: number; }; }) => {
@@ -49,8 +54,7 @@ export default class WeatherApiService {
    getWeatherForHistoricDate = async (lat: number, lon: number, date: number) => {
       const weatherForHistoricDateUrlToFetch: string = `${this._baseURL}/timemachine?lat=${lat}&lon=${lon}&dt=${date}&appid=${this._apiKey}`;
       try {
-         const weatherForHistoricDateResponse = await fetch(weatherForHistoricDateUrlToFetch);
-         const weatherForHistoricDateJson = await weatherForHistoricDateResponse.json();
+         const weatherForHistoricDateJson = await this.fetchToServer(weatherForHistoricDateUrlToFetch);
          const weatherOfHistoricDay = weatherForHistoricDateJson.current;
          const symbolOfWeather: string = this.symbolOfWeather(weatherOfHistoricDay.temp);
 
